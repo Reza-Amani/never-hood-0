@@ -17,8 +17,14 @@ class GUI(object):
         self.restart_image = Image(Point(50,100), "./images/flash.gif")
         self.restart_image.draw(self.control)
 
-        self.txt = Text(Point(50,50), "start")
+        self.txt = Text(Point(20,80), "start")
         self.txt.draw(self.monitor)
+
+        self.time_image = Image(Point(30,30), "./images/clock.gif")
+        self.time_image.draw(self.monitor)
+
+        self.clock_counter = Text(Point(90,30), 0)
+        self.clock_counter.draw(self.monitor)
  #    txt = Text(Point(5,5), "test: %d %d %d" %(world.grid[0].x,world.grid[0].y,world.grid[0].water))
  #   txt.draw(monitor)
 
@@ -44,6 +50,9 @@ class GUI(object):
 
     def show_message(self, message):
         self.txt.setText(message)
+     
+    def show_clock(self, clk):
+        self.clock_counter.setText(clk)
      
     def terrain_display(self):
         r1 = Rectangle(Point(0,0),Point(600,699))
