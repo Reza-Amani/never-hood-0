@@ -29,6 +29,9 @@
   <ItemGroup>
     <Compile Include="creature.py" />
     <Compile Include="enums.py" />
+    <Compile Include="feature_live.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="feature_moving.py" />
     <Compile Include="graphics.py" />
     <Compile Include="GUI.py" />

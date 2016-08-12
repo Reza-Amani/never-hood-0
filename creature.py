@@ -1,5 +1,6 @@
 ﻿from graphics import *
 from random import *
+from feature_live import *
 from feature_moving import *
 class Creature(object):
     """description of class"""
@@ -7,9 +8,13 @@ class Creature(object):
         self.x = X
         self.y = Y
         self.p = Point(X,Y)
-        self.feature = feature_moving(self)
+        self.features = []
+        self.features.append(feature_live(self))
+        self.features.append(feature_moving(self))
+        self.features[1].execute = self.features[1].random_move_1p
     def live(self):
-        self.feature.execute()
+        for feature in self.features:
+            feature.execute()
 
 
 
