@@ -29,7 +29,7 @@
   <ItemGroup>
     <Compile Include="creature.py" />
     <Compile Include="enums.py" />
-    <Compile Include="feature_live.py">
+    <Compile Include="feature.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="feature_moving.py" />

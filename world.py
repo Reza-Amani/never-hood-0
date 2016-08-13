@@ -9,12 +9,12 @@ class World(object):
         self.Creatures = []
         self.clock_cnt = 0
         x_index = 0
-        while x_index < 400:
-            self.grid.append([point(x_index, y) for y in range (400)])
+        while x_index < 800:
+            self.grid.append([point(x_index, y) for y in range (250)])
             x_index = x_index+1
 
     def start(self):
-        cr = Creature(100,100)
+        cr = Creature(650,100, self.grid)
         cr.p.draw(self.gui.field)
         self.Creatures.append(cr)
 
