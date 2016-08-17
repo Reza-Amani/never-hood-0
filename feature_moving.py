@@ -4,12 +4,10 @@ class feature_moving(feature):
     def __init__(self, creature):
         feature.__init__(self, creature)
     def execute(self):
-        pass
-    def random_move_1p(self):
-        if self.owner.grid[self.owner.x][self.owner.y].water > 1 : 
-            (dx, dy) = choice([(0,0), (0,0), (0,0), (0,0), (0,1), (0,-1), (1,0), (-1,0)])  
-            self.owner.x = self.owner.x+dx
-            self.owner.y = self.owner.y+dy
-            self.owner.p.move(dx,dy)
-        
+        self.owner.point.move(self.owner.dx,self.owner.dy)
+        layer = self.owner.layer
+        self.owner.grid[self.owner.x][self.owner.y].layer = None
+        self.owner.x = self.owner.x + self.owner.dx
+        self.owner.y = self.owner.y + self.owner.dy
+        self.owner.grid[self.owner.x][self.owner.y].layer = self.owner      
     

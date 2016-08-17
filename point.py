@@ -3,6 +3,10 @@
     def __init__(self, X, Y):
         self.x = X 
         self.y = Y
+        self.organic = 0
+        self.sigle_cell = None
+        self.multi_cell = None
+        self.plant = None
         if X >= 1100:
             self.water = 4
         elif X >= 800:

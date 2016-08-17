@@ -14,8 +14,9 @@ class World(object):
             x_index = x_index+1
 
     def start(self):
-        cr = Creature(650,100, self.grid)
-        cr.p.draw(self.gui.field)
+        cr = Creature(650,100, self.grid, "sigle_cell")
+        self.grid[650][100].sigle_cell = cr
+        cr.point.draw(self.gui.field)
         self.Creatures.append(cr)
 
     def tick(self):

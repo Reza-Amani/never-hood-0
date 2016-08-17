@@ -1,4 +1,5 @@
-﻿class Epace:
+﻿
+class Epace:
     stop, single, go = range(3)
 
 
