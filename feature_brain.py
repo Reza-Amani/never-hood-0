@@ -1,5 +1,6 @@
-﻿from random import *
-from feature import *
+﻿from globals import *
+from random import *
+from F0_feature import *
 class feature_brain(object):
     """description of class"""
     def __init__(self, creature):
@@ -7,10 +8,11 @@ class feature_brain(object):
     def execute(self):
         pass
     def check_boundaries(self, nx, ny):
-        if nx > 1300 or nx < 0 or ny > 600 or ny < 0 :
+        if nx > world_size_x or nx < 0 or ny > world_size_y or ny < 0 :
             return False
         else :
             return True
+
     def random_move_1p_inwater(self):
         if self.owner.grid[self.owner.x][self.owner.y].water > 1 : 
             (dx, dy) = choice([(0,0), (0,0), (0,0), (0,0), (0,1), (0,-1), (1,0), (-1,0)])  

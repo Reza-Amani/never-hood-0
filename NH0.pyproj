@@ -28,8 +28,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="creature.py" />
-    <Compile Include="enums.py" />
-    <Compile Include="feature.py">
+    <Compile Include="globals.py" />
+    <Compile Include="F0_feature.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="feature_brain.py">

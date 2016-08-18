@@ -1,4 +1,5 @@
-﻿from graphics import *
+﻿from globals import *
+from graphics import *
 from random import *
 from feature_moving import *
 from feature_brain import *
@@ -11,6 +12,7 @@ class Creature(object):
         self.dy = Y
         self.layer = layer
         self.grid = world_grid
+        self.grid[X][Y].sigle_cell = self
         self.point = Point(X,Y)
         self.features = []
         self.features.append(feature_brain(self))

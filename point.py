@@ -1,4 +1,5 @@
-﻿class point(object):
+﻿from globals import *
+class point(object):
     """description of class"""
     def __init__(self, X, Y):
         self.x = X 
@@ -7,11 +8,11 @@
         self.sigle_cell = None
         self.multi_cell = None
         self.plant = None
-        if X >= 1100:
+        if X >= deep_water_x:
             self.water = 4
-        elif X >= 800:
+        elif X >= shallow_water_x:
             self.water = 3
-        elif X >= 600:
+        elif X >= coastal_water_x:
             self.water = 2
         else :
             self.water = 1

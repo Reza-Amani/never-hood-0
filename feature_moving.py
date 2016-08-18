@@ -1,5 +1,5 @@
 ﻿from random import *
-from feature import *
+from F0_feature import *
 class feature_moving(feature):
     def __init__(self, creature):
         feature.__init__(self, creature)
