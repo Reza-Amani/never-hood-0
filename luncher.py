@@ -29,7 +29,13 @@ def main():
             elif command == 'restart':
                 world.start()
             elif command[0] == 'field':    #a click in field detected
-                gui.show_point_info("point info:\nx:%d\ny:%d\n" \
+                if world.grid[command[1]][command[2]].single_cell != None:
+                    gui.show_point_info("cell info:\nx:%d\ny:%d\nhump:%d\n" \
+                    % (world.grid[command[1]][command[2]].x \
+                    ,world.grid[command[1]][command[2]].y  \
+                    ,world.grid[command[1]][command[2]].single_cell.hump ) )
+                else:
+                    gui.show_point_info("point info:\nx:%d\ny:%d\n" \
                     % (world.grid[command[1]][command[2]].x \
                     ,world.grid[command[1]][command[2]].y)  )
 

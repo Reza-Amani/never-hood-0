@@ -15,7 +15,7 @@ class World(object):
             x_index = x_index+1
 
     def start(self):
-        cr = Creature(coastal_water_x + 50,100, self.grid, "sigle_cell")
+        cr = Creature(coastal_water_x + 50,100, self.grid, "single_cell")
         cr.point.draw(self.gui.field)
         self.Creatures.append(cr)
 
