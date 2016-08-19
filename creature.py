@@ -13,7 +13,11 @@ class Creature(object):
         self.layer = layer
         self.grid = world_grid
         self.grid[X][Y].sigle_cell = self
-        self.point = Point(X,Y)
+
+        self.point = Image(Point(X,Y),3,3)
+        self.point.setPixel(0,0,'black')
+        self.point.setPixel(3,2,'black')
+
         self.features = []
         self.features.append(feature_brain(self))
         self.features.append(feature_moving(self))
