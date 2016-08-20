@@ -30,14 +30,16 @@ def main():
                 world.start()
             elif command[0] == 'field':    #a click in field detected
                 if world.grid[command[1]][command[2]].single_cell != None:
-                    gui.show_point_info("cell info:\nx:%d\ny:%d\nhump:%d\n" \
+                    gui.show_point_info("cell info:\nx:%d\ny:%d\nhump:%d\nage:%d\n" \
                     % (world.grid[command[1]][command[2]].x \
                     ,world.grid[command[1]][command[2]].y  \
-                    ,world.grid[command[1]][command[2]].single_cell.hump ) )
+                    ,world.grid[command[1]][command[2]].single_cell.hump \
+                    ,world.grid[command[1]][command[2]].single_cell.age ) )
                 else:
-                    gui.show_point_info("point info:\nx:%d\ny:%d\n" \
+                    gui.show_point_info("point info:\nx:%d\ny:%d\norganics:%d\n" \
                     % (world.grid[command[1]][command[2]].x \
-                    ,world.grid[command[1]][command[2]].y)  )
+                    ,world.grid[command[1]][command[2]].y \
+                    ,world.grid[command[1]][command[2]].organic)  )
 
         if pace in [Epace.single, Epace.go]:
             world.tick()

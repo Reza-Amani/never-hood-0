@@ -1,6 +1,6 @@
 ﻿from globals import *
 from F0_feature import *
-class feature_eating(object):
+class feature_eating(feature):
     """description of class"""
     def __init__(self, creature):
         feature.__init__(self, creature)

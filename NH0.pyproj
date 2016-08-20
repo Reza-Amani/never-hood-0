@@ -42,6 +42,9 @@
     <Compile Include="graphics.py" />
     <Compile Include="GUI.py" />
     <Compile Include="luncher.py" />
+    <Compile Include="feature_metabolism.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="point.py" />
     <Compile Include="world.py" />
   </ItemGroup>
