@@ -5,5 +5,5 @@ class feature_eating(feature):
     def __init__(self, creature):
         feature.__init__(self, creature)
     def base_single_cell_plant_eating(self):
-        self.owner.hump += 4 - self.owner.grid[self.owner.x][self.owner.y].water
+        self.owner.hump += 5 - self.owner.grid[self.owner.x][self.owner.y].water
 
