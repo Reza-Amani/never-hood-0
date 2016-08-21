@@ -1,4 +1,5 @@
-﻿from globals import *
+﻿from gc import *
+from globals import *
 from point import *
 from GUI import *
 from creature import *
@@ -15,13 +16,13 @@ class World(object):
             x_index = x_index+1
 
     def start(self):
-        cr = Creature(coastal_water_x + 50,100, self.grid, "single_cell")
-        cr.point.draw(self.gui.field)
+        cr = Creature(coastal_water_x + 50,100, self.grid, self.Creatures, self.gui.field, "single_cell")
         self.Creatures.append(cr)
 
     def tick(self):
         self.clock_cnt = self.clock_cnt +1
         self.gui.show_clock(self.clock_cnt)
+        self.gui.show_creatures_cnt(len(self.Creatures))
         for cr in self.Creatures:
             cr.live()
 

@@ -29,6 +29,8 @@ class GUI(object):
 
         self.clock_counter = Text(Point(90,30), 0)
         self.clock_counter.draw(self.monitor)
+        self.creatures_counter = Text(Point(90,40), 0)
+        self.creatures_counter.draw(self.monitor)
  #    txt = Text(Point(5,5), "test: %d %d %d" %(world.grid[0].x,world.grid[0].y,world.grid[0].water))
  #   txt.draw(monitor)
 
@@ -62,6 +64,9 @@ class GUI(object):
      
     def show_clock(self, clk):
         self.clock_counter.setText(clk)
+     
+    def show_creatures_cnt(self, cnt):
+        self.creatures_counter.setText(cnt)
      
     def terrain_display(self):
         r1 = Rectangle(Point(0,0),Point(coastal_water_x,world_size_y))

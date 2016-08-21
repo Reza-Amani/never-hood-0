@@ -5,19 +5,19 @@ class feature_metabolism(feature):
     def __init__(self, creature):
         feature.__init__(self, creature)
         self.energy_consumption = 0
-        self.max_age = 1000
+        self.max_age = 4000
     def execute(self):
         self.determine_energy_consumption()
         self.owner.hump -= self.energy_consumption
         self.owner.grid[self.owner.x][self.owner.y].organic += self.energy_consumption
         self.owner.age += 1
         if self.owner.age > self.max_age:
-            self.die()
+            self.kill_owner()
         elif self.owner.hump < 0:
-            self.die()
-    def die(self):
-        self.owner.grid[self.owner.x][self.owner.y].organic += self.owner.hump
-        self.owner.grid[self.owner.x][self.owner.y].single_cell = None
+            self.kill_owner()
+    def kill_owner(self):
+        self.owner.time_to_die = True
+
     def determine_energy_consumption(self):
         pass
     def base_single_cell_metabolism(self):
