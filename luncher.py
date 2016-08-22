@@ -2,6 +2,8 @@
 from graphics import *
 from GUI import *
 from globals import *
+
+
 def main():
     print("starting")
     gui = GUI()

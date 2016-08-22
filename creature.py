@@ -7,6 +7,8 @@ from feature_brain import *
 from feature_eating import *
 from feature_metabolism import *
 from feature_breeding import *
+
+
 class Creature(object):
     """description of class"""
     def __init__(self, X, Y, world_grid, world_creatures, world_field, layer):
@@ -51,9 +53,11 @@ class Creature(object):
         for feature in self.features:
             del feature
         del self.features
+
     def __del__(self):
         self.point.undraw()
         pass
+
     def live(self):
         for feature in self.features:
             feature.execute()

@@ -1,6 +1,7 @@
-﻿from globals import *
-from creature import *
+﻿#from globals import *
+from creature import Creature
 from F0_feature import *
+
 class feature_breeding(feature):
     """description of class"""
     def __init__(self, creature):
