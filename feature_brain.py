@@ -1,12 +1,16 @@
 ﻿from globals import *
 from random import *
 from F0_feature import *
+
+
 class feature_brain(feature):
     """description of class"""
     def __init__(self, creature):
         feature.__init__(self, creature)
+
     def execute(self):
         self.movement_decision()
+
     def movement_decision(self):
         pass
 
