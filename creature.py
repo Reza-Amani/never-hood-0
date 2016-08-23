@@ -6,7 +6,6 @@ from feature_moving import *
 from feature_brain import *
 from feature_eating import *
 from feature_metabolism import *
-from feature_breeding import feature_breeding
 
 
 class Creature(object):
@@ -63,6 +62,7 @@ class Creature(object):
             feature.execute()
         if self.time_to_die:
             self.die()
+from feature_breeding import *
 
 
 
