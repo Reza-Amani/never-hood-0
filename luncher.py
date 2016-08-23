@@ -3,6 +3,9 @@ from graphics import *
 from GUI import *
 from globals import *
 
+#from creature import *
+#from F0_feature import *
+
 
 def main():
     print("starting")

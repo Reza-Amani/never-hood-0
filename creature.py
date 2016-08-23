@@ -6,7 +6,7 @@ from feature_moving import *
 from feature_brain import *
 from feature_eating import *
 from feature_metabolism import *
-from feature_breeding import *
+from feature_breeding import feature_breeding
 
 
 class Creature(object):
@@ -43,7 +43,7 @@ class Creature(object):
         self.features.append(feature_moving(self))
 
         self.features.append(feature_breeding(self))
-        self.features[4].execute = self.features[4].breeding_cell_devision
+        self.features[4].execute = self.features[4].breeding_cell_division
 
     def die(self):
         self.grid[self.x][self.y].organic += self.hump

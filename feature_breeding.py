@@ -1,5 +1,5 @@
-﻿#from globals import *
-from creature import Creature
+﻿from globals import *
+from creature import *
 from F0_feature import *
 
 class feature_breeding(feature):
@@ -11,7 +11,7 @@ class feature_breeding(feature):
     def execute(self):
         pass
 
-    def breeding_cell_devision(self):
+    def breeding_cell_division(self):
         if self.owner.hump > self.cell_devision_hump_threshold:
             (dx, dy) = choice([(0,0), (0,0), (0,0), (0,0), (0,0), (0,0), (0,0), (0,0), (0,0), (0,0), (0,0), (0,0), (0,1), (0,-1), (1,0), (-1,0)])  
             if not self.check_boundaries(self.owner.x+dx, self.owner.y+dy) :
@@ -28,3 +28,5 @@ class feature_breeding(feature):
 
 
 
+#from creature import *
+#from F0_feature import *
