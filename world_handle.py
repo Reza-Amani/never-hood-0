@@ -8,7 +8,7 @@ class WorldHandle(object):
         self.world_ = world
 
     def add_single_cell_to_grid(self, single_cell, x, y):
-        self.world_.grid_[x][y] = single_cell
+        self.world_.grid_[x][y].single_cell_ = single_cell
 
     def draw_image(self, image):
         image.draw(self.world_.gui_.field)
