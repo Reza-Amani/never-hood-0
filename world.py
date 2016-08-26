@@ -16,11 +16,11 @@ class World(object):
         self.clock_cnt_ = 0
         x_index = 0
         while x_index < world_size_x:
-            self.grid_.append([point(x_index, y) for y in range (world_size_y)])
+            self.grid_.append([WorldPoint(x_index, y) for y in range (world_size_y)])
             x_index += 1
 
     def start(self):
-        new_creature = CreatureSingleCell(coastal_water_x + 50, 100, self.world_handle_)
+        new_creature = CreatureSingleCell(deep_water_x + 50, 100, self.world_handle_)
         self.creatures_single_cell_.append(new_creature)
 
     def tick(self):

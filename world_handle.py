@@ -13,4 +13,9 @@ class WorldHandle(object):
     def draw_image(self, image):
         image.draw(self.world_.gui_.field)
 
+    def check_vacancy_single_cell(self, x, y):
+        if self.world_.grid_[x][y].single_cell_ is None:
+            return True
+        else:
+            return False
 
