@@ -31,17 +31,17 @@ def main():
             elif command == 'restart':
                 world.start()
             elif command[0] == 'field':    # click in field detected
-                if world.grid_[command[1]][command[2]].single_cell is not None:
-                    gui.show_point_info("cell info:\nx:%d\ny:%d\nhump:%d\nage:%d\n"
-                    % (world.grid_[command[1]][command[2]].x
-                    , world.grid_[command[1]][command[2]].y
-                    , world.grid_[command[1]][command[2]].single_cell.hump
-                    , world.grid_[command[1]][command[2]].single_cell.age))
+                if world.grid_[command[1]][command[2]].single_cell_ is not None:
+                    gui.show_point_info("cell info:\nx:%d\ny:%d\nhump:%d\neat:%d\n"
+                    % (world.grid_[command[1]][command[2]].x_
+                    , world.grid_[command[1]][command[2]].y_
+                    , world.grid_[command[1]][command[2]].single_cell_.hump_
+                    , world.grid_[command[1]][command[2]].single_cell_.what_to_eat_))
                 else:
                     gui.show_point_info("point info:\nx:%d\ny:%d\norganics:%d\n"
-                    % (world.grid_[command[1]][command[2]].x
-                    , world.grid_[command[1]][command[2]].y
-                    , world.grid_[command[1]][command[2]].organic))
+                    % (world.grid_[command[1]][command[2]].x_
+                    , world.grid_[command[1]][command[2]].y_
+                    , world.grid_[command[1]][command[2]].organic_))
 
         if pace in [Epace.single, Epace.go]:
             world.tick()

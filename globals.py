@@ -13,4 +13,8 @@ class Ewater:
     ocean, deep, shallow, dry_land = range(4)
 
 
+class Ewhat_to_eat:
+    sunshine, organics, single_cell = range(3)
+
+
 

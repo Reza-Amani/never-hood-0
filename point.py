@@ -12,12 +12,16 @@ class WorldPoint(object):
         self.plant_ = None
         if x >= shallow_water_x:
             self.water = Ewater.dry_land
+            self.sunshine = 8
         elif x >= deep_water_x:
             self.water = Ewater.shallow
+            self.sunshine = 3
         elif x >= ocean_water_x:
             self.water = Ewater.deep
+            self.sunshine = 1
         else:
             self.water = Ewater.ocean
+            self.sunshine = 0
 
 
 

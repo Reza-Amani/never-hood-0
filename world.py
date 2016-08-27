@@ -10,6 +10,7 @@ class World(object):
     """description of class"""
     def __init__(self, gui):
         self.world_handle_ = WorldHandle(self)
+        CreatureSingleCell.world_handle_ = self.world_handle_
         self.gui_ = gui
         self.grid_ = []
         self.creatures_single_cell_ = []
@@ -20,8 +21,8 @@ class World(object):
             x_index += 1
 
     def start(self):
-        new_creature = CreatureSingleCell(deep_water_x + 50, 100, self.world_handle_)
-        self.creatures_single_cell_.append(new_creature)
+        new_creature = CreatureSingleCell(deep_water_x + 50, 100, Ewhat_to_eat.sunshine, 1000)
+        #self.creatures_single_cell_.append(new_creature)
 
     def tick(self):
         self.clock_cnt_ += 1
