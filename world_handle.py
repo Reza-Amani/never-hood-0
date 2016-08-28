@@ -16,8 +16,14 @@ class WorldHandle(object):
     def remove_single_cell_from_grid(self, x, y):
         self.world_.grid_[x][y].single_cell_ = None
 
+    def remove_single_cell_from_list(self, single_cell):
+        self.world_.creatures_single_cell_.remove(single_cell)
+
     def draw_image(self, image):
         image.draw(self.world_.gui_.field)
+
+    def undraw_image(self, image):
+        image.undraw()
 
     def check_vacancy_single_cell(self, x, y):
         if self.world_.grid_[x][y].single_cell_ is None:

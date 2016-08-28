@@ -15,12 +15,14 @@ class CreatureSingleCell(object):
         self.x_ = x
         self.y_ = y
         self.hump_ = 0
+        self.age_ = 0
+        self.age_max_ = 2500
         self.what_to_eat_ = what_to_eat
         self.breeding_thresh_ = breeding_thresh
         CreatureSingleCell.world_handle_.add_single_cell_to_grid(self, self.x_, self.y_)
         CreatureSingleCell.world_handle_.add_new_single_cell_to_list(self)
         self.image_ = Image(Point(self.x_, self.y_), 1, 1)
-        self.image_.setPixel(0, 0, 'DarkGreen')
+        self.image_.setPixel(0, 0, 'Green')
         CreatureSingleCell.world_handle_.draw_image(self.image_)
 
         if self.what_to_eat_ == Ewhat_to_eat.sunshine:
@@ -35,8 +37,17 @@ class CreatureSingleCell(object):
 
         self.action_single_cell_eating(dx, dy)
         self.action_single_cell_energy_burning()
+        self.action_single_cell_dying()
         self.action_single_cell_breeding(dx, dy)
         self.action_single_cell_moving(dx, dy)
+
+    def action_single_cell_dying(self):
+        self.age_ += 1
+        if self.age_ > self.age_max_ or self.hump_ < 1:
+            CreatureSingleCell.world_handle_.add_organics(self.x_, self.y_, self.hump_)
+            CreatureSingleCell.world_handle_.undraw_image(self.image_)
+            CreatureSingleCell.world_handle_.remove_single_cell_from_grid(self.x_, self.y_)
+            CreatureSingleCell.world_handle_.remove_single_cell_from_list(self)
 
     def action_single_cell_energy_burning(self):
         self.hump_ -= CreatureSingleCell.energy_consumption_per_tick * 2
