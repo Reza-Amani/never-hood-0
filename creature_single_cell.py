@@ -60,7 +60,7 @@ class CreatureSingleCell(object):
         self.age_ += 1
         if self.age_ > self.age_max_ or self.hump_ < 1:
             CreatureSingleCell.world_handle_.add_organics(self.x_, self.y_, self.hump_)
-            CreatureSingleCell.world_handle_.undraw_image(self.image_)
+            CreatureSingleCell.world_handle_.undraw_image(self.x_, self.y_)
             CreatureSingleCell.world_handle_.remove_single_cell_from_list(self.x_, self.y_)
             CreatureSingleCell.world_handle_.remove_single_cell_from_grid(self.x_, self.y_)
 
@@ -102,10 +102,12 @@ class CreatureSingleCell(object):
         CreatureSingleCell.world_handle_.add_organics(self.x_, self.y_, -food)
 
     def single_cell_eating_single_cell(self, dx, dy):
-        if not CreatureSingleCell.world_handle_.check_vacancy_single_cell:
-            self.hump_ += CreatureSingleCell.world_handle_.get_grid_single_cell_hump(self.x_+dx, self.y_+dy)
-            CreatureSingleCell.world_handle_.remove_single_cell_from_list(self.x_+dx, self.y_+dy)
-            CreatureSingleCell.world_handle_.remove_single_cell_from_grid(self.x_+dx, self.y_+dy)
+        if (dx, dy) != (0, 0):
+            if not CreatureSingleCell.world_handle_.check_vacancy_single_cell(self.x_+dx, self.y_+dy):
+                self.hump_ += CreatureSingleCell.world_handle_.get_grid_single_cell_hump(self.x_+dx, self.y_+dy)
+                CreatureSingleCell.world_handle_.undraw_image(self.x_+dx, self.y_+dy)
+                CreatureSingleCell.world_handle_.remove_single_cell_from_list(self.x_+dx, self.y_+dy)
+                CreatureSingleCell.world_handle_.remove_single_cell_from_grid(self.x_+dx, self.y_+dy)
 
     def action_null(self, x, y):
         pass
