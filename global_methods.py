@@ -12,3 +12,6 @@ def check_vacancy_single_cell(x, y):
         return True
     else:
         return False
+
+def Pass():
+    pass
