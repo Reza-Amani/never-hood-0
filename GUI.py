@@ -69,22 +69,19 @@ class GUI(object):
         self.creatures_counter.setText(cnt)
      
     def terrain_display(self):
-        r1 = Rectangle(Point(0,0),Point(coastal_water_x,world_size_y))
-        r1.setFill("khaki")
+        r1 = Rectangle(Point(0,0),Point(ocean_water_x,world_size_y))
+        r1.setFill("navy")
         r1.setWidth(0)
         r1.draw(self.field)
-        r2 = Rectangle(Point(coastal_water_x,0),Point(shallow_water_x,world_size_y))
+        r2 = Rectangle(Point(ocean_water_x, 0),Point(deep_water_x, world_size_y))
         r2.setWidth(0)
-        r2.setFill("lightblue")
+        r2.setFill("slateblue")
         r2.draw(self.field)
-        r3 = Rectangle(Point(shallow_water_x,0),Point(deep_water_x,world_size_y))
+        r3 = Rectangle(Point(deep_water_x, 0),Point(shallow_water_x, world_size_y))
         r3.setWidth(0)
-        r3.setFill("slateblue")
+        r3.setFill("lightblue")
         r3.draw(self.field)
-        r4 = Rectangle(Point(deep_water_x,0),Point(world_size_x,world_size_y))
+        r4 = Rectangle(Point(shallow_water_x,0),Point(world_size_x,world_size_y))
         r4.setWidth(0)
-        r4.setFill("navy")
+        r4.setFill("khaki")
         r4.draw(self.field)
-    
-
-
