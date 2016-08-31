@@ -46,11 +46,11 @@ class CreatureSingleCell(object):
 
         self.action_single_cell_eating(dx, dy)
         self.action_single_cell_energy_burning()
-        self.action_single_cell_dying()
-        self.action_single_cell_breeding(dx, dy)
-        self.action_single_cell_moving(dx, dy)
-        if random() < 0.001:
-            self.action_single_cell_mutation()
+        if not self.action_single_cell_dying():
+            self.action_single_cell_breeding(dx, dy)
+            self.action_single_cell_moving(dx, dy)
+            if random() < 0.001:
+                self.action_single_cell_mutation()
 
     def action_single_cell_mutation(self):
         exec(choice(CreatureSingleCell.mutation_list))
@@ -63,6 +63,9 @@ class CreatureSingleCell(object):
             CreatureSingleCell.world_handle_.undraw_image(self.x_, self.y_)
             CreatureSingleCell.world_handle_.remove_single_cell_from_list(self.x_, self.y_)
             CreatureSingleCell.world_handle_.remove_single_cell_from_grid(self.x_, self.y_)
+            return True
+        else:
+            return False
 
     def action_single_cell_energy_burning(self):
         self.hump_ -= CreatureSingleCell.energy_consumption_per_tick * 2
@@ -84,11 +87,12 @@ class CreatureSingleCell(object):
 
     def action_single_cell_moving(self, dx, dy):
         if CreatureSingleCell.world_handle_.check_vacancy_single_cell(self.x_ + dx, self.y_ + dy):
-            self.image_.move(dx, dy)
-            CreatureSingleCell.world_handle_.add_single_cell_to_grid(self, self.x_+dx, self.y_+dy)
-            CreatureSingleCell.world_handle_.remove_single_cell_from_grid(self.x_, self.y_)
-            self.x_ += dx
-            self.y_ += dy
+            if CreatureSingleCell.world_handle_.get_xy_water(self.x_ + dx, self.y_ + dy) != Ewater.dry_land:
+                self.image_.move(dx, dy)
+                CreatureSingleCell.world_handle_.add_single_cell_to_grid(self, self.x_+dx, self.y_+dy)
+                CreatureSingleCell.world_handle_.remove_single_cell_from_grid(self.x_, self.y_)
+                self.x_ += dx
+                self.y_ += dy
 
     def action_single_cell_eating(self, dx , dy):
         pass

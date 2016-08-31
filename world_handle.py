@@ -40,5 +40,8 @@ class WorldHandle(object):
     def get_xy_sunshine(self, x, y):
         return self.world_.grid_[x][y].sunshine
 
+    def get_xy_water(self, x, y):
+        return self.world_.grid_[x][y].water
+
     def add_new_single_cell_to_list(self, single_cell):
         self.world_.creatures_single_cell_.append(single_cell)
