@@ -1,5 +1,7 @@
 ﻿from globals import *
 from graphics import *
+
+
 class GUI(object):
     """description of class"""
     def __init__(self):
@@ -17,6 +19,10 @@ class GUI(object):
         self.exit_image.draw(self.control)
         self.restart_image = Image(Point(50,100), "./images/flash.gif")
         self.restart_image.draw(self.control)
+        self.save_image = Image(Point(150,100), "./images/flash.gif")
+        self.save_image.draw(self.control)
+        self.load_image = Image(Point(200,100), "./images/flash.gif")
+        self.load_image.draw(self.control)
 
         self.txt = Text(Point(30,85), "start")
         self.txt.draw(self.monitor)
@@ -31,15 +37,13 @@ class GUI(object):
         self.clock_counter.draw(self.monitor)
         self.creatures_counter = Text(Point(90,40), 0)
         self.creatures_counter.draw(self.monitor)
- #    txt = Text(Point(5,5), "test: %d %d %d" %(world.grid[0].x,world.grid[0].y,world.grid[0].water))
- #   txt.draw(monitor)
 
     def distance2(p1, p2):
         return (p1.getX()-p2.getX())**2 + (p1.getY()-p2.getY())**2    
 
     def get_command(self):
         mouse = self.control.checkMouse()
-        if mouse != None:
+        if mouse is not None:
             if GUI.distance2( mouse, self.pause_image.getAnchor()) < 60^2 :
                 return "pause"
             elif GUI.distance2( mouse, self.go_image.getAnchor()) < 60^2 :
@@ -48,10 +52,14 @@ class GUI(object):
                 return "clock"
             elif GUI.distance2( mouse, self.exit_image.getAnchor()) < 100^2 :
                 return "exit"
-            elif GUI.distance2( mouse, self.restart_image.getAnchor()) < 60^2 :
+            elif GUI.distance2(mouse, self.restart_image.getAnchor()) < 60 ^ 2:
                 return "restart"
+            elif GUI.distance2(mouse, self.save_image.getAnchor()) < 60 ^ 2:
+                return "save"
+            elif GUI.distance2(mouse, self.load_image.getAnchor()) < 60 ^ 2:
+                return "load"
         mouse = self.field.checkMouse()
-        if mouse != None:
+        if mouse is not None:
             return "field", mouse.getX(), mouse.getY()
         else:
             return "Null"

@@ -22,7 +22,11 @@ class World(object):
 
     def start(self):
         new_creature = CreatureSingleCell(deep_water_x + 50, 100, Ewhat_to_eat.sunshine, 1000)
-        #self.creatures_single_cell_.append(new_creature)
+
+    def save(self):
+        file = open("snapshot.txt", "w")
+        file.write('nonu')
+        file.close()
 
     def tick(self):
         self.clock_cnt_ += 1
