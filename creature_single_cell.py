@@ -13,12 +13,12 @@ class CreatureSingleCell(object):
     mutation_list = ['self.age_max_*=1.1', 'self.age_max_*=0.9', 'self.what_to_eat_+= 1', 'self.breeding_thresh_*=1.1',
                      'self.breeding_thresh_*=0.9']
 
-    def __init__(self, x, y, what_to_eat, breeding_thresh):
+    def __init__(self, x, y, what_to_eat, breeding_thresh, age_max):
         self.x_ = x
         self.y_ = y
         self.hump_ = 0
         self.age_ = 0
-        self.age_max_ = 2500
+        self.age_max_ = age_max
         self.what_to_eat_ = what_to_eat
         self.breeding_thresh_ = breeding_thresh
         CreatureSingleCell.world_handle_.add_single_cell_to_grid(self, self.x_, self.y_)
@@ -76,7 +76,7 @@ class CreatureSingleCell(object):
             if random() > 0.95:
                 if CreatureSingleCell.world_handle_.check_vacancy_single_cell(self.x_ + dx, self.y_ + dy):
                     self.hump_ -= self.breeding_thresh_/2
-                    child = CreatureSingleCell(self.x_ + dx, self.y_ + dy, self.what_to_eat_, self.breeding_thresh_)
+                    child = CreatureSingleCell(self.x_ + dx, self.y_ + dy, self.what_to_eat_, self.breeding_thresh_, self.age_max_)
                     child.hump_ = self.breeding_thresh_/2
 
     def action_single_cell_move_decision(self):

@@ -1,0 +1,3 @@
+crashes at turn 14000 to 31000
+	cr no 2300 to 2700
+doesn't matter breeding thresh old max age

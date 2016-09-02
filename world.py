@@ -21,7 +21,7 @@ class World(object):
             x_index += 1
 
     def start(self):
-        new_creature = CreatureSingleCell(deep_water_x + 50, 100, Ewhat_to_eat.sunshine, 1000)
+        new_creature = CreatureSingleCell(deep_water_x + 50, 50, Ewhat_to_eat.sunshine, 1000, 1500)
 
     def save(self):
         file = open("snapshot.txt", "w")

@@ -1,0 +1,19 @@
+class test():
+   attr1 = int
+   attr2 = int
+t = test()
+x = "attr1"x = getattr(t, "attr1")
+setattr(t, 'attr1', 21)
+
+dir(Myclass)	list of names of all atts
+
+filter(lambda aname: not aname.startswith('_'), dir(Myclass))	removing _atts
+
+a.__dict__.keys() a.__dict__.values()
+hasattr() callable()
+
+>>> variables = [i for i in dir(mine) if not callable(i) and not i.startswith('_')]
+>>> getattr(mine,"a")
+>>> setattr(mine,"a",4)
+for k,value in a.__dict__.items():
+    print (k,value)
