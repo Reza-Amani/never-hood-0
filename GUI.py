@@ -27,7 +27,7 @@ class GUI(object):
         self.txt = Text(Point(30,85), "start")
         self.txt.draw(self.monitor)
 
-        self.txt_info = Text(Point(30,150), "info")
+        self.txt_info = Text(Point(60,300), "info")
         self.txt_info.draw(self.monitor)
 
         self.time_image = Image(Point(30,30), "./images/clock.gif")

@@ -10,7 +10,7 @@ class World(object):
     """description of class"""
     def __init__(self, gui):
         self.world_handle_ = WorldHandle(self)
-        CreatureSingleCell.world_handle_ = self.world_handle_
+        CreatureSingleCell.world_handle__ = self.world_handle_
         self.gui_ = gui
         self.grid_ = []
         self.creatures_single_cell_ = []
@@ -25,7 +25,7 @@ class World(object):
 
     def save(self):
         file = open("snapshot.txt", "w")
-        file.write('nonu')
+        file.write(serialise(self.creatures_single_cell_[0]))
         file.close()
 
     def tick(self):

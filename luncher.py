@@ -34,11 +34,7 @@ def main():
                 world.start()
             elif command[0] == 'field':    # click in field detected
                 if world.grid_[command[1]][command[2]].single_cell_ is not None:
-                    gui.show_point_info("cell info:\nx:%d\ny:%d\nhump:%d\neat:%d\n"
-                    % (world.grid_[command[1]][command[2]].x_
-                    , world.grid_[command[1]][command[2]].y_
-                    , world.grid_[command[1]][command[2]].single_cell_.hump_
-                    , world.grid_[command[1]][command[2]].single_cell_.what_to_eat_))
+                    gui.show_point_info(serialise(world.grid_[command[1]][command[2]].single_cell_))
                 else:
                     gui.show_point_info("point info:\nx:%d\ny:%d\norganics:%d\n"
                     % (world.grid_[command[1]][command[2]].x_
