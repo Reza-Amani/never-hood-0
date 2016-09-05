@@ -1,6 +1,7 @@
 from globals import *
 from global_methods import *
-from graphics import Image, Point
+#from graphics import Image, Point
+import math
 from world_handle import *
 from random import *
 
@@ -10,8 +11,9 @@ class CreatureSingleCell(object):
     world_handle__ = None
     dx_dy_choices__ = [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 1), (0, -1), (1, 0), (-1, 0)]
     energy_consumption_per_tick__ = 1
-    mutation_list__ = ['self.age_max_*=1.1', 'self.age_max_*=0.9', 'self.what_to_eat_+= 1', 'self.breeding_thresh_*=1.1',
-                     'self.breeding_thresh_*=0.9']
+    mutation_list__ = ['self.age_max_=math.floor(self.age_max_*1.1)', 'self.age_max_=math.floor(self.age_max_*0.9)', \
+                       'self.what_to_eat_+= 1', 'self.breeding_thresh_=math.floor(self.breeding_thresh_*1.1)',
+                     'self.breeding_thresh_=math.floor(self.breeding_thresh_*0.9)']
 
     def __init__(self, x, y, what_to_eat, breeding_thresh, age_max):
         self.x_ = x

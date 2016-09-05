@@ -9,8 +9,8 @@ from creature_single_cell import *
 class World(object):
     """description of class"""
     def __init__(self, gui):
-        self.world_handle_ = WorldHandle(self)
-        CreatureSingleCell.world_handle__ = self.world_handle_
+        self.world_handle__ = WorldHandle(self)
+        CreatureSingleCell.world_handle__ = self.world_handle__
         self.gui_ = gui
         self.grid_ = []
         self.creatures_single_cell_ = []

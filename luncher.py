@@ -9,7 +9,7 @@ def main():
     gui = GUI()
     gui.terrain_display()
     world = World(gui)
-
+    obj_under_monitor = None
     pace = Epace.stop
     while True:
         command = gui.get_command()
@@ -32,14 +32,15 @@ def main():
                 pace = Epace.go
             elif command == 'restart':
                 world.start()
-            elif command[0] == 'field':    # click in field detected
+
+            if command[0] == 'field':    # click in field detected
                 if world.grid_[command[1]][command[2]].single_cell_ is not None:
-                    gui.show_point_info(serialise(world.grid_[command[1]][command[2]].single_cell_))
+                    obj_under_monitor = world.grid_[command[1]][command[2]].single_cell_
                 else:
-                    gui.show_point_info("point info:\nx:%d\ny:%d\norganics:%d\n"
-                    % (world.grid_[command[1]][command[2]].x_
-                    , world.grid_[command[1]][command[2]].y_
-                    , world.grid_[command[1]][command[2]].organic_))
+                    obj_under_monitor = world.grid_[command[1]][command[2]]
+
+        if obj_under_monitor is not None:
+            gui.show_point_info(serialise(obj_under_monitor))
 
         if pace in [Epace.single, Epace.go]:
             world.tick()

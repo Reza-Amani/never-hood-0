@@ -26,7 +26,7 @@ class WorldHandle(object):
         image.draw(self.world_.gui_.field)
 
     def undraw_image(self, x, y):
-        self.world_.grid_[x][y].single_cell_.image_.undraw()
+        self.world_.grid_[x][y].single_cell_.image__.undraw()
 
     def check_vacancy_single_cell(self, x, y):
         if self.world_.grid_[x][y].single_cell_ is None:
