@@ -17,15 +17,21 @@ class World(object):
         self.clock_cnt_ = 0
         x_index = 0
         while x_index < world_size_x:
-            self.grid_.append([WorldPoint(x_index, y) for y in range (world_size_y)])
+            self.grid_.append([WorldPoint(x_index, y, 0, None, None, None) for y in range(world_size_y)])
             x_index += 1
 
     def start(self):
-        new_creature = CreatureSingleCell(deep_water_x + 50, 50, Ewhat_to_eat.sunshine, 1000, 1500)
+        new_creature = CreatureSingleCell(deep_water_x + 50, 50, Ewhat_to_eat.sunshine, 1000, 1500, 4, 0)
 
     def save(self):
         file = open("snapshot.txt", "w")
-        file.write(serialise(self.creatures_single_cell_[0]))
+        for cell in self.creatures_single_cell_:
+            file.write('.c\n')
+            file.write(serialise(cell))
+        for y in range(world_size_y):
+            for point in self.grid_[y]:
+               file.write('.p\n')
+               file.write(serialise(point))
         file.close()
 
     def tick(self):

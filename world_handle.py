@@ -14,28 +14,28 @@ class WorldHandle(object):
         return self.world_.grid_[x][y].organic_
 
     def add_single_cell_to_grid(self, single_cell, x, y):
-        self.world_.grid_[x][y].single_cell_ = single_cell
+        self.world_.grid_[x][y].single_cell__ = single_cell
 
     def remove_single_cell_from_grid(self, x, y):
-        self.world_.grid_[x][y].single_cell_ = None
+        self.world_.grid_[x][y].single_cell__ = None
 
     def remove_single_cell_from_list(self, x, y):
-        self.world_.creatures_single_cell_.remove(self.world_.grid_[x][y].single_cell_)
+        self.world_.creatures_single_cell_.remove(self.world_.grid_[x][y].single_cell__)
 
     def draw_image(self, image):
         image.draw(self.world_.gui_.field)
 
     def undraw_image(self, x, y):
-        self.world_.grid_[x][y].single_cell_.image__.undraw()
+        self.world_.grid_[x][y].single_cell__.image__.undraw()
 
     def check_vacancy_single_cell(self, x, y):
-        if self.world_.grid_[x][y].single_cell_ is None:
+        if self.world_.grid_[x][y].single_cell__ is None:
             return True
         else:
             return False
 
     def get_grid_single_cell_hump(self, x, y):
-        return self.world_.grid_[x][y].single_cell_.hump_
+        return self.world_.grid_[x][y].single_cell__.hump_
 
     def get_xy_sunshine(self, x, y):
         return self.world_.grid_[x][y].sunshine
