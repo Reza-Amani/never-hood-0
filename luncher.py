@@ -22,8 +22,10 @@ def main():
                 del gui
                 #del world
                 break
-            elif command =='save':
+            elif command == 'save':
                 world.save()
+            elif command == 'load':
+                world.load()
             elif command == 'clock':
                 pace = Epace.single
             elif command == 'pause':

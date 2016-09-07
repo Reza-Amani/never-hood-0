@@ -26,8 +26,8 @@ class CreatureSingleCell(object):
         CreatureSingleCell.world_handle__.add_single_cell_to_grid(self, self.x_, self.y_)
         CreatureSingleCell.world_handle__.add_new_single_cell_to_list(self)
         self.image__ = Image(Point(self.x_, self.y_), 1, 1)
-        CreatureSingleCell.world_handle__.draw_image(self.image__)
         self.update_single_cell()
+        CreatureSingleCell.world_handle__.draw_image(self.image__)
 
     def update_single_cell(self):
         if self.what_to_eat_ == Ewhat_to_eat.sunshine:

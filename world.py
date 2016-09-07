@@ -34,6 +34,12 @@ class World(object):
                file.write(serialise(point))
         file.close()
 
+    def load(self):
+        file = open("snapshot.txt", "r")
+        file.close()
+
+
+
     def tick(self):
         self.clock_cnt_ += 1
         self.gui_.show_clock(self.clock_cnt_)
