@@ -28,8 +28,8 @@ class World(object):
         file = open("points_snapshot.txt", "w")
         for y in range(world_size_y):
             for point in self.grid_[y]:
-               file.write(serialise(point))
-               file.write('.p\n')
+                file.write(serialise(point))
+                file.write('.p\n')
         file.close()
         file = open("single_cells_snapshot.txt", "w")
         for cell in self.creatures_single_cell_:
@@ -42,15 +42,28 @@ class World(object):
         file_lines = file.readlines()
         temp_point = WorldPoint()
         for line in file_lines:
-            if line != '.c':
+            if not line.startswith('.p'):
                 de_serialise(temp_point, line)
             else:
                 self.grid_[temp_point.x_][temp_point.y_] = temp_point
+                self.grid_[temp_point.x_][temp_point.y_].single_cell__ = None
+                temp_point.setup_point()
                 temp_point = WorldPoint()
-
         file.close()
 
-
+        self.creatures_single_cell_ = []
+        file = open("single_cells_snapshot.txt", "r")
+        file_lines = file.readlines()
+        temp_creature = CreatureSingleCell()
+        for line in file_lines:
+            if not line.startswith('.c'):
+                de_serialise(temp_creature, line)
+            else:
+                self.grid_[temp_point.x_][temp_point.y_].single_cell__ = temp_creature
+                temp_creature.shape_single_cell()
+                self.creatures_single_cell_.append(temp_creature)
+                temp_point = WorldPoint()
+        file.close()
 
     def tick(self):
         self.clock_cnt_ += 1

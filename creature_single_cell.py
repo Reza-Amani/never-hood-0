@@ -15,7 +15,7 @@ class CreatureSingleCell(object):
                        'self.what_to_eat_+= 1', 'self.breeding_thresh_=math.floor(self.breeding_thresh_*1.1)',
                      'self.breeding_thresh_=math.floor(self.breeding_thresh_*0.9)']
 
-    def __init__(self, x, y, what_to_eat, breeding_thresh, age_max, hump, age):
+    def __init__(self, x=0, y=0, what_to_eat=3, breeding_thresh=0, age_max=0, hump=0, age=0):
         self.x_ = x
         self.y_ = y
         self.hump_ = hump
