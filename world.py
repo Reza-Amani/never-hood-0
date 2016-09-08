@@ -18,24 +18,32 @@ class World(object):
         x_index = 0
         while x_index < world_size_x:
             self.grid_.append([WorldPoint(x_index, y, 0, None, None, None) for y in range(world_size_y)])
+            for y in range(world_size_y)
             x_index += 1
 
     def start(self):
         new_creature = CreatureSingleCell(deep_water_x + 50, 50, Ewhat_to_eat.sunshine, 1000, 1500, 4, 0)
 
     def save(self):
-        file = open("snapshot.txt", "w")
-        for cell in self.creatures_single_cell_:
-            file.write('.c\n')
-            file.write(serialise(cell))
+        file = open("points_snapshot.txt", "w")
         for y in range(world_size_y):
             for point in self.grid_[y]:
                file.write('.p\n')
                file.write(serialise(point))
         file.close()
+        file = open("single_cells_snapshot.txt", "w")
+        for cell in self.creatures_single_cell_:
+            file.write('.c\n')
+            file.write(serialise(cell))
+        file.close()
 
     def load(self):
-        file = open("snapshot.txt", "r")
+  #      point
+        file = open("points_snapshot.txt", "r")
+        file_lines = file.readlines()
+#        for line in file_lines:
+ #           if line=='.c':
+
         file.close()
 
 
