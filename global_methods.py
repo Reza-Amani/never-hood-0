@@ -22,6 +22,10 @@ def serialise(obj):
         s += v+' '+str(getattr(obj, v))+'\n'
     return s
 
+def de_serialise(obj,str):
+    var_name = str.split()[0]
+    var_value = int(str.split()[1])
+    setattr(obj, var_name, var_value)
 
 def Pass():
     pass

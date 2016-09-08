@@ -15,11 +15,11 @@ class World(object):
         self.grid_ = []
         self.creatures_single_cell_ = []
         self.clock_cnt_ = 0
-        x_index = 0
-        while x_index < world_size_x:
-            self.grid_.append([WorldPoint(x_index, y, 0, None, None, None) for y in range(world_size_y)])
-            for y in range(world_size_y)
-            x_index += 1
+        for x in range(world_size_x):
+            self.grid_.append([])
+            for y in range(world_size_y):
+                self.grid_[x].append(WorldPoint(x, y, 0, None, None, None))
+                self.grid_[x][y].setup_point()
 
     def start(self):
         new_creature = CreatureSingleCell(deep_water_x + 50, 50, Ewhat_to_eat.sunshine, 1000, 1500, 4, 0)
@@ -28,21 +28,25 @@ class World(object):
         file = open("points_snapshot.txt", "w")
         for y in range(world_size_y):
             for point in self.grid_[y]:
-               file.write('.p\n')
                file.write(serialise(point))
+               file.write('.p\n')
         file.close()
         file = open("single_cells_snapshot.txt", "w")
         for cell in self.creatures_single_cell_:
-            file.write('.c\n')
             file.write(serialise(cell))
+            file.write('.c\n')
         file.close()
 
     def load(self):
-  #      point
         file = open("points_snapshot.txt", "r")
         file_lines = file.readlines()
-#        for line in file_lines:
- #           if line=='.c':
+        temp_point = WorldPoint()
+        for line in file_lines:
+            if line != '.c':
+                de_serialise(temp_point, line)
+            else:
+                self.grid_[temp_point.x_][temp_point.y_] = temp_point
+                temp_point = WorldPoint()
 
         file.close()
 

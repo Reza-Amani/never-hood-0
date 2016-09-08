@@ -26,10 +26,10 @@ class CreatureSingleCell(object):
         CreatureSingleCell.world_handle__.add_single_cell_to_grid(self, self.x_, self.y_)
         CreatureSingleCell.world_handle__.add_new_single_cell_to_list(self)
         self.image__ = Image(Point(self.x_, self.y_), 1, 1)
-        self.update_single_cell()
+        self.shape_single_cell()
         CreatureSingleCell.world_handle__.draw_image(self.image__)
 
-    def update_single_cell(self):
+    def shape_single_cell(self):
         if self.what_to_eat_ == Ewhat_to_eat.sunshine:
             self.action_single_cell_eating = self.single_cell_eating_from_sun
             self.image__.setPixel(0, 0, 'Green')
@@ -56,7 +56,7 @@ class CreatureSingleCell(object):
 
     def action_single_cell_mutation(self):
         exec(choice(CreatureSingleCell.mutation_list__))
-        self.update_single_cell()
+        self.shape_single_cell()
 
     def action_single_cell_dying(self):
         self.age_ += 1
