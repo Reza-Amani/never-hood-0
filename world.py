@@ -24,11 +24,22 @@ class World(object):
     def start(self):
         new_creature = CreatureSingleCell(deep_water_x + 50, 50, Ewhat_to_eat.sunshine, 1000, 1500, 4, 0)
 
+    def check_rules(self):
+        cells_in_grid = 0
+        for x in range(world_size_x):
+            for y in range(world_size_y):
+                if self.grid_[x][y].single_cell__ is not None:
+                    cells_in_grid +=1
+        for cell in self.creatures_single_cell_:
+            if self.grid_[cell.x_][cell.y_].single_cell__ is not cell:
+                pass
+        return 'No of cells in list: '+ str(len(self.creatures_single_cell_)) + '\nin grid: ' + str (cells_in_grid)
+
     def save(self):
         file = open("points_snapshot.txt", "w")
-        for y in range(world_size_y):
-            for point in self.grid_[y]:
-                file.write(serialise(point))
+        for x in range(world_size_x):
+            for y in range(world_size_y):
+                file.write(serialise(self.grid_[x][y]))
                 file.write('.p\n')
         file.close()
         file = open("single_cells_snapshot.txt", "w")
@@ -59,10 +70,10 @@ class World(object):
             if not line.startswith('.c'):
                 de_serialise(temp_creature, line)
             else:
-                self.grid_[temp_point.x_][temp_point.y_].single_cell__ = temp_creature
+                self.grid_[temp_creature.x_][temp_creature.y_].single_cell__ = temp_creature
                 temp_creature.shape_single_cell()
                 self.creatures_single_cell_.append(temp_creature)
-                temp_point = WorldPoint()
+                temp_creature = CreatureSingleCell()
         file.close()
 
     def tick(self):

@@ -26,6 +26,8 @@ def main():
                 world.save()
             elif command == 'load':
                 world.load()
+            elif command == 'rules':
+                gui.show_message(world.check_rules())
             elif command == 'clock':
                 pace = Epace.single
             elif command == 'pause':
