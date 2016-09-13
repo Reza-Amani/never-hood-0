@@ -1,1 +1,0 @@
-the bug is living in cell init. a double init or a null init with another func to be called later
