@@ -23,5 +23,13 @@ def serialise(obj):
     return s
 
 
+def de_serialise(obj,str):
+    split = str.split()
+    if len(split) == 2:
+        var_name = split[0]
+        var_value = int(split[1])
+        setattr(obj, var_name, var_value)
+
+
 def Pass():
     pass

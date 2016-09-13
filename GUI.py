@@ -19,10 +19,12 @@ class GUI(object):
         self.exit_image.draw(self.control)
         self.restart_image = Image(Point(50,100), "./images/flash.gif")
         self.restart_image.draw(self.control)
-        self.save_image = Image(Point(150,100), "./images/flash.gif")
+        self.save_image = Image(Point(150,100), "./images/save.gif")
         self.save_image.draw(self.control)
-        self.load_image = Image(Point(200,100), "./images/flash.gif")
+        self.load_image = Image(Point(200,100), "./images/load.gif")
         self.load_image.draw(self.control)
+        self.rules_image = Image(Point(250,100), "./images/rules.gif")
+        self.rules_image.draw(self.control)
 
         self.txt = Text(Point(30,85), "start")
         self.txt.draw(self.monitor)
@@ -58,6 +60,8 @@ class GUI(object):
                 return "save"
             elif GUI.distance2(mouse, self.load_image.getAnchor()) < 60 ^ 2:
                 return "load"
+            elif GUI.distance2(mouse, self.rules_image.getAnchor()) < 60 ^ 2:
+                return "rules"
         mouse = self.field.checkMouse()
         if mouse is not None:
             return "field", mouse.getX(), mouse.getY()

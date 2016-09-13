@@ -22,8 +22,12 @@ def main():
                 del gui
                 #del world
                 break
-            elif command =='save':
+            elif command == 'save':
                 world.save()
+            elif command == 'load':
+                world.load()
+            elif command == 'rules':
+                gui.show_message(world.check_rules())
             elif command == 'clock':
                 pace = Epace.single
             elif command == 'pause':
@@ -34,8 +38,8 @@ def main():
                 world.start()
 
             if command[0] == 'field':    # click in field detected
-                if world.grid_[command[1]][command[2]].single_cell_ is not None:
-                    obj_under_monitor = world.grid_[command[1]][command[2]].single_cell_
+                if world.grid_[command[1]][command[2]].single_cell__ is not None:
+                    obj_under_monitor = world.grid_[command[1]][command[2]].single_cell__
                 else:
                     obj_under_monitor = world.grid_[command[1]][command[2]]
 

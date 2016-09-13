@@ -1,0 +1,504 @@
+age_ 1748
+age_max_ 2195
+breeding_thresh_ 990
+hump_ 758
+what_to_eat_ 0
+x_ 248
+y_ 24
+.c
+age_ 1601
+age_max_ 1996
+breeding_thresh_ 900
+hump_ 751
+what_to_eat_ 0
+x_ 243
+y_ 34
+.c
+age_ 1554
+age_max_ 1650
+breeding_thresh_ 891
+hump_ 714
+what_to_eat_ 0
+x_ 235
+y_ 69
+.c
+age_ 1547
+age_max_ 1815
+breeding_thresh_ 1100
+hump_ 947
+what_to_eat_ 0
+x_ 275
+y_ 61
+.c
+age_ 1397
+age_max_ 1500
+breeding_thresh_ 1210
+hump_ 955
+what_to_eat_ 1
+x_ 206
+y_ 69
+.c
+age_ 1278
+age_max_ 1815
+breeding_thresh_ 900
+hump_ 828
+what_to_eat_ 0
+x_ 243
+y_ 35
+.c
+age_ 1199
+age_max_ 1633
+breeding_thresh_ 891
+hump_ 839
+what_to_eat_ 0
+x_ 246
+y_ 58
+.c
+age_ 1167
+age_max_ 1796
+breeding_thresh_ 900
+hump_ 717
+what_to_eat_ 0
+x_ 273
+y_ 7
+.c
+age_ 1132
+age_max_ 1815
+breeding_thresh_ 1000
+hump_ 613
+what_to_eat_ 1
+x_ 262
+y_ 24
+.c
+age_ 1123
+age_max_ 1650
+breeding_thresh_ 980
+hump_ 588
+what_to_eat_ 0
+x_ 269
+y_ 74
+.c
+age_ 1032
+age_max_ 1350
+breeding_thresh_ 1089
+hump_ 1037
+what_to_eat_ 0
+x_ 255
+y_ 74
+.c
+age_ 1000
+age_max_ 1500
+breeding_thresh_ 1000
+hump_ 1000
+what_to_eat_ 0
+x_ 261
+y_ 82
+.c
+age_ 994
+age_max_ 1350
+breeding_thresh_ 1000
+hump_ 994
+what_to_eat_ 0
+x_ 216
+y_ 88
+.c
+age_ 991
+age_max_ 1815
+breeding_thresh_ 1000
+hump_ 991
+what_to_eat_ 0
+x_ 227
+y_ 52
+.c
+age_ 931
+age_max_ 1996
+breeding_thresh_ 1210
+hump_ 931
+what_to_eat_ 0
+x_ 278
+y_ 51
+.c
+age_ 757
+age_max_ 1633
+breeding_thresh_ 656
+hump_ 429
+what_to_eat_ 0
+x_ 246
+y_ 38
+.c
+age_ 747
+age_max_ 1633
+breeding_thresh_ 990
+hump_ 747
+what_to_eat_ 0
+x_ 237
+y_ 27
+.c
+age_ 746
+age_max_ 1815
+breeding_thresh_ 900
+hump_ 746
+what_to_eat_ 0
+x_ 258
+y_ 4
+.c
+age_ 715
+age_max_ 1815
+breeding_thresh_ 900
+hump_ 1241
+what_to_eat_ 1
+x_ 259
+y_ 27
+.c
+age_ 708
+age_max_ 1796
+breeding_thresh_ 900
+hump_ 708
+what_to_eat_ 0
+x_ 256
+y_ 48
+.c
+age_ 708
+age_max_ 1500
+breeding_thresh_ 891
+hump_ 708
+what_to_eat_ 0
+x_ 248
+y_ 74
+.c
+age_ 698
+age_max_ 1815
+breeding_thresh_ 1089
+hump_ 698
+what_to_eat_ 0
+x_ 228
+y_ 29
+.c
+age_ 697
+age_max_ 1500
+breeding_thresh_ 1210
+hump_ 697
+what_to_eat_ 0
+x_ 222
+y_ 61
+.c
+age_ 679
+age_max_ 1796
+breeding_thresh_ 900
+hump_ 679
+what_to_eat_ 0
+x_ 260
+y_ 4
+.c
+age_ 653
+age_max_ 1350
+breeding_thresh_ 900
+hump_ 653
+what_to_eat_ 0
+x_ 209
+y_ 100
+.c
+age_ 613
+age_max_ 1815
+breeding_thresh_ 1000
+hump_ 613
+what_to_eat_ 0
+x_ 274
+y_ 41
+.c
+age_ 552
+age_max_ 1485
+breeding_thresh_ 980
+hump_ 552
+what_to_eat_ 0
+x_ 241
+y_ 87
+.c
+age_ 532
+age_max_ 1815
+breeding_thresh_ 1100
+hump_ 1082
+what_to_eat_ 0
+x_ 242
+y_ 68
+.c
+age_ 498
+age_max_ 1500
+breeding_thresh_ 1000
+hump_ 998
+what_to_eat_ 0
+x_ 273
+y_ 73
+.c
+age_ 482
+age_max_ 1815
+breeding_thresh_ 1000
+hump_ 982
+what_to_eat_ 0
+x_ 251
+y_ 65
+.c
+age_ 481
+age_max_ 1485
+breeding_thresh_ 990
+hump_ 976
+what_to_eat_ 0
+x_ 238
+y_ 98
+.c
+age_ 459
+age_max_ 1485
+breeding_thresh_ 900
+hump_ 459
+what_to_eat_ 0
+x_ 251
+y_ 96
+.c
+age_ 437
+age_max_ 1350
+breeding_thresh_ 810
+hump_ 532
+what_to_eat_ 0
+x_ 245
+y_ 82
+.c
+age_ 430
+age_max_ 1633
+breeding_thresh_ 810
+hump_ 835
+what_to_eat_ 0
+x_ 258
+y_ 42
+.c
+age_ 375
+age_max_ 1996
+breeding_thresh_ 891
+hump_ 480
+what_to_eat_ 0
+x_ 267
+y_ 61
+.c
+age_ 341
+age_max_ 1633
+breeding_thresh_ 810
+hump_ 746
+what_to_eat_ 0
+x_ 229
+y_ 46
+.c
+age_ 338
+age_max_ 1815
+breeding_thresh_ 1100
+hump_ 888
+what_to_eat_ 0
+x_ 290
+y_ 39
+.c
+age_ 284
+age_max_ 1996
+breeding_thresh_ 900
+hump_ 734
+what_to_eat_ 0
+x_ 242
+y_ 28
+.c
+age_ 250
+age_max_ 1796
+breeding_thresh_ 900
+hump_ 700
+what_to_eat_ 0
+x_ 269
+y_ 55
+.c
+age_ 236
+age_max_ 1975
+breeding_thresh_ 990
+hump_ 731
+what_to_eat_ 0
+x_ 237
+y_ 9
+.c
+age_ 223
+age_max_ 1815
+breeding_thresh_ 1000
+hump_ 863
+what_to_eat_ 1
+x_ 252
+y_ 28
+.c
+age_ 223
+age_max_ 1796
+breeding_thresh_ 900
+hump_ 673
+what_to_eat_ 0
+x_ 249
+y_ 4
+.c
+age_ 219
+age_max_ 1815
+breeding_thresh_ 900
+hump_ 669
+what_to_eat_ 0
+x_ 247
+y_ 41
+.c
+age_ 215
+age_max_ 1815
+breeding_thresh_ 900
+hump_ 665
+what_to_eat_ 0
+x_ 242
+y_ 19
+.c
+age_ 214
+age_max_ 1500
+breeding_thresh_ 891
+hump_ 659
+what_to_eat_ 0
+x_ 246
+y_ 88
+.c
+age_ 207
+age_max_ 1650
+breeding_thresh_ 891
+hump_ 652
+what_to_eat_ 0
+x_ 241
+y_ 67
+.c
+age_ 205
+age_max_ 1815
+breeding_thresh_ 900
+hump_ 695
+what_to_eat_ 1
+x_ 256
+y_ 74
+.c
+age_ 192
+age_max_ 1633
+breeding_thresh_ 900
+hump_ 642
+what_to_eat_ 0
+x_ 259
+y_ 14
+.c
+age_ 180
+age_max_ 1815
+breeding_thresh_ 900
+hump_ 630
+what_to_eat_ 0
+x_ 255
+y_ 13
+.c
+age_ 169
+age_max_ 1633
+breeding_thresh_ 990
+hump_ 664
+what_to_eat_ 0
+x_ 237
+y_ 33
+.c
+age_ 148
+age_max_ 1350
+breeding_thresh_ 900
+hump_ 598
+what_to_eat_ 0
+x_ 209
+y_ 113
+.c
+age_ 141
+age_max_ 1485
+breeding_thresh_ 900
+hump_ 591
+what_to_eat_ 0
+x_ 237
+y_ 96
+.c
+age_ 88
+age_max_ 1500
+breeding_thresh_ 1210
+hump_ 693
+what_to_eat_ 0
+x_ 225
+y_ 64
+.c
+age_ 77
+age_max_ 1350
+breeding_thresh_ 810
+hump_ 482
+what_to_eat_ 0
+x_ 244
+y_ 74
+.c
+age_ 57
+age_max_ 1500
+breeding_thresh_ 990
+hump_ 552
+what_to_eat_ 0
+x_ 222
+y_ 98
+.c
+age_ 57
+age_max_ 1815
+breeding_thresh_ 900
+hump_ 1775
+what_to_eat_ 1
+x_ 255
+y_ 24
+.c
+age_ 56
+age_max_ 1815
+breeding_thresh_ 1000
+hump_ 556
+what_to_eat_ 0
+x_ 274
+y_ 43
+.c
+age_ 52
+age_max_ 1650
+breeding_thresh_ 980
+hump_ 542
+what_to_eat_ 0
+x_ 275
+y_ 71
+.c
+age_ 18
+age_max_ 1633
+breeding_thresh_ 656
+hump_ 346
+what_to_eat_ 0
+x_ 244
+y_ 37
+.c
+age_ 10
+age_max_ 1485
+breeding_thresh_ 980
+hump_ 500
+what_to_eat_ 0
+x_ 243
+y_ 87
+.c
+age_ 9
+age_max_ 1336
+breeding_thresh_ 900
+hump_ 459
+what_to_eat_ 0
+x_ 252
+y_ 97
+.c
+age_ 4
+age_max_ 1815
+breeding_thresh_ 900
+hump_ 449
+what_to_eat_ 1
+x_ 260
+y_ 28
+.c
+age_ 3
+age_max_ 1996
+breeding_thresh_ 891
+hump_ 448
+what_to_eat_ 0
+x_ 268
+y_ 60
+.c

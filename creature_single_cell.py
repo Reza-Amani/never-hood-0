@@ -15,21 +15,26 @@ class CreatureSingleCell(object):
                        'self.what_to_eat_+= 1', 'self.breeding_thresh_=math.floor(self.breeding_thresh_*1.1)',
                      'self.breeding_thresh_=math.floor(self.breeding_thresh_*0.9)']
 
-    def __init__(self, x, y, what_to_eat, breeding_thresh, age_max):
+    def __init__(self, x=None, y=0, what_to_eat=3, breeding_thresh=0, age_max=0, hump=0, age=0):
         self.x_ = x
         self.y_ = y
-        self.hump_ = 0
-        self.age_ = 0
+        self.hump_ = hump
+        self.age_ = age
         self.age_max_ = age_max
         self.what_to_eat_ = what_to_eat
         self.breeding_thresh_ = breeding_thresh
+        self.image__ = None
+        if self.x_ is not None:
+            self.give_it_birth()
+
+    def give_it_birth(self):
         CreatureSingleCell.world_handle__.add_single_cell_to_grid(self, self.x_, self.y_)
         CreatureSingleCell.world_handle__.add_new_single_cell_to_list(self)
         self.image__ = Image(Point(self.x_, self.y_), 1, 1)
+        self.shape_single_cell()
         CreatureSingleCell.world_handle__.draw_image(self.image__)
-        self.update_single_cell()
 
-    def update_single_cell(self):
+    def shape_single_cell(self):
         if self.what_to_eat_ == Ewhat_to_eat.sunshine:
             self.action_single_cell_eating = self.single_cell_eating_from_sun
             self.image__.setPixel(0, 0, 'Green')
@@ -56,7 +61,7 @@ class CreatureSingleCell(object):
 
     def action_single_cell_mutation(self):
         exec(choice(CreatureSingleCell.mutation_list__))
-        self.update_single_cell()
+        self.shape_single_cell()
 
     def action_single_cell_dying(self):
         self.age_ += 1
@@ -77,9 +82,9 @@ class CreatureSingleCell(object):
         if self.hump_ > self.breeding_thresh_:
             if random() > 0.95:
                 if CreatureSingleCell.world_handle__.check_vacancy_single_cell(self.x_ + dx, self.y_ + dy):
-                    self.hump_ -= self.breeding_thresh_/2
-                    child = CreatureSingleCell(self.x_ + dx, self.y_ + dy, self.what_to_eat_, self.breeding_thresh_, self.age_max_)
-                    child.hump_ = self.breeding_thresh_/2
+                    self.hump_ -= self.breeding_thresh_//2
+                    child = CreatureSingleCell(self.x_ + dx, self.y_ + dy, self.what_to_eat_, self.breeding_thresh_, \
+                                               self.age_max_, self.breeding_thresh_//2, 0)
 
     def action_single_cell_move_decision(self):
         (dx, dy) = choice(CreatureSingleCell.dx_dy_choices__)

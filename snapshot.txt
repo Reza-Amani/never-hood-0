@@ -1,7 +1,0 @@
-age_ 0
-age_max_ 1500
-breeding_thresh_ 1000
-hump_ 0
-what_to_eat_ 0
-x_ 250
-y_ 50
