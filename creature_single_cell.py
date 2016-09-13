@@ -15,7 +15,7 @@ class CreatureSingleCell(object):
                        'self.what_to_eat_+= 1', 'self.breeding_thresh_=math.floor(self.breeding_thresh_*1.1)',
                      'self.breeding_thresh_=math.floor(self.breeding_thresh_*0.9)']
 
-    def __init__(self, x=0, y=0, what_to_eat=3, breeding_thresh=0, age_max=0, hump=0, age=0):
+    def __init__(self, x=None, y=0, what_to_eat=3, breeding_thresh=0, age_max=0, hump=0, age=0):
         self.x_ = x
         self.y_ = y
         self.hump_ = hump
@@ -23,6 +23,11 @@ class CreatureSingleCell(object):
         self.age_max_ = age_max
         self.what_to_eat_ = what_to_eat
         self.breeding_thresh_ = breeding_thresh
+        self.image__ = None
+        if self.x_ is not None:
+            self.give_it_birth()
+
+    def give_it_birth(self):
         CreatureSingleCell.world_handle__.add_single_cell_to_grid(self, self.x_, self.y_)
         CreatureSingleCell.world_handle__.add_new_single_cell_to_list(self)
         self.image__ = Image(Point(self.x_, self.y_), 1, 1)

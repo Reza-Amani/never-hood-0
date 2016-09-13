@@ -62,6 +62,10 @@ class World(object):
                 temp_point = WorldPoint()
         file.close()
 
+        for old_creature in self.creatures_single_cell_:
+            old_creature.image__.undraw()
+            del old_creature.image__
+            del old_creature
         self.creatures_single_cell_ = []
         file = open("single_cells_snapshot.txt", "r")
         file_lines = file.readlines()
@@ -70,9 +74,7 @@ class World(object):
             if not line.startswith('.c'):
                 de_serialise(temp_creature, line)
             else:
-                self.grid_[temp_creature.x_][temp_creature.y_].single_cell__ = temp_creature
-                temp_creature.shape_single_cell()
-                self.creatures_single_cell_.append(temp_creature)
+                temp_creature.give_it_birth()
                 temp_creature = CreatureSingleCell()
         file.close()
 
