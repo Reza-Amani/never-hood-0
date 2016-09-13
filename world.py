@@ -36,12 +36,18 @@ class World(object):
         return 'No of cells in list: '+ str(len(self.creatures_single_cell_)) + '\nin grid: ' + str (cells_in_grid)
 
     def save(self):
+        file = open("world_snapshot.txt", "w")
+        file.write('clock_cnt_ ' + str(self.clock_cnt_) + '\n')
+        file.write('.e\n')
+        file.close()
+
         file = open("points_snapshot.txt", "w")
         for x in range(world_size_x):
             for y in range(world_size_y):
                 file.write(serialise(self.grid_[x][y]))
                 file.write('.p\n')
         file.close()
+
         file = open("single_cells_snapshot.txt", "w")
         for cell in self.creatures_single_cell_:
             file.write(serialise(cell))
@@ -49,6 +55,14 @@ class World(object):
         file.close()
 
     def load(self):
+        file = open("world_snapshot.txt", "r")
+        file_lines = file.readlines()
+        str_line = file_lines[0]
+        split = str_line.split()
+        if len(split) == 2:
+            self.clock_cnt_ = int(split[1])
+        file.close()
+
         file = open("points_snapshot.txt", "r")
         file_lines = file.readlines()
         temp_point = WorldPoint()
