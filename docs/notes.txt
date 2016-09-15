@@ -1,0 +1,1 @@
+with only image initialisation, we still have crashes

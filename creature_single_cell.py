@@ -23,7 +23,9 @@ class CreatureSingleCell(object):
         self.age_max_ = age_max
         self.what_to_eat_ = what_to_eat
         self.breeding_thresh_ = breeding_thresh
-     #   self.image__ = None
+
+        im = Image(Point(0,0), 1, 1)
+        self.image__ = im
         if self.x_ is not None:
             self.give_it_birth()
 
