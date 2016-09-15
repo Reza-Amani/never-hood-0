@@ -23,10 +23,12 @@ class WorldHandle(object):
         self.world_.creatures_single_cell_.remove(self.world_.grid_[x][y].single_cell__)
 
     def draw_image(self, image):
-        image.draw(self.world_.gui_.field)
+        pass
+     #   image.draw(self.world_.gui_.field)
 
     def undraw_image(self, x, y):
-        self.world_.grid_[x][y].single_cell__.image__.undraw()
+        pass
+     #   self.world_.grid_[x][y].single_cell__.image__.undraw()
 
     def check_vacancy_single_cell(self, x, y):
         if self.world_.grid_[x][y].single_cell__ is None:

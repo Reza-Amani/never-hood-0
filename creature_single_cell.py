@@ -23,30 +23,30 @@ class CreatureSingleCell(object):
         self.age_max_ = age_max
         self.what_to_eat_ = what_to_eat
         self.breeding_thresh_ = breeding_thresh
-        self.image__ = None
+     #   self.image__ = None
         if self.x_ is not None:
             self.give_it_birth()
 
     def give_it_birth(self):
         CreatureSingleCell.world_handle__.add_single_cell_to_grid(self, self.x_, self.y_)
         CreatureSingleCell.world_handle__.add_new_single_cell_to_list(self)
-        self.image__ = Image(Point(self.x_, self.y_), 1, 1)
+     #   self.image__ = Image(Point(self.x_, self.y_), 1, 1)
         self.shape_single_cell()
-        CreatureSingleCell.world_handle__.draw_image(self.image__)
+      #  CreatureSingleCell.world_handle__.draw_image(self.image__)
 
     def shape_single_cell(self):
         if self.what_to_eat_ == Ewhat_to_eat.sunshine:
             self.action_single_cell_eating = self.single_cell_eating_from_sun
-            self.image__.setPixel(0, 0, 'Green')
+     #       self.image__.setPixel(0, 0, 'Green')
         elif self.what_to_eat_ == Ewhat_to_eat.organics:
             self.action_single_cell_eating = self.single_cell_eating_organics
-            self.image__.setPixel(0, 0, 'Yellow')
+      #      self.image__.setPixel(0, 0, 'Yellow')
         elif self.what_to_eat_ == Ewhat_to_eat.single_cell:
             self.action_single_cell_eating = self.single_cell_eating_single_cell
-            self.image__.setPixel(0, 0, 'Red')
+      #      self.image__.setPixel(0, 0, 'Red')
         else:
             self.action_single_cell_eating = self.action_null
-            self.image__.setPixel(0, 0, 'Gray')
+     #       self.image__.setPixel(0, 0, 'Gray')
 
     def live(self):
         (dx, dy) = self.action_single_cell_move_decision()
@@ -60,8 +60,9 @@ class CreatureSingleCell(object):
                 self.action_single_cell_mutation()
 
     def action_single_cell_mutation(self):
-        exec(choice(CreatureSingleCell.mutation_list__))
-        self.shape_single_cell()
+        pass
+      #  exec(choice(CreatureSingleCell.mutation_list__))
+       # self.shape_single_cell()
 
     def action_single_cell_dying(self):
         self.age_ += 1
@@ -95,7 +96,7 @@ class CreatureSingleCell(object):
     def action_single_cell_moving(self, dx, dy):
         if CreatureSingleCell.world_handle__.check_vacancy_single_cell(self.x_ + dx, self.y_ + dy):
             if CreatureSingleCell.world_handle__.get_xy_water(self.x_ + dx, self.y_ + dy) != Ewater.dry_land:
-                self.image__.move(dx, dy)
+        #        self.image__.move(dx, dy)
                 CreatureSingleCell.world_handle__.add_single_cell_to_grid(self, self.x_ + dx, self.y_ + dy)
                 CreatureSingleCell.world_handle__.remove_single_cell_from_grid(self.x_, self.y_)
                 self.x_ += dx

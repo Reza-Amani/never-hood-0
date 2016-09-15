@@ -76,10 +76,10 @@ class World(object):
                 temp_point = WorldPoint()
         file.close()
 
-        for old_creature in self.creatures_single_cell_:
-            old_creature.image__.undraw()
-            del old_creature.image__
-            del old_creature
+        #for old_creature in self.creatures_single_cell_:
+        #    old_creature.image__.undraw()
+        #   del old_creature.image__
+         #   del old_creature
         self.creatures_single_cell_ = []
         file = open("single_cells_snapshot.txt", "r")
         file_lines = file.readlines()
