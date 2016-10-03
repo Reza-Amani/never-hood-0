@@ -1,7 +1,9 @@
-﻿from pygame import*
+﻿import pygame
+from pygame.locals import *
 pygame.init()
 
-surface = pygame.image.load('sand_clock.gif').convert()
+
+surface = pygame.image.load('./images/sand_clock.gif').convert()
 
 size = width, height = 320, 240
 speed = [2, 2]
