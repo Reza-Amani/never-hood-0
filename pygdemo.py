@@ -3,13 +3,14 @@ from pygame.locals import *
 pygame.init()
 
 
-surface = pygame.image.load('./images/sand_clock.gif').convert()
+
 
 size = width, height = 320, 240
 speed = [2, 2]
 black = 0, 0, 0
 screen = pygame.display.set_mode(size)
-ball = pygame.image.load("ball.bmp")
+surface = pygame.image.load('./images/sand_clock.gif').convert()
+ball = pygame.image.load("./images/load.gif")
 ballrect = ball.get_rect()
 
 while 1:
