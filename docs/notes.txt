@@ -1,2 +1,5 @@
 to solve the bug in adding/destroying images and to speed up graphics:
 	use pygame instead og graphics.py
+links to pygame:
+http://pygametutorials.wikidot.com/tutorials-basic
+https://www.pygame.org/docs/ and its wiki
