@@ -14,9 +14,13 @@ namespace NeverLand1
         public MainForm()
         {
             InitializeComponent();
-            graph = new graphic(pictureBoxMain);
+            wform = new WorldForm();
+            wform.Show();
+            graph = new graphic(wform.get_picture_box());
+//            graph = new graphic(wform.get_picture_box());
         }
         graphic graph;
+        WorldForm wform;
 
         private void test_Click(object sender, EventArgs e)
         {
