@@ -17,7 +17,6 @@ namespace NeverLand1
             wform = new WorldForm();
             wform.Show();
             graph = new graphic(wform.get_picture_box());
-//            graph = new graphic(wform.get_picture_box());
         }
         graphic graph;
         WorldForm wform;
@@ -27,8 +26,5 @@ namespace NeverLand1
             graph.update();
         }
 
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-        }
     }
 }
