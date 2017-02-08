@@ -26,5 +26,10 @@ namespace NeverLand1
             graph.update();
         }
 
+        private void step_Click(object sender, EventArgs e)
+        {
+            graph.step_test();
+        }
+
     }
 }

@@ -30,6 +30,13 @@ namespace NeverLand1
             g.DrawRectangle(p, r);
             p.Brush = Brushes.Black;
             g.DrawEllipse(p, 20, 20, 30, 30);
+            
+            box.Image = btm;
+        }
+        public void step_test()
+        {
+            r.X += 10;
+            g.DrawRectangle(p, r);
             box.Image = btm;
         }
     }
