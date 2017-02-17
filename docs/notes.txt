@@ -1,2 +1,0 @@
-bitmap as a child for image, can be editted pixel-by-pixel and have transparent color.
-graphics may need to redraw each time instead of moving
