@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace NeverLand1
 {
@@ -46,11 +47,24 @@ namespace NeverLand1
         private void button_go_Click(object sender, EventArgs e)
         {
             TimeToGo = true;
+            while (TimeToGo)
+            {
+                Thread.Sleep(1000);
+                update_1day();
+            }
         }
 
         private void button_1day_Click(object sender, EventArgs e)
         {
+            //update the world once
             TimeToGo = false;
+            update_1day();
+        }
+
+        private void update_1day()
+        {
+            wform.Update();
+            graph.step_test();
         }
 
     }
