@@ -1,6 +1,6 @@
 #pragma once
-#include "WorldView.h"
-namespace NeverLand {
+
+namespace testform {
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -34,8 +34,6 @@ namespace NeverLand {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^  button_test;
-	protected: 
 
 	private:
 		/// <summary>
@@ -50,36 +48,13 @@ namespace NeverLand {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->button_test = (gcnew System::Windows::Forms::Button());
-			this->SuspendLayout();
-			// 
-			// button_test
-			// 
-			this->button_test->Location = System::Drawing::Point(12, 199);
-			this->button_test->Name = L"button_test";
-			this->button_test->Size = System::Drawing::Size(72, 44);
-			this->button_test->TabIndex = 0;
-			this->button_test->Text = L"test";
-			this->button_test->UseVisualStyleBackColor = true;
-			this->button_test->Click += gcnew System::EventHandler(this, &Form1::button_test_Click);
-			// 
-			// Form1
-			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->components = gcnew System::ComponentModel::Container();
+			this->Size = System::Drawing::Size(300,300);
+			this->Text = L"Form1";
+			this->Padding = System::Windows::Forms::Padding(0);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(282, 255);
-			this->Controls->Add(this->button_test);
-			this->Name = L"Form1";
-			this->Text = L"Entry";
-			this->ResumeLayout(false);
-
 		}
 #pragma endregion
-	private: System::Void button_test_Click(System::Object^  sender, System::EventArgs^  e) 
-			 {
-				 WorldView^ world_view= gcnew WorldView();
-				 world_view->Show();
-			 }
 	};
 }
 
