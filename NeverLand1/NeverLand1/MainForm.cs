@@ -22,6 +22,8 @@ namespace NeverLand1
         graphic graph;
         WorldForm wform;
 
+        private System.Threading.Timer timer;
+
         bool TimeToGo = false;
 
         private void test_Click(object sender, EventArgs e)
@@ -47,23 +49,24 @@ namespace NeverLand1
         private void button_go_Click(object sender, EventArgs e)
         {
             TimeToGo = true;
-            while (TimeToGo)
+            timer = new System.Threading.Timer(update_1day, null, TimeSpan.FromSeconds(0.25), TimeSpan.FromSeconds(0.25));
+/*            while (TimeToGo)
             {
-                Thread.Sleep(1000);
+                this.up
                 update_1day();
             }
-        }
+*/        }
 
         private void button_1day_Click(object sender, EventArgs e)
         {
             //update the world once
             TimeToGo = false;
-            update_1day();
+            //update_1day();
         }
 
-        private void update_1day()
+        private void update_1day(object state)
         {
-            wform.Update();
+            //wform.Update();
             graph.step_test();
         }
 
