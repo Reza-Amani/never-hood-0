@@ -10,6 +10,7 @@ using System.Threading;
 
 namespace NeverLand1
 {
+    enum FoodType { _sun_light, _organics, _single_cell };
     public partial class MainForm : Form
     {
         public MainForm()
@@ -61,7 +62,7 @@ namespace NeverLand1
         {
             //update the world once
             TimeToGo = false;
-            //update_1day();
+            update_1day(null);
         }
 
         private void update_1day(object state)

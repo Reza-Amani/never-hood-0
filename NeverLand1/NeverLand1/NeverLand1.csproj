@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleCell.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WorldForm.cs">
       <SubType>Form</SubType>
