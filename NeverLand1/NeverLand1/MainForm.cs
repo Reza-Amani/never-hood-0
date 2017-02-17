@@ -28,7 +28,12 @@ namespace NeverLand1
 
         private void step_Click(object sender, EventArgs e)
         {
-            graph.step_test();
+            for (int i = 0; i < 1000; i++)
+            {
+                wform.Update();
+
+                graph.step_test();
+            }
         }
 
     }

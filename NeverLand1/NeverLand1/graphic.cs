@@ -31,15 +31,19 @@ namespace NeverLand1
 
         }
         Bitmap[] bms;
-        public void update()
+        public void draw_shapes()
         {
             p = new Pen(Brushes.Aqua);
-            r = new Rectangle(0, 0, 20,10);
+            r = new Rectangle(0, 0, 20, 10);
             g.DrawRectangle(p, r);
             p.Brush = Brushes.Black;
             g.DrawEllipse(p, 20, 20, 30, 30);
             g.DrawEllipse(p, 30, 30, 40, 40);
             box.Image = btm;
+        }
+        public void update()
+        {
+            
         }
         public void step_test()
         {
