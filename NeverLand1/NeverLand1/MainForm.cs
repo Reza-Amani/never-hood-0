@@ -21,6 +21,8 @@ namespace NeverLand1
         graphic graph;
         WorldForm wform;
 
+        bool TimeToGo = false;
+
         private void test_Click(object sender, EventArgs e)
         {
             graph.update();
@@ -34,6 +36,21 @@ namespace NeverLand1
 
                 graph.step_test();
             }
+        }
+
+        private void button_pause_Click(object sender, EventArgs e)
+        {
+            TimeToGo = false;
+        }
+
+        private void button_go_Click(object sender, EventArgs e)
+        {
+            TimeToGo = true;
+        }
+
+        private void button_1day_Click(object sender, EventArgs e)
+        {
+            TimeToGo = false;
         }
 
     }
