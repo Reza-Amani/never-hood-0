@@ -11,6 +11,7 @@ using System.Threading;
 namespace NeverLand1
 {
     enum FoodType { _sun_light, _organics, _single_cell };
+    enum WaterType { _dry, _coastal_water, _shallow_water, _deep_water };
     public partial class MainForm : Form
     {
         public MainForm()

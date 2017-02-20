@@ -5,14 +5,10 @@ using System.Text;
 
 namespace NeverLand1
 {
-    class World
+    class WorldPoint
     {
-        public World()
-        {
-        }
+        WaterType water;
+        int organics;
 
-        public void update_1day()
-        {
-        }
     }
 }
