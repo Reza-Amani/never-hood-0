@@ -10,10 +10,11 @@ using System.Threading;
 
 namespace NeverLand1
 {
-    enum FoodType { _sun_light, _organics, _single_cell };
-    enum WaterType { _dry, _coastal_water, _shallow_water, _deep_water };
     public partial class MainForm : Form
     {
+        graphic graph;
+        WorldForm wform;
+        World world = new World();
         public MainForm()
         {
             InitializeComponent();
@@ -21,8 +22,6 @@ namespace NeverLand1
             wform.Show();
             graph = new graphic(wform.get_picture_box());
         }
-        graphic graph;
-        WorldForm wform;
 
         private System.Threading.Timer timer;
 
@@ -74,7 +73,7 @@ namespace NeverLand1
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
         {
-
+            world.cells.Add(new SingleCell(50, 50, FoodType._sun_light, 20, 50, 1, 0));
         }
 
     }

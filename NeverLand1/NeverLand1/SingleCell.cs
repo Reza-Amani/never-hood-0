@@ -12,6 +12,7 @@ namespace NeverLand1
         {
             x = x_; y = y_; food_type = food_type_; breeding_thresh = breeding_thresh_; age_max = age_max_; hump = hump_; age = age_;
             face = new Bitmap(1, 1);
+            Updateface();
         }
 
         int x,y,breeding_thresh,age_max,hump,age;
