@@ -62,7 +62,7 @@ namespace NeverLand1
         {
             //update the world once
             TimeToGo = false;
-            update_1day(null);
+            world.update_1day();
         }
 
         private void update_1day(object state)
