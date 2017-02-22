@@ -12,13 +12,13 @@ namespace NeverLand1
         {
             x = x_; y = y_; food_type = food_type_; breeding_thresh = breeding_thresh_; age_max = age_max_; hump = hump_; age = age_;
             face = new Bitmap(1, 1);
-            Updateface();
+            update_face();
         }
 
-        int x,y,breeding_thresh,age_max,hump,age;
+        public int x,y,breeding_thresh,age_max,hump,age;
         FoodType food_type;
         Bitmap face;
-        void Updateface()
+        void update_face()
         {
             switch (food_type)
             {
@@ -32,6 +32,10 @@ namespace NeverLand1
                     face.SetPixel(0, 0, Color.DarkRed);
                     break;
             }
+        }
+        public bool Update_1day()
+        {   //returns false if it has to be killed
+            return true;
         }
 
     }

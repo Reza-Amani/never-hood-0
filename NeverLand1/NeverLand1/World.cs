@@ -18,6 +18,14 @@ namespace NeverLand1
 
         public void update_1day()
         {
+            for (int i = cells.Count - 1; i >= 0; i--)
+            {
+                if ( ! cells[i].Update_1day())
+                {   //kill it
+                    PointsArray[cells[i].x,cells[i].y].cell = null;
+                    cells.RemoveAt(i);
+                }
+            }
         }
     }
 }
