@@ -52,5 +52,16 @@ namespace NeverLand1
                 g.DrawImageUnscaled(bms[i], rnd.Next(500), rnd.Next(500));
             box.Image = btm;
         }
+        public void draw_bmp(Bitmap _bmp,int _x,int _y)
+        {
+            g.DrawImageUnscaled(_bmp, _x, _y);
+        }
+        public void update_world_view()
+        {
+            box.Image = btm;
+        }
+        public void reset_world_view()
+        {
+        }
     }
 }

@@ -14,13 +14,15 @@ namespace NeverLand1
     {
         graphic graph;
         WorldForm wform;
-        World world = new World();
+        World world;
+        Random random_generator = new Random();
         public MainForm()
         {
             InitializeComponent();
             wform = new WorldForm();
             wform.Show();
             graph = new graphic(wform.get_picture_box());
+            world = new World(graph, random_generator);
         }
 
         private System.Threading.Timer timer;
@@ -73,7 +75,7 @@ namespace NeverLand1
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
         {
-            world.cells.Add(new SingleCell(50, 50, FoodType._sun_light, 20, 50, 1, 0));
+            world.cells.Add(new SingleCell(50, 50, FoodType._sun_light, 20, 50, 1, 0, random_generator));
         }
 
     }
