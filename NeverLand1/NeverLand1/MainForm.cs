@@ -39,7 +39,7 @@ namespace NeverLand1
             for (int i = 0; i < 1000; i++)
             {
                 wform.Update();
-
+                graph.reset_world_view();
                 graph.step_test();
             }
         }

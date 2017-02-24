@@ -62,6 +62,10 @@ namespace NeverLand1
         }
         public void reset_world_view()
         {
+            g.FillRectangle(Brushes.DarkBlue, 0, 0, Globals.width_deep_water, Globals.world_y_size);
+            g.FillRectangle(Brushes.Blue, Globals.width_deep_water, 0, Globals.width_shallow_water - Globals.width_deep_water, Globals.world_y_size);
+            g.FillRectangle(Brushes.LightBlue, Globals.width_shallow_water, 0, Globals.width_coastal_water - Globals.width_shallow_water, Globals.world_y_size);
+            g.FillRectangle(Brushes.Khaki, Globals.width_coastal_water, 0, Globals.width_dry - Globals.width_coastal_water, Globals.world_y_size);
         }
     }
 }
