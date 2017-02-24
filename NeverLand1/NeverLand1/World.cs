@@ -32,5 +32,14 @@ namespace NeverLand1
                 graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
             graph.update_world_view();
         }
+
+        public string get_point_info(int _x, int _y)
+        {
+            string result="x: "+_x.ToString();
+            result+="\r\ny: "+_y.ToString();
+            result+="\r\norganics: "+PointsArray[_x,_y].organics.ToString();
+            result+="\r\ncell: "+((PointsArray[_x,_y].cell==null)?"nobody":PointsArray[_x,_y].cell.name.ToString());
+            return result;
+        }
     }
 }

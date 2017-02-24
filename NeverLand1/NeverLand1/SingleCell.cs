@@ -8,7 +8,7 @@ namespace NeverLand1
 {
     class SingleCell
     {
-        public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, Random _rnd, WorldPoint[,] _world_points)
+        public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, Random _rnd, int _name, WorldPoint[,] _world_points)
         {
             x = x_; y = y_; food_type = food_type_; breeding_thresh = breeding_thresh_; age_max = age_max_; hump = hump_; age = age_;
             face = new Bitmap(2, 2);
@@ -16,6 +16,7 @@ namespace NeverLand1
             random_generator = _rnd;
             world_points = _world_points;
             to_dye = false;
+            name = _name;
         }
 
         public int x,y,breeding_thresh,age_max,hump,age;
@@ -24,6 +25,7 @@ namespace NeverLand1
         public Bitmap face;
         WorldPoint[,] world_points;
         public bool to_dye;
+        public int name; 
         void update_face()
         {
             switch (food_type)

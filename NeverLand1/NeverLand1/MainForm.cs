@@ -16,6 +16,7 @@ namespace NeverLand1
         WorldForm wform;
         World world;
         Random random_generator = new Random();
+        int point_info_x = Globals.width_shallow_water + 50, point_info_y = 50;
         public MainForm()
         {
             InitializeComponent();
@@ -65,6 +66,7 @@ namespace NeverLand1
             //update the world once
             TimeToGo = false;
             world.update_1day();
+            textBox_point.Text =  world.get_point_info(point_info_x, point_info_y);
         }
 
         private void update_1day(object state)
@@ -75,7 +77,7 @@ namespace NeverLand1
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
         {
-            world.cells.Add(new SingleCell(Globals.width_shallow_water+50, 50, FoodType._sun_light, 20, 50, 1, 0, random_generator, world.PointsArray));
+            world.cells.Add(new SingleCell(Globals.width_shallow_water+50, 50, FoodType._sun_light, 20, 50, 1, 0, random_generator,1234, world.PointsArray));
         }
 
     }
