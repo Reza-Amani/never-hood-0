@@ -7,7 +7,7 @@ namespace NeverLand1
 {
     class World
     {
-        WorldPoint[,] PointsArray = new WorldPoint[Globals.world_x_size, Globals.world_y_size];
+        public WorldPoint[,] PointsArray = new WorldPoint[Globals.world_x_size, Globals.world_y_size];
         graphic graph;
         Random random_generator;
         public List<SingleCell> cells = new List<SingleCell>();
@@ -22,20 +22,14 @@ namespace NeverLand1
 
         public void update_1day()
         {
+            for (int i = cells.Count - 1; i >= 0; i--)
+                cells[i].Update_1day();
+            for (int i = cells.Count - 1; i >= 0; i--)
+                if (cells[i].to_dye)
+                    cells.RemoveAt(i);
             graph.reset_world_view();
             for (int i = cells.Count - 1; i >= 0; i--)
-            {
-                PointsArray[cells[i].x, cells[i].y].cell = null;
-                if (!cells[i].Update_1day())
-                {   //kill it
-                    cells.RemoveAt(i);
-                }
-                else
-                {   //keep it, draw it
-                    PointsArray[cells[i].x, cells[i].y].cell = cells[i];
-                    graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
-                }
-            }
+                graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
             graph.update_world_view();
         }
     }

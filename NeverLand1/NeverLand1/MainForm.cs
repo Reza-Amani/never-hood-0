@@ -75,7 +75,7 @@ namespace NeverLand1
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
         {
-            world.cells.Add(new SingleCell(50, 50, FoodType._sun_light, 20, 50, 1, 0, random_generator));
+            world.cells.Add(new SingleCell(Globals.width_shallow_water+50, 50, FoodType._sun_light, 20, 50, 1, 0, random_generator, world.PointsArray));
         }
 
     }
