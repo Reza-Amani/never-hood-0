@@ -26,9 +26,15 @@ namespace NeverLand1
 
         public void update_1day()
         {
+            SingleCell new_born;
             calendar++;
             for (int i = cells.Count - 1; i >= 0; i--)
-                cells[i].Update_1day();
+            {
+                cells[i].Update_1day(out new_born);
+                if (new_born != null)
+                {   //wellcome new creature
+                }
+            }
             for (int i = cells.Count - 1; i >= 0; i--)
                 if (cells[i].to_dye)
                     cells.RemoveAt(i);

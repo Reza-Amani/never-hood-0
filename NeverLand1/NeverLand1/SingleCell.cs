@@ -44,13 +44,15 @@ namespace NeverLand1
                     break;
             }
         }
-        public void Update_1day()
+        public void Update_1day(out SingleCell _new_born)
         {   
             int new_x, new_y;
+            _new_born = null;
             if (to_dye)
                 return;
             age++;
             decide_move_random_1pixel(x,y,out new_x, out new_y);
+            check_reproduce(ref new_x, ref new_y, ref _new_born);
             switch (food_type)
             {
                 case FoodType._sun_light:
@@ -61,6 +63,10 @@ namespace NeverLand1
             }
             do_metabolism();
         }
+        void check_reproduce(ref int _new_x, ref int _new_y, ref SingleCell _new_born)
+    {
+    }
+
 
         void do_metabolism()
         {
