@@ -53,11 +53,10 @@ namespace NeverLand1
         private void button_go_Click(object sender, EventArgs e)
         {
             TimeToGo = true;
-            timer = new System.Threading.Timer(update_1day, null, TimeSpan.FromSeconds(0.25), TimeSpan.FromSeconds(0.25));
+            timer = new System.Threading.Timer(update_1day, null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(0.5));
 /*            while (TimeToGo)
             {
-                this.up
-                update_1day();
+                world.update_1day();
             }
 */        }
 
@@ -74,13 +73,47 @@ namespace NeverLand1
         private void update_1day(object state)
         {
             //wform.Update();
-            graph.step_test();
+//            graph.step_test();
+            world.update_1day();
+        //    textBox_point.Text = world.get_point_info(point_info_x, point_info_y);
+            SetText(world.get_point_info(point_info_x, point_info_y));
+        //    textBox_world.Text = world.get_world_info();
+        //    textBox_cell.Text = world.get_cell_info();
         }
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
         {
             world.cells.Add(new SingleCell(Globals.width_shallow_water+50, 50, FoodType._sun_light, 20, 50, 1, 0, random_generator,1234, world.PointsArray));
         }
+
+        // This method demonstrates a pattern for making thread-safe
+        // calls on a Windows Forms control. 
+        //
+        // If the calling thread is different from the thread that
+        // created the TextBox control, this method creates a
+        // SetTextCallback and calls itself asynchronously using the
+        // Invoke method.
+        //
+        // If the calling thread is the same as the thread that created
+        // the TextBox control, the Text property is set directly. 
+        delegate void SetTextCallback(string text);
+        private void SetText(string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.textBox_point.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.textBox_point.Text = text;
+            }
+        }
+
+
 
     }
 }
