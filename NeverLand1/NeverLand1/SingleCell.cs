@@ -44,16 +44,47 @@ namespace NeverLand1
                     break;
             }
         }
-        public bool Update_1day()
-        {   //returns false if it has to be killed
+        public void Update_1day()
+        {   
             int new_x, new_y;
+            if (to_dye)
+                return;
+            age++;
             decide_move_random_1pixel(x,y,out new_x, out new_y);
-
-            if (world_points[new_x, new_y].cell == null)
-                do_move(new_x, new_y);
-
-            return true;
+            switch (food_type)
+            {
+                case FoodType._sun_light:
+                    if (world_points[new_x, new_y].cell == null)
+                        do_move(new_x, new_y);
+                    hump += world_points[x, y].get_sun_energy();
+                    break;
+            }
+            do_metabolism();
         }
+
+        void do_metabolism()
+        {
+            if (age > age_max)
+            {   //checking age_max
+                world_points[x, y].organics += hump;
+                hump = 0;
+                to_dye = true;
+                return;
+            }
+            if (hump >= 2)
+            {   //checking starving
+                hump -= 2;
+                world_points[x, y].organics += 2;
+            }
+            else
+            {   //starving
+                world_points[x, y].organics += hump;
+                hump = 0;
+                to_dye = true;
+            }
+        
+        }
+
         void decide_move_random_1pixel(int _x, int _y, out int _new_x, out int _new_y)
         {
             int newx = _x + random_generator.Next(-1, 2);
