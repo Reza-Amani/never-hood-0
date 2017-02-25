@@ -35,11 +35,13 @@
             this.button_1day = new System.Windows.Forms.Button();
             this.button_new_single_cell = new System.Windows.Forms.Button();
             this.textBox_point = new System.Windows.Forms.TextBox();
+            this.textBox_cell = new System.Windows.Forms.TextBox();
+            this.textBox_world = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // test
             // 
-            this.test.Location = new System.Drawing.Point(12, 12);
+            this.test.Location = new System.Drawing.Point(14, 213);
             this.test.Name = "test";
             this.test.Size = new System.Drawing.Size(75, 23);
             this.test.TabIndex = 0;
@@ -49,7 +51,7 @@
             // 
             // step
             // 
-            this.step.Location = new System.Drawing.Point(12, 41);
+            this.step.Location = new System.Drawing.Point(14, 242);
             this.step.Name = "step";
             this.step.Size = new System.Drawing.Size(75, 23);
             this.step.TabIndex = 1;
@@ -59,7 +61,7 @@
             // 
             // button_pause
             // 
-            this.button_pause.Location = new System.Drawing.Point(12, 177);
+            this.button_pause.Location = new System.Drawing.Point(11, 89);
             this.button_pause.Margin = new System.Windows.Forms.Padding(2);
             this.button_pause.Name = "button_pause";
             this.button_pause.Size = new System.Drawing.Size(64, 32);
@@ -70,7 +72,7 @@
             // 
             // button_go
             // 
-            this.button_go.Location = new System.Drawing.Point(12, 103);
+            this.button_go.Location = new System.Drawing.Point(11, 15);
             this.button_go.Margin = new System.Windows.Forms.Padding(2);
             this.button_go.Name = "button_go";
             this.button_go.Size = new System.Drawing.Size(64, 31);
@@ -81,7 +83,7 @@
             // 
             // button_1day
             // 
-            this.button_1day.Location = new System.Drawing.Point(12, 139);
+            this.button_1day.Location = new System.Drawing.Point(11, 51);
             this.button_1day.Margin = new System.Windows.Forms.Padding(2);
             this.button_1day.Name = "button_1day";
             this.button_1day.Size = new System.Drawing.Size(64, 33);
@@ -92,7 +94,7 @@
             // 
             // button_new_single_cell
             // 
-            this.button_new_single_cell.Location = new System.Drawing.Point(117, 166);
+            this.button_new_single_cell.Location = new System.Drawing.Point(14, 166);
             this.button_new_single_cell.Name = "button_new_single_cell";
             this.button_new_single_cell.Size = new System.Drawing.Size(61, 41);
             this.button_new_single_cell.TabIndex = 5;
@@ -106,15 +108,34 @@
             this.textBox_point.Location = new System.Drawing.Point(279, 15);
             this.textBox_point.Multiline = true;
             this.textBox_point.Name = "textBox_point";
-            this.textBox_point.Size = new System.Drawing.Size(154, 92);
+            this.textBox_point.Size = new System.Drawing.Size(154, 140);
             this.textBox_point.TabIndex = 6;
-            this.textBox_point.Text = "test\r\ntext";
+            // 
+            // textBox_cell
+            // 
+            this.textBox_cell.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox_cell.Location = new System.Drawing.Point(439, 15);
+            this.textBox_cell.Multiline = true;
+            this.textBox_cell.Name = "textBox_cell";
+            this.textBox_cell.Size = new System.Drawing.Size(154, 140);
+            this.textBox_cell.TabIndex = 7;
+            // 
+            // textBox_world
+            // 
+            this.textBox_world.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.textBox_world.Location = new System.Drawing.Point(119, 15);
+            this.textBox_world.Multiline = true;
+            this.textBox_world.Name = "textBox_world";
+            this.textBox_world.Size = new System.Drawing.Size(154, 140);
+            this.textBox_world.TabIndex = 8;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 277);
+            this.ClientSize = new System.Drawing.Size(608, 295);
+            this.Controls.Add(this.textBox_world);
+            this.Controls.Add(this.textBox_cell);
             this.Controls.Add(this.textBox_point);
             this.Controls.Add(this.button_new_single_cell);
             this.Controls.Add(this.button_1day);
@@ -138,6 +159,8 @@
         private System.Windows.Forms.Button button_1day;
         private System.Windows.Forms.Button button_new_single_cell;
         private System.Windows.Forms.TextBox textBox_point;
+        private System.Windows.Forms.TextBox textBox_cell;
+        private System.Windows.Forms.TextBox textBox_world;
     }
 }
 

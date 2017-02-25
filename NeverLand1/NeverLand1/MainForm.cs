@@ -67,6 +67,8 @@ namespace NeverLand1
             TimeToGo = false;
             world.update_1day();
             textBox_point.Text =  world.get_point_info(point_info_x, point_info_y);
+            textBox_world.Text = world.get_world_info();
+            textBox_cell.Text = world.get_cell_info();
         }
 
         private void update_1day(object state)
