@@ -46,17 +46,28 @@ namespace NeverLand1
         }
         public bool Update_1day()
         {   //returns false if it has to be killed
-            decide_move_random_1pixel();
+            int new_x, new_y;
+            decide_move_random_1pixel(x,y,out new_x, out new_y);
+
+            if (world_points[new_x, new_y].cell == null)
+                do_move(new_x, new_y);
+
             return true;
         }
-        void decide_move_random_1pixel()
+        void decide_move_random_1pixel(int _x, int _y, out int _new_x, out int _new_y)
         {
-            int newx = x + random_generator.Next(-1, 2);
-            int newy = y + random_generator.Next(-1, 2);
-            if ((newx < Globals.width_dry) && (newx >= 0))
-                if ((newy < Globals.world_y_size) && (newy >= 0))
-                    if (world_points[newx, newy].cell == null)
-                        do_move(newx, newy);
+            int newx = _x + random_generator.Next(-1, 2);
+            int newy = _y + random_generator.Next(-1, 2);
+            if ((newx < Globals.width_dry) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
+            {   //propose new point 
+                _new_x = newx;
+                _new_y = newy;
+            }
+            else
+            {   //new point out of border, stay still
+                _new_x = _x;
+                _new_y = _y;
+            }
         }
         void do_move(int _newx, int _newy)
         {
