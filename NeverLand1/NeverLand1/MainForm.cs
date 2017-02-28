@@ -53,7 +53,9 @@ namespace NeverLand1
         private void button_go_Click(object sender, EventArgs e)
         {
             TimeToGo = true;
-            timer = new System.Threading.Timer(update_1day, null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(0.5));
+            Thread thread = new Thread(thread_go);
+            thread.Start();
+//            timer = new System.Threading.Timer(update_1day, null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(0.5));
 /*            while (TimeToGo)
             {
                 world.update_1day();
@@ -68,6 +70,12 @@ namespace NeverLand1
             textBox_point.Text =  world.get_point_info(point_info_x, point_info_y);
             textBox_world.Text = world.get_world_info();
             textBox_cell.Text = world.get_cell_info();
+        }
+
+        private void thread_go()
+        {
+            while (TimeToGo)
+                update_1day(null);
         }
 
         private void update_1day(object state)
