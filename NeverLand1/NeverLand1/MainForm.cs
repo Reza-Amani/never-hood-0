@@ -87,9 +87,9 @@ namespace NeverLand1
 //            graph.step_test();
             world.update_1day();
         //    textBox_point.Text = world.get_point_info(point_info_x, point_info_y);
-            SetText(world.get_point_info(point_info_x, point_info_y));
-        //    textBox_world.Text = world.get_world_info();
-        //    textBox_cell.Text = world.get_cell_info();
+            SetText(world.get_world_info(), world.get_point_info(point_info_x, point_info_y), world.get_cell_info());
+        //    textBox_world.Text = ;
+        //    textBox_cell.Text = ;
         }
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
@@ -107,8 +107,8 @@ namespace NeverLand1
         //
         // If the calling thread is the same as the thread that created
         // the TextBox control, the Text property is set directly. 
-        delegate void SetTextCallback(string text);
-        private void SetText(string text)
+        delegate void SetTextCallback(string text1,string text2,string text3);
+        private void SetText(string text1,string text2,string text3)
         {
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
@@ -116,11 +116,13 @@ namespace NeverLand1
             if (this.textBox_point.InvokeRequired)
             {
                 SetTextCallback d = new SetTextCallback(SetText);
-                this.Invoke(d, new object[] { text });
+                this.Invoke(d, new object[] { text1,text2,text3 });
             }
             else
             {
-                this.textBox_point.Text = text;
+                this.textBox_world.Text = text1;
+                this.textBox_point.Text = text2;
+                this.textBox_cell.Text = text3;
             }
         }
 
