@@ -11,7 +11,7 @@ namespace NeverLand1
         graphic graph;
         Random random_generator;
         public List<SingleCell> cells = new List<SingleCell>();
-        int calendar = 0;
+        static int calendar = 0;
         SingleCell selected_cell;
 
         public World(graphic _g,Random _rnd)

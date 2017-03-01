@@ -75,7 +75,10 @@ namespace NeverLand1
         private void thread_go()
         {
             while (TimeToGo)
+            {
+                Thread.Sleep(100);
                 update_1day(null);
+            }
         }
 
         private void update_1day(object state)
