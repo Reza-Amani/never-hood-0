@@ -33,6 +33,9 @@ namespace NeverLand1
                 cells[i].Update_1day(out new_born);
                 if (new_born != null)
                 {   //wellcome new creature
+                    cells.Add(new_born);
+                    PointsArray[new_born.x, new_born.y].cell = new_born;
+
                 }
             }
             for (int i = cells.Count - 1; i >= 0; i--)
@@ -40,7 +43,9 @@ namespace NeverLand1
                 {
                     if(selected_cell == cells[i])
                         selected_cell = null;
+                    PointsArray[cells[i].x, cells[i].y].cell = null;
                     cells.RemoveAt(i);
+                    
                 }
             graph.reset_world_view();
             for (int i = cells.Count - 1; i >= 0; i--)

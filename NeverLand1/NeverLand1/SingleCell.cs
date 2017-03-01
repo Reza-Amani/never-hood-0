@@ -52,7 +52,7 @@ namespace NeverLand1
                 return;
             age++;
             decide_move_random_1pixel(x,y,out new_x, out new_y);
-            check_reproduce(ref new_x, ref new_y, ref _new_born);
+            check_reproduce(ref new_x, ref new_y, out _new_born);
             switch (food_type)
             {
                 case FoodType._sun_light:
@@ -63,9 +63,16 @@ namespace NeverLand1
             }
             do_metabolism();
         }
-        void check_reproduce(ref int _new_x, ref int _new_y, ref SingleCell _new_born)
-    {
-    }
+        void check_reproduce(ref int _new_x, ref int _new_y, out SingleCell _new_born)
+        {
+            _new_born = null;
+            if(hump>breeding_thresh)
+                if (world_points[_new_x, _new_y].cell == null)
+                {
+                    hump -= breeding_thresh / 2;
+                    _new_born = new SingleCell(_new_x, _new_y, food_type, breeding_thresh, age_max, breeding_thresh / 2, 0, random_generator, 1234, world_points);
+                }
+        }
 
 
         void do_metabolism()
