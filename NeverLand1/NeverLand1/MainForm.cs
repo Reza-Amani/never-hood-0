@@ -17,6 +17,7 @@ namespace NeverLand1
         World world;
         Random random_generator = new Random();
         int point_info_x = Globals.width_shallow_water + 50, point_info_y = 50;
+        static bool graphic_onoff = true;
         public MainForm()
         {
             InitializeComponent();
@@ -85,6 +86,8 @@ namespace NeverLand1
         private void update_1day(object state)
         {
             world.update_1day();
+            if(graphic_onoff)
+                world.update_graphics();
             SetText(world.get_world_info(), world.get_point_info(point_info_x, point_info_y), world.get_cell_info());
         }
 
@@ -120,6 +123,11 @@ namespace NeverLand1
                 this.textBox_point.Text = text2;
                 this.textBox_cell.Text = text3;
             }
+        }
+
+        private void button_graphic_onoff_Click(object sender, EventArgs e)
+        {
+            graphic_onoff = !graphic_onoff;
         }
 
 

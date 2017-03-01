@@ -47,6 +47,10 @@ namespace NeverLand1
                     cells.RemoveAt(i);
                     
                 }
+        }
+
+        public void update_graphics()
+        {
             graph.reset_world_view();
             for (int i = cells.Count - 1; i >= 0; i--)
                 graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
