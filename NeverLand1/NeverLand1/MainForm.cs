@@ -66,11 +66,12 @@ namespace NeverLand1
         {
             //update the world once
             TimeToGo = false;
-            world.update_1day();
+            update_1day(null);
+/*            world.update_1day();
             textBox_point.Text =  world.get_point_info(point_info_x, point_info_y);
             textBox_world.Text = world.get_world_info();
             textBox_cell.Text = world.get_cell_info();
-        }
+*/        }
 
         private void thread_go()
         {
@@ -83,13 +84,8 @@ namespace NeverLand1
 
         private void update_1day(object state)
         {
-            //wform.Update();
-//            graph.step_test();
             world.update_1day();
-        //    textBox_point.Text = world.get_point_info(point_info_x, point_info_y);
             SetText(world.get_world_info(), world.get_point_info(point_info_x, point_info_y), world.get_cell_info());
-        //    textBox_world.Text = ;
-        //    textBox_cell.Text = ;
         }
 
         private void button_new_single_cell_Click(object sender, EventArgs e)

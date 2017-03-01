@@ -37,7 +37,11 @@ namespace NeverLand1
             }
             for (int i = cells.Count - 1; i >= 0; i--)
                 if (cells[i].to_dye)
+                {
+                    if(selected_cell == cells[i])
+                        selected_cell = null;
                     cells.RemoveAt(i);
+                }
             graph.reset_world_view();
             for (int i = cells.Count - 1; i >= 0; i--)
                 graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
