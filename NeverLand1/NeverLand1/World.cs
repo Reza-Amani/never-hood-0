@@ -22,7 +22,7 @@ namespace NeverLand1
                     PointsArray[i, j] = new WorldPoint(WaterType._coastal_water, 0, null);
             graph = _g;
             random_generator = _rnd;
-
+            SingleCell.world = this;
         }
 
         public void add_new_cell(int _x, int _y, SingleCell _cell)
