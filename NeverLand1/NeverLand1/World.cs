@@ -25,21 +25,29 @@ namespace NeverLand1
 
         }
 
+        public void add_new_cell(int _x, int _y, SingleCell _cell)
+        {
+            cells.Add(_cell);
+            PointsArray[_x, _y].cell = _cell;
+        }
+
+        public bool kill_cell(SingleCell _cell)
+        {
+            if (selected_cell == _cell)
+                selected_cell = null;
+            PointsArray[_cell.x, _cell.y].cell = null;
+            if(!cells.Remove(_cell))
+                return false; //error, no cell
+            if (cells.Remove(_cell))
+                return false;   //error, double cell!
+            return true;
+        }
         public void update_1day()
         {
-            SingleCell new_born;
             calendar++;
             for (int i = cells.Count - 1; i >= 0; i--)
-            {
-                cells[i].Update_1day(out new_born);
-                if (new_born != null)
-                {   //wellcome new creature
-                    cells.Add(new_born);
-                    PointsArray[new_born.x, new_born.y].cell = new_born;
-
-                }
-            }
-            for (int i = cells.Count - 1; i >= 0; i--)
+                cells[i].Update_1day();
+/*            for (int i = cells.Count - 1; i >= 0; i--)
                 if (cells[i].to_dye)
                 {
                     if(selected_cell == cells[i])
@@ -48,6 +56,7 @@ namespace NeverLand1
                     cells.RemoveAt(i);
                     
                 }
+  */
         }
 
         public void update_graphics()

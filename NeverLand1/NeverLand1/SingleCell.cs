@@ -44,63 +44,19 @@ namespace NeverLand1
                     break;
             }
         }
-        public void Update_1day(out SingleCell _new_born)
+        public void Update_1day()
         {   
             int new_x, new_y;
-            _new_born = null;
             if (to_dye)
                 return;
             age++;
-            decide_move_random_1pixel(x,y,out new_x, out new_y);
-            check_reproduce(ref new_x, ref new_y, out _new_born);
-            switch (food_type)
-            {
-                case FoodType._sun_light:
-                    if (world.PointsArray[new_x, new_y].cell == null)
-                        do_move(new_x, new_y);
-                    hump += world.PointsArray[x, y].get_sun_energy();
-                    break;
-            }
-            do_metabolism();
-        }
-        void check_reproduce(ref int _new_x, ref int _new_y, out SingleCell _new_born)
-        {
-            _new_born = null;
-            if(hump>breeding_thresh)
-                if (world.PointsArray[_new_x, _new_y].cell == null)
-                {
-                    hump -= breeding_thresh / 2;
-                    _new_born = new SingleCell(_new_x, _new_y, food_type, breeding_thresh, age_max, breeding_thresh / 2, 0, random_generator, world.cell_ID++, world);
-                    _new_x = x;
-                    _new_y = y;
-                }
+            choose_next_pixel(x,y,out new_x, out new_y);
+            reproduce(ref new_x, ref new_y);
+            move_eat(new_x, new_y);
+            metabolism();
         }
 
-
-        void do_metabolism()
-        {
-            if (age > age_max)
-            {   //checking age_max
-                world.PointsArray[x, y].organics += hump;
-                hump = 0;
-                to_dye = true;
-                return;
-            }
-            if (hump >= 2)
-            {   //checking starving
-                hump -= 2;
-                world.PointsArray[x, y].organics += 2;
-            }
-            else
-            {   //starving
-                world.PointsArray[x, y].organics += hump;
-                hump = 0;
-                to_dye = true;
-            }
-        
-        }
-
-        void decide_move_random_1pixel(int _x, int _y, out int _new_x, out int _new_y)
+        void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y)
         {
             int newx = _x + random_generator.Next(-1, 2);
             int newy = _y + random_generator.Next(-1, 2);
@@ -115,6 +71,57 @@ namespace NeverLand1
                 _new_y = _y;
             }
         }
+        void reproduce(ref int _new_x, ref int _new_y)
+        {
+            if(hump>breeding_thresh)
+                if (world.PointsArray[_new_x, _new_y].cell == null)
+                {
+                    hump -= breeding_thresh / 2;
+                    SingleCell _new_born = new SingleCell(_new_x, _new_y, food_type, breeding_thresh, age_max, breeding_thresh / 2, 0, random_generator, world.cell_ID++, world);
+                    world.add_new_cell(_new_x, _new_y, _new_born);
+                    _new_x = x;
+                    _new_y = y;
+                }
+        }
+        void move_eat(int _new_x, int _new_y)
+        {
+            switch (food_type)
+            {
+                case FoodType._sun_light:
+                    if (world.PointsArray[_new_x, _new_y].cell == null)
+                        do_move(_new_x, _new_y);
+                    hump += world.PointsArray[x, y].get_sun_energy();
+                    break;
+            }
+        }
+
+        void metabolism()
+        {
+            if (age > age_max)
+            {   //checking age_max
+                world.PointsArray[x, y].organics += hump;
+                hump = 0;//!can be removed
+                to_dye = true;//!can be removed
+                world.kill_cell(this);
+                return;
+            }
+            if (hump >= 2)
+            {   //checking starving
+                hump -= 2;
+                world.PointsArray[x, y].organics += 2;
+            }
+            else
+            {   //starving
+                world.PointsArray[x, y].organics += hump;
+                hump = 0;
+                to_dye = true;
+                hump = 0;//!can be removed
+                to_dye = true;//!can be removed
+                world.kill_cell(this);
+            }
+        
+        }
+
         void do_move(int _newx, int _newy)
         {
             world.PointsArray[x, y].cell = null;
