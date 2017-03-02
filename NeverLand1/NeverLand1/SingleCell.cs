@@ -8,22 +8,20 @@ namespace NeverLand1
 {
     class SingleCell
     {
-        public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, Random _rnd, int _name, World _world)
+        public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, int _name)
         {
             x = x_; y = y_; food_type = food_type_; breeding_thresh = breeding_thresh_; age_max = age_max_; hump = hump_; age = age_;
             face = new Bitmap(1, 1);
             update_face();
-            random_generator = _rnd;
-            world = _world;
             to_dye = false;
             name = _name;
         }
 
         public int x,y,breeding_thresh,age_max,hump,age;
-        Random random_generator;
+        static Random random_generator = new Random();
         FoodType food_type;
         public Bitmap face;
-        World world;
+        static public World world;
         public bool to_dye;
         public int name; 
         void update_face()
@@ -77,7 +75,7 @@ namespace NeverLand1
                 if (world.PointsArray[_new_x, _new_y].cell == null)
                 {
                     hump -= breeding_thresh / 2;
-                    SingleCell _new_born = new SingleCell(_new_x, _new_y, food_type, breeding_thresh, age_max, breeding_thresh / 2, 0, random_generator, world.cell_ID++, world);
+                    SingleCell _new_born = new SingleCell(_new_x, _new_y, food_type, breeding_thresh, age_max, breeding_thresh / 2, 0, world.cell_ID++);
                     world.add_new_cell(_new_x, _new_y, _new_born);
                     _new_x = x;
                     _new_y = y;
