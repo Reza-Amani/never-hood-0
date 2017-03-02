@@ -8,13 +8,13 @@ namespace NeverLand1
 {
     class SingleCell
     {
-        public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, Random _rnd, int _name, WorldPoint[,] _world_points)
+        public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, Random _rnd, int _name, World _world)
         {
             x = x_; y = y_; food_type = food_type_; breeding_thresh = breeding_thresh_; age_max = age_max_; hump = hump_; age = age_;
             face = new Bitmap(1, 1);
             update_face();
             random_generator = _rnd;
-            world_points = _world_points;
+            world = _world;
             to_dye = false;
             name = _name;
         }
@@ -23,7 +23,7 @@ namespace NeverLand1
         Random random_generator;
         FoodType food_type;
         public Bitmap face;
-        WorldPoint[,] world_points;
+        World world;
         public bool to_dye;
         public int name; 
         void update_face()
@@ -56,9 +56,9 @@ namespace NeverLand1
             switch (food_type)
             {
                 case FoodType._sun_light:
-                    if (world_points[new_x, new_y].cell == null)
+                    if (world.PointsArray[new_x, new_y].cell == null)
                         do_move(new_x, new_y);
-                    hump += world_points[x, y].get_sun_energy();
+                    hump += world.PointsArray[x, y].get_sun_energy();
                     break;
             }
             do_metabolism();
@@ -67,10 +67,12 @@ namespace NeverLand1
         {
             _new_born = null;
             if(hump>breeding_thresh)
-                if (world_points[_new_x, _new_y].cell == null)
+                if (world.PointsArray[_new_x, _new_y].cell == null)
                 {
                     hump -= breeding_thresh / 2;
-                    _new_born = new SingleCell(_new_x, _new_y, food_type, breeding_thresh, age_max, breeding_thresh / 2, 0, random_generator, 1234, world_points);
+                    _new_born = new SingleCell(_new_x, _new_y, food_type, breeding_thresh, age_max, breeding_thresh / 2, 0, random_generator, world.cell_ID++, world);
+                    _new_x = x;
+                    _new_y = y;
                 }
         }
 
@@ -79,7 +81,7 @@ namespace NeverLand1
         {
             if (age > age_max)
             {   //checking age_max
-                world_points[x, y].organics += hump;
+                world.PointsArray[x, y].organics += hump;
                 hump = 0;
                 to_dye = true;
                 return;
@@ -87,11 +89,11 @@ namespace NeverLand1
             if (hump >= 2)
             {   //checking starving
                 hump -= 2;
-                world_points[x, y].organics += 2;
+                world.PointsArray[x, y].organics += 2;
             }
             else
             {   //starving
-                world_points[x, y].organics += hump;
+                world.PointsArray[x, y].organics += hump;
                 hump = 0;
                 to_dye = true;
             }
@@ -115,8 +117,8 @@ namespace NeverLand1
         }
         void do_move(int _newx, int _newy)
         {
-            world_points[x, y].cell = null;
-            world_points[_newx, _newy].cell = this;
+            world.PointsArray[x, y].cell = null;
+            world.PointsArray[_newx, _newy].cell = this;
             x = _newx;
             y = _newy;
         }

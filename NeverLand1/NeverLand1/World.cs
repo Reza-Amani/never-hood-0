@@ -12,6 +12,7 @@ namespace NeverLand1
         Random random_generator;
         public List<SingleCell> cells = new List<SingleCell>();
         static int calendar = 0;
+        public int cell_ID = 0;
         SingleCell selected_cell;
 
         public World(graphic _g,Random _rnd)
