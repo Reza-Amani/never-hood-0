@@ -12,6 +12,7 @@ namespace NeverLand1
         Random random_generator;
         public List<SingleCell> cells = new List<SingleCell>();
         static int calendar = 0;
+        public int cell_ID = 0;
         SingleCell selected_cell;
 
         public World(graphic _g,Random _rnd)
@@ -24,24 +25,42 @@ namespace NeverLand1
 
         }
 
+        public void add_new_cell(int _x, int _y, SingleCell _cell)
+        {
+            cells.Add(_cell);
+            PointsArray[_x, _y].cell = _cell;
+        }
+
+        public bool kill_cell(SingleCell _cell)
+        {
+            if (selected_cell == _cell)
+                selected_cell = null;
+            PointsArray[_cell.x, _cell.y].cell = null;
+            if(!cells.Remove(_cell))
+                return false; //error, no cell
+            if (cells.Remove(_cell))
+                return false;   //error, double cell!
+            return true;
+        }
         public void update_1day()
         {
-            SingleCell new_born;
             calendar++;
             for (int i = cells.Count - 1; i >= 0; i--)
-            {
-                cells[i].Update_1day(out new_born);
-                if (new_born != null)
-                {   //wellcome new creature
-                }
-            }
-            for (int i = cells.Count - 1; i >= 0; i--)
+                cells[i].Update_1day();
+/*            for (int i = cells.Count - 1; i >= 0; i--)
                 if (cells[i].to_dye)
                 {
                     if(selected_cell == cells[i])
                         selected_cell = null;
+                    PointsArray[cells[i].x, cells[i].y].cell = null;
                     cells.RemoveAt(i);
+                    
                 }
+  */
+        }
+
+        public void update_graphics()
+        {
             graph.reset_world_view();
             for (int i = cells.Count - 1; i >= 0; i--)
                 graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
