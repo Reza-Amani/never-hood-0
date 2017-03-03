@@ -8,6 +8,9 @@ namespace NeverLand1
 {
     class SingleCell
     {
+        public int breeding_thresh,age_max;
+        FoodType food_type;
+
         public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, int _name)
         {
             x = x_; y = y_; food_type = food_type_; breeding_thresh = breeding_thresh_; age_max = age_max_; hump = hump_; age = age_;
@@ -17,11 +20,11 @@ namespace NeverLand1
             name = _name;
         }
 
-        public int x,y,breeding_thresh,age_max,hump,age;
         static Random random_generator = new Random();
-        FoodType food_type;
-        public Bitmap face;
         static public World world;
+
+        public int x,y,hump,age;
+        public Bitmap face;
         public bool to_dye;
         public int name; 
         void update_face()
@@ -46,12 +49,18 @@ namespace NeverLand1
         {   
             int new_x, new_y;
             if (to_dye)
+            {
+                Globals.soft_error(10);
                 return;
+            }
             age++;
             choose_next_pixel(x,y,out new_x, out new_y);
             reproduce(ref new_x, ref new_y);
             move_eat(new_x, new_y);
             metabolism();
+            if (to_dye)
+                return;
+            mutation();
         }
 
         void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y)
@@ -128,5 +137,24 @@ namespace NeverLand1
             y = _newy;
         }
 
+        void mutation()
+        {
+            if(random_generator.Next(100)==1)
+                switch(random_generator.Next(3))
+                {
+                    case 0: 
+                        breeding_thresh = Globals.mutate(breeding_thresh,10,-10,100,3);
+                        break;
+                    case 1: 
+                        age_max = Globals.mutate(age_max,10,-10,500,3);
+                        break;
+                    case 2: 
+                        if(random_generator.Next(2)==0)
+                            food_type = Globals.get_next_foodtype(food_type);
+                        else
+                            food_type = Globals.get_prev_foodtype(food_type);
+                        break;
+                }
+        }
     }
 }
