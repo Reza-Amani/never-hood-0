@@ -16,7 +16,7 @@ namespace NeverLand1
 
         public static int mutate(int _input, int _percent_plus, int _percent_minus, int _max, int _min)
         {
-            _input *= (random_generator.Next(_percent_minus, _percent_plus + 1)+100) / 100;
+            _input = ( _input*( random_generator.Next(_percent_minus, _percent_plus + 1)+100 ) ) / 100;
             if (_input < _min)
                 _input = _min;
             if (_input > _max)
