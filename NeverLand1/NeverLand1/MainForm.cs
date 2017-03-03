@@ -27,8 +27,6 @@ namespace NeverLand1
             world = new World(graph, random_generator);
         }
 
-        private System.Threading.Timer timer;
-
         bool TimeToGo = false;
 
         private void test_Click(object sender, EventArgs e)
@@ -38,12 +36,6 @@ namespace NeverLand1
 
         private void step_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 1000; i++)
-            {
-                wform.Update();
-                graph.reset_world_view();
-                graph.step_test();
-            }
         }
 
         private void button_pause_Click(object sender, EventArgs e)
@@ -93,7 +85,7 @@ namespace NeverLand1
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
         {
-            world.cells.Add(new SingleCell(Globals.width_shallow_water+50, 50, FoodType._sun_light, 30, 40, 1, 0, world.cell_ID++));
+            world.cells.Add(new SingleCell(Globals.width_shallow_water+50, 50, FoodType._sun_light, 80, 100, 1, 0, world.cell_ID++));
         }
 
         // This method demonstrates a pattern for making thread-safe

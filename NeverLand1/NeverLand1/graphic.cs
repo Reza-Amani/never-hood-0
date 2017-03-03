@@ -60,12 +60,12 @@ namespace NeverLand1
         {
             box.Image = btm;
         }
-        public void reset_world_view()
+        public void reset_world_view(int _coast_line)
         {
             g.FillRectangle(Brushes.DarkBlue, 0, 0, Globals.width_deep_water, Globals.world_y_size);
             g.FillRectangle(Brushes.Blue, Globals.width_deep_water, 0, Globals.width_shallow_water - Globals.width_deep_water, Globals.world_y_size);
-            g.FillRectangle(Brushes.LightBlue, Globals.width_shallow_water, 0, Globals.width_coastal_water - Globals.width_shallow_water, Globals.world_y_size);
-            g.FillRectangle(Brushes.Khaki, Globals.width_coastal_water, 0, Globals.width_dry - Globals.width_coastal_water, Globals.world_y_size);
+            g.FillRectangle(Brushes.LightBlue, Globals.width_shallow_water, 0, _coast_line - Globals.width_shallow_water, Globals.world_y_size);
+            g.FillRectangle(Brushes.Khaki, _coast_line, 0, Globals.world_x_size - _coast_line, Globals.world_y_size);
         }
     }
 }
