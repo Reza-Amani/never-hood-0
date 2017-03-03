@@ -32,13 +32,13 @@ namespace NeverLand1
             switch (food_type)
             {
                 case FoodType._sun_light:
-                    face.SetPixel(0, 0, Color.DarkGreen);
+                    face.SetPixel(0, 0, Color.Green);
 //                    face.SetPixel(1, 0, Color.Black);
 //                    face.SetPixel(1, 1, Color.Black);
 //                    face.SetPixel(0, 1, Color.Black);
                     break;
                 case FoodType._organics:
-                    face.SetPixel(0, 0, Color.Gray);
+                    face.SetPixel(0, 0, Color.Black);
                     break;
                 case FoodType._single_cell:
                     face.SetPixel(0, 0, Color.DarkRed);
@@ -98,6 +98,13 @@ namespace NeverLand1
                     if (world.PointsArray[_new_x, _new_y].cell == null)
                         do_move(_new_x, _new_y);
                     hump += world.PointsArray[x, y].get_sun_energy();
+                    break;
+                case FoodType._organics:
+                    if (world.PointsArray[_new_x, _new_y].cell == null)
+                        do_move(_new_x, _new_y);
+                    int amount_to_eat = Math.Min(world.PointsArray[x, y].organics, 8);
+                    hump += amount_to_eat;
+                    world.PointsArray[x, y].organics -= amount_to_eat;
                     break;
             }
         }
