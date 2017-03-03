@@ -55,7 +55,7 @@ namespace NeverLand1
             calendar++;
             for (int i = cells.Count - 1; i >= 0; i--)
                 cells[i].Update_1day();
-            if(random_generator.Next(100)==1)
+            if(random_generator.Next(2)==0)
                 if (random_generator.Next(2) == 0)
                 {   //low-tide
                     if (coast_line > Globals.width_shallow_water + 5)
@@ -117,6 +117,7 @@ namespace NeverLand1
             if (selected_cell != null)
             {
                 result = "cell name: " + selected_cell.name;
+                result += "\r\n food: " + selected_cell.food_type.ToString();
                 result += "\r\n age: " + selected_cell.age.ToString();
                 result += "\r\n x: " + selected_cell.x.ToString();
                 result += "\r\n y: " + selected_cell.y.ToString();

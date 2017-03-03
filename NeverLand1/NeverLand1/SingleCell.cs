@@ -9,7 +9,7 @@ namespace NeverLand1
     class SingleCell
     {
         public int breeding_thresh,age_max;
-        FoodType food_type;
+        public FoodType food_type;
 
         public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, int _name)
         {
@@ -106,6 +106,20 @@ namespace NeverLand1
                     hump += amount_to_eat;
                     world.PointsArray[x, y].organics -= amount_to_eat;
                     break;
+                case FoodType._single_cell:
+                    if (world.PointsArray[_new_x, _new_y].cell == null)
+                        do_move(_new_x, _new_y);
+                    else 
+                        if( (hump > world.PointsArray[_new_x, _new_y].cell.hump)
+                            &&(world.PointsArray[_new_x, _new_y].cell.food_type!=FoodType._single_cell) )
+                        {   //if target cell is smaller
+                            hump += world.PointsArray[_new_x, _new_y].cell.hump;
+                            world.PointsArray[_new_x, _new_y].cell.hump = 0;
+                            world.PointsArray[_new_x, _new_y].cell.to_dye = true;
+                            world.kill_cell(world.PointsArray[_new_x, _new_y].cell);
+                            do_move(_new_x, _new_y);
+                        }
+                    break;
             }
         }
 
@@ -129,8 +143,6 @@ namespace NeverLand1
                 world.PointsArray[x, y].organics += hump;
                 hump = 0;
                 to_dye = true;
-                hump = 0;//!can be removed
-                to_dye = true;//!can be removed
                 world.kill_cell(this);
             }
         
