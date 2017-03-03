@@ -7,7 +7,7 @@ namespace NeverLand1
 {
     class WorldPoint
     {
-        WaterType water;
+        public WaterType water;
         public int organics;
         public SingleCell cell;
         public WorldPoint(WaterType _water, int _organics, SingleCell _cell)

@@ -14,12 +14,20 @@ namespace NeverLand1
         static int calendar = 0;
         public int cell_ID = 0;
         SingleCell selected_cell;
-
+        public int coast_line = Globals.width_coastal_water; 
         public World(graphic _g,Random _rnd)
         {
-            for (int i = 0; i < Globals.world_x_size; i++)
-                for (int j = 0; j < Globals.world_y_size; j++)
+            for (int j = 0; j < Globals.world_y_size; j++)
+            {
+                for (int i = 0; i <= Globals.width_deep_water; i++)
+                    PointsArray[i, j] = new WorldPoint(WaterType._deep_water, 0, null);
+                for (int i = 1 + Globals.width_deep_water; i <= Globals.width_shallow_water; i++)
+                    PointsArray[i, j] = new WorldPoint(WaterType._shallow_water, 0, null);
+                for (int i = 1 + Globals.width_shallow_water; i <= Globals.width_coastal_water; i++)
                     PointsArray[i, j] = new WorldPoint(WaterType._coastal_water, 0, null);
+                for (int i = 1 + Globals.width_coastal_water; i < Globals.world_x_size; i++)
+                    PointsArray[i, j] = new WorldPoint(WaterType._dry, 0, null);
+            }
             graph = _g;
             random_generator = _rnd;
             SingleCell.world = this;
@@ -47,6 +55,23 @@ namespace NeverLand1
             calendar++;
             for (int i = cells.Count - 1; i >= 0; i--)
                 cells[i].Update_1day();
+            if(random_generator.Next(100)==1)
+                if (random_generator.Next(2) == 0)
+                {   //low-tide
+                    if (coast_line > Globals.width_shallow_water + 5)
+                    {
+                        coast_line--;
+                        for (int i = 0; i < Globals.world_y_size; i++)
+                            PointsArray[coast_line + 1, i].water = WaterType._dry;
+                    }
+                }
+                else
+                {   //high-tide
+                    coast_line++;
+                    for (int i = 0; i < Globals.world_y_size; i++)
+                        PointsArray[coast_line, i].water = WaterType._coastal_water;
+                }
+                
 /*            for (int i = cells.Count - 1; i >= 0; i--)
                 if (cells[i].to_dye)
                 {
@@ -61,7 +86,7 @@ namespace NeverLand1
 
         public void update_graphics()
         {
-            graph.reset_world_view();
+            graph.reset_world_view(coast_line);
             for (int i = cells.Count - 1; i >= 0; i--)
                 graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
             graph.update_world_view();

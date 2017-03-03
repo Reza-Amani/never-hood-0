@@ -10,7 +10,7 @@ namespace NeverLand1
     public static class Globals
     {
         public const int world_x_size = 500, world_y_size = 500;
-        public const int width_deep_water = 50, width_shallow_water = 100, width_coastal_water = 300, width_dry = world_x_size;
+        public const int width_deep_water = 50, width_shallow_water = 100, width_coastal_water = 300;
 
         static Random random_generator = new Random();
 

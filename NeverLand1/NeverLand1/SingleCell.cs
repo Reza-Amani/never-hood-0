@@ -67,7 +67,7 @@ namespace NeverLand1
         {
             int newx = _x + random_generator.Next(-1, 2);
             int newy = _y + random_generator.Next(-1, 2);
-            if ((newx < Globals.width_dry) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
+            if ((newx < world.coast_line) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
             {   //propose new point 
                 _new_x = newx;
                 _new_y = newy;
