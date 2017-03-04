@@ -108,6 +108,12 @@ namespace NeverLand1
             result += "\r\ncells population: " + cells.Count.ToString();
             return result;
         }
+
+        public void wform_clicked(int _x, int _y)
+        {
+            if (PointsArray[_x, _y].cell != null)
+                selected_cell = PointsArray[_x, _y].cell;
+        }
         public string get_cell_info()
         {
             string result = ""; 

@@ -16,7 +16,6 @@ namespace NeverLand1
         WorldForm wform;
         World world;
         Random random_generator = new Random();
-        int point_info_x = Globals.width_shallow_water + 50, point_info_y = 50;
         static bool graphic_onoff = true;
         public MainForm()
         {
@@ -77,10 +76,15 @@ namespace NeverLand1
 
         private void update_1day(object state)
         {
+            if (wform.clicked)
+            {
+                wform.clicked = false;
+                world.wform_clicked(wform.click_x, wform.click_y);
+            }
             world.update_1day();
             if(graphic_onoff)
                 world.update_graphics();
-            SetText(world.get_world_info(), world.get_point_info(point_info_x, point_info_y), world.get_cell_info());
+            SetText(world.get_world_info(), world.get_point_info(wform.click_x, wform.click_y), world.get_cell_info());
         }
 
         private void button_new_single_cell_Click(object sender, EventArgs e)

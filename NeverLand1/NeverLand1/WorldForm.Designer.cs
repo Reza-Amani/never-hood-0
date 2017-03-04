@@ -40,6 +40,7 @@
             this.WorldPictureBox.Size = new System.Drawing.Size(586, 460);
             this.WorldPictureBox.TabIndex = 0;
             this.WorldPictureBox.TabStop = false;
+            this.WorldPictureBox.Click += new System.EventHandler(this.WorldPictureBox_Click);
             // 
             // WorldForm
             // 
