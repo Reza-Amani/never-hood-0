@@ -162,10 +162,10 @@ namespace NeverLand1
                 switch(random_generator.Next(3))
                 {
                     case 0: 
-                        breeding_thresh = Globals.mutate(breeding_thresh,10,-10,100,3);
+                        breeding_thresh = Globals.mutate(breeding_thresh,10,-10,Globals.default_cell_breed_thresh_max,10);
                         break;
                     case 1: 
-                        age_max = Globals.mutate(age_max,10,-10,500,3);
+                        age_max = Globals.mutate(age_max,10,-10,Globals.default_cell_max_age_max,10);
                         break;
                     case 2: 
                         if(random_generator.Next(2)==0)
