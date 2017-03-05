@@ -17,6 +17,7 @@ namespace NeverLand1
         World world;
         Random random_generator = new Random();
         static bool graphic_onoff = true;
+        OleDbConnection connection = new OleDbConnection();
         public MainForm()
         {
             InitializeComponent();
@@ -24,25 +25,28 @@ namespace NeverLand1
             wform.Show();
             graph = new graphic(wform.get_picture_box());
             world = new World(graph, random_generator);
+            try
+            {
+                connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\NeverHood\never-hood-0\NeverLand1\data\NHdb.accdb;Persist Security Info=False;";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DB error"+ex);
+            }
         }
 
         bool TimeToGo = false;
 
         private void test_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-                OleDbConnection connection = new OleDbConnection();
-                connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\NeverHood\never-hood-0\NeverLand1\data\NHdb.accdb;
-Persist Security Info=False;";
-                connection.Open();
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("DB error"+ex);
-            }
+            connection.Open();
+            OleDbCommand command = new OleDbCommand();
+            command.Connection = connection;
+            //command.CommandText = "select * from table1NHdb";
+            //OleDbDataReader reader = command.ExecuteReader();
+            command.CommandText = "insert into table1 (col1,col2) values(1,2)";
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         private void step_Click(object sender, EventArgs e)
