@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
-
+using System.Data.OleDb;
 namespace NeverLand1
 {
     public partial class MainForm : Form
@@ -30,7 +30,19 @@ namespace NeverLand1
 
         private void test_Click(object sender, EventArgs e)
         {
-            graph.update();
+            try
+            {
+
+                OleDbConnection connection = new OleDbConnection();
+                connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\NeverHood\never-hood-0\NeverLand1\data\NHdb.accdb;
+Persist Security Info=False;";
+                connection.Open();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DB error"+ex);
+            }
         }
 
         private void step_Click(object sender, EventArgs e)
@@ -124,6 +136,11 @@ namespace NeverLand1
         private void button_graphic_onoff_Click(object sender, EventArgs e)
         {
             graphic_onoff = !graphic_onoff;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
 
 
