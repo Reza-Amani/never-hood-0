@@ -27,7 +27,7 @@ namespace NeverLand1
             world = new World(graph, random_generator);
             try
             {
-                connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\NeverHood\never-hood-0\NeverLand1\data\NHdb.accdb;Persist Security Info=False;";
+                connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=..\..\..\data\NHdb.accdb;Persist Security Info=False;";
             }
             catch (Exception ex)
             {
