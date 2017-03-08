@@ -15,7 +15,16 @@ namespace NeverLand1
         }
         static DNA_MultiCell pairing(DNA_MultiCell DMA1, DNA_MultiCell DMA2)
         {
-            DNA_MultiCell baby = DMA1;// new DNA_MultiCell();
+            DNA_MultiCell baby = new DNA_MultiCell(
+                Globals.get_random_bool()?DMA1.mouth:DMA2.mouth,
+                Globals.get_random_bool()?DMA1.cholorophyl:DMA2.cholorophyl,
+                Globals.get_random_bool()?DMA1.genital_male:DMA2.genital_male,
+                Globals.get_random_bool()?DMA1.genital_female:DMA2.genital_female,
+                Globals.get_random_bool()?DMA1.fin:DMA2.fin,
+                Globals.get_random_bool()?DMA1.crawling_leg:DMA2.crawling_leg,
+                Globals.get_random_int_inc(DMA1.max_age,DMA2.max_age),
+                Globals.get_random_int_inc(DMA1.embryo_hump,DMA2.embryo_hump)
+                );
             return baby;
         }
     }
