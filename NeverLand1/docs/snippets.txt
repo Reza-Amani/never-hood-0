@@ -1,1 +1,4 @@
 Thread.MemoryBarrier();
+private void Form1_Load(object sender, EventArgs e)	//what should be done once the form is loaded
+{	//mau be created by double click on form?
+}

@@ -4,4 +4,4 @@ on deep water line, water is deep! In the same way, on the coastal water line, i
 in case of BD error, to register access connectivity components
 https://www.microsoft.com/en-us/download/confirmation.aspx?id=23734
 
-https://www.youtube.com/watch?v=WDxNNj4cjMA for database funcs
+http://fewtutorials.bravesites.com/entries/database-and-c/read-write-image-to-ms-access-database-table-using-csharp-winform
