@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace NeverLand1
 {
-    class SingleCell
+    class SingleCell:Creature
     {
         public int breeding_thresh,age_max;
         public FoodType food_type;
@@ -19,14 +19,6 @@ namespace NeverLand1
             to_dye = false;
             name = _name;
         }
-
-        static Random random_generator = new Random();
-        static public World world;
-
-        public int x,y,hump,age;
-        public Bitmap face;
-        public bool to_dye;
-        public int name; 
         void update_face()
         {
             switch (food_type)
