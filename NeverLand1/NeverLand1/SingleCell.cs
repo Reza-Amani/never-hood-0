@@ -19,7 +19,10 @@ namespace NeverLand1
             to_dye = false;
             name = _name;
         }
-        void update_face()
+        public SingleCell()
+        {
+        }
+        override protected void update_face()
         {
             switch (food_type)
             {
@@ -37,25 +40,8 @@ namespace NeverLand1
                     break;
             }
         }
-        public void Update_1day()
-        {   
-            int new_x, new_y;
-            if (to_dye)
-            {
-                Globals.soft_error(10);
-                return;
-            }
-            age++;
-            choose_next_pixel(x,y,out new_x, out new_y);
-            reproduce(ref new_x, ref new_y);
-            move_eat(new_x, new_y);
-            metabolism();
-            if (to_dye)
-                return;
-            mutation();
-        }
 
-        void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y)
+        override protected void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y)
         {
             int newx = _x + random_generator.Next(-1, 2);
             int newy = _y + random_generator.Next(-1, 2);
@@ -70,7 +56,7 @@ namespace NeverLand1
                 _new_y = _y;
             }
         }
-        void reproduce(ref int _new_x, ref int _new_y)
+        override protected void reproduce(ref int _new_x, ref int _new_y)
         {
             if(hump>breeding_thresh)
                 if (world.PointsArray[_new_x, _new_y].cell == null)
@@ -82,7 +68,7 @@ namespace NeverLand1
                     _new_y = y;
                 }
         }
-        void move_eat(int _new_x, int _new_y)
+        override protected void move_eat(int _new_x, int _new_y)
         {
             switch (food_type)
             {
@@ -115,7 +101,7 @@ namespace NeverLand1
             }
         }
 
-        void metabolism()
+        override protected void metabolism()
         {
             if (age > age_max)
             {   //checking age_max
@@ -140,15 +126,7 @@ namespace NeverLand1
         
         }
 
-        void do_move(int _newx, int _newy)
-        {
-            world.PointsArray[x, y].cell = null;
-            world.PointsArray[_newx, _newy].cell = this;
-            x = _newx;
-            y = _newy;
-        }
-
-        void mutation()
+        override protected void mutation()
         {
             if(random_generator.Next(100)==1)
                 switch(random_generator.Next(3))
@@ -166,6 +144,14 @@ namespace NeverLand1
                             food_type = Globals.get_prev_foodtype(food_type);
                         break;
                 }
+        }
+
+        void do_move(int _newx, int _newy)
+        {
+            world.PointsArray[x, y].cell = null;
+            world.PointsArray[_newx, _newy].cell = this;
+            x = _newx;
+            y = _newy;
         }
     }
 }
