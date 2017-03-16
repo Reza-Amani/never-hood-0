@@ -18,9 +18,7 @@ namespace NeverLand1
             to_dye = false;
             name = _name;
         }
-        static public World world;
         public Bitmap face;
-
         public bool to_dye;
         public int name; 
         public int x,y,age,hump,days_from_last_reproduction=0;
