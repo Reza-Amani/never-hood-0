@@ -28,9 +28,6 @@ namespace NeverLand1
             {
                 case FoodType._sun_light:
                     face.SetPixel(0, 0, Color.Green);
-//                    face.SetPixel(1, 0, Color.Black);
-//                    face.SetPixel(1, 1, Color.Black);
-//                    face.SetPixel(0, 1, Color.Black);
                     break;
                 case FoodType._organics:
                     face.SetPixel(0, 0, Color.Black);
