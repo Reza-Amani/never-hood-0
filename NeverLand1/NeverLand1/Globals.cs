@@ -24,6 +24,14 @@ namespace NeverLand1
                 _input = _max;
             return _input;
         }
+        public static bool get_random_bool()
+        {
+            return (random_generator.Next(0, 2) == 0);
+        }
+        public static int get_random_int_inc(int min, int max)
+        {
+            return random_generator.Next(min, max + 1);
+        }
         public static FoodType get_next_foodtype(FoodType _current_type)
         {
             switch (_current_type)
