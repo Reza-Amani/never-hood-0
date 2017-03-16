@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Creature.cs" />
+    <Compile Include="DNA_base.cs" />
+    <Compile Include="Gene.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="graphic.cs" />
     <Compile Include="MainForm.cs">

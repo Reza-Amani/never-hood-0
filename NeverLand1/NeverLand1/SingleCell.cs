@@ -10,7 +10,7 @@ namespace NeverLand1
     {
         public int breeding_thresh,age_max;
         public FoodType food_type;
-
+//        Gene gene = new Gene() { absolute_min = 2 };
         public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, int _name)
         {
             x = x_; y = y_; food_type = food_type_; breeding_thresh = breeding_thresh_; age_max = age_max_; hump = hump_; age = age_;
