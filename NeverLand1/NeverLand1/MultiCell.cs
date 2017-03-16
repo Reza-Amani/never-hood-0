@@ -8,9 +8,9 @@ namespace NeverLand1
 {
     class MultiCell
     {
-        DNA_MultiCell DNA;
-
-        MultiCell(int _x, int _y, DNA_MultiCell _DNA, int _age, int _hump, int _name)
+        DNA_MultiCell DNAold;
+        DNA DNA;
+        MultiCell(int _x, int _y, DNA _DNA, int _age, int _hump, int _name)
         {
             x = _x; y = _y;DNA = _DNA; age = _age; hump = _hump;
             face = new Bitmap(2, 2);
@@ -26,32 +26,32 @@ namespace NeverLand1
 
         void update_face()
         {
-            if (DNA.cholorophyl && DNA.mouth)
+            if (DNAold.cholorophyl && DNAold.mouth)
                 face.SetPixel(0, 0, Color.Yellow);
-            else if (DNA.cholorophyl)
+            else if (DNAold.cholorophyl)
                 face.SetPixel(0, 0, Color.Green);
-            else if (DNA.mouth)
+            else if (DNAold.mouth)
                 face.SetPixel(0, 0, Color.Red);
-            else if (!DNA.mouth && !DNA.cholorophyl)
+            else if (!DNAold.mouth && !DNAold.cholorophyl)
                 face.SetPixel(0, 0, Color.White);
 
-            if (DNA.crawling_leg)
+            if (DNAold.crawling_leg)
                 face.SetPixel(0, 1, Color.Black);
             else
                 face.SetPixel(0, 1, Color.Gray);
 
-            if (DNA.fin)
+            if (DNAold.fin)
                 face.SetPixel(1, 0, Color.DarkBlue);
             else
                 face.SetPixel(1, 0, Color.Gray);
 
-            if (DNA.genital_female && DNA.genital_male)
+            if (DNAold.genital_female && DNAold.genital_male)
                 face.SetPixel(1, 1, Color.Violet);
-            else if (DNA.genital_female)
+            else if (DNAold.genital_female)
                 face.SetPixel(1, 1, Color.Pink);
-            else if (DNA.genital_male)
+            else if (DNAold.genital_male)
                 face.SetPixel(1, 1, Color.Brown);
-            else if (!DNA.genital_female && !DNA.genital_male)
+            else if (!DNAold.genital_female && !DNAold.genital_male)
                 face.SetPixel(1, 1, Color.Gray);
 
         }
