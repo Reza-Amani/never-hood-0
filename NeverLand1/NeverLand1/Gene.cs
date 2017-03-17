@@ -16,7 +16,7 @@ namespace NeverLand1
         public int absolute_max { get; set; }
         public int min { get; set; }
         public int max { get; set; }
-        public GeneType name;
+        public GeneType name { get; set; }
     }
 
 }
