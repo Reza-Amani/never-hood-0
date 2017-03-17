@@ -11,9 +11,23 @@ namespace NeverLand1
         {
             _mouth, _cholorophyl, _genital_male, _genital_female, _fin, _crawling_leg
         }
+        public Gene(Gene _gene)
+        {   //copy constructor
+            value = _gene.value;
+            min = _gene.min;
+            max = _gene.max;
+            name = _gene.name;
+        }
+        public Gene(Gene _gene1, Gene _gene2)
+        {
+            if (_gene1.name != _gene2.name)
+                Globals.soft_error("pairing different-type genes");
+            name = _gene1.name;
+            value = Globals.get_random_int_inc(_gene1.value, _gene2.value);
+            min = Globals.get_random_int_inc(_gene1.min, _gene2.min);
+            max = Globals.get_random_int_inc(_gene1.max, _gene2.max);
+        }
         public int value { get; set; }
-        public int absolute_min { get; set; }
-        public int absolute_max { get; set; }
         public int min { get; set; }
         public int max { get; set; }
         public GeneType name { get; set; }

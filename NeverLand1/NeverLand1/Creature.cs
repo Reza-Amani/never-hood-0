@@ -28,7 +28,7 @@ namespace NeverLand1
             int new_x, new_y;
             if (to_dye)
             {
-                Globals.soft_error(10);
+                Globals.soft_error("updating dying creature");
                 return;
             }
             choose_next_pixel(x, y, out new_x, out new_y);
