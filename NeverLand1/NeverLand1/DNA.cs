@@ -8,6 +8,7 @@ namespace NeverLand1
     class DNA
     {
         List<Gene> genume = new List<Gene>();
+        List<Gene> par_genume = new List<Gene>();
         DNA()
         {
         }
@@ -44,6 +45,17 @@ namespace NeverLand1
                     }   //else: a common gene has been taken into account; no need to consider it again
                 }
             }
+            foreach (Gene _gene2 in DNA2.par_genume)
+            {
+                gene1 = DNA1.par_genume.Find(g => g.name == _gene2.name);
+                if (gene1 == default(Gene))
+                    Globals.soft_error("missing gene in pargenume");
+                else
+                {
+                    new_gene = new Gene(gene1, _gene2);
+                    genume.Add(new_gene);
+                }
+            }
         }
         DNA(SingleCell _cell)
         {
@@ -51,6 +63,9 @@ namespace NeverLand1
                 genume.Add(new Gene(Gene.GeneType._cholorophyl, 1, 0, 1));
             if(_cell.food_type == FoodType._single_cell)
                 genume.Add(new Gene(Gene.GeneType._mouth, 1, 0, 1));
+            par_genume.Add(new Gene(Gene.GeneType._ft_max_age, _cell.age_max*5, 100, 100000));
+            par_genume.Add(new Gene(Gene.GeneType._ft_reproduction_interval, _cell.breeding_thresh, 100, 1000));
+            par_genume.Add(new Gene(Gene.GeneType._ft_embryo_hump, 50, 100, 1000));
         }
     }
 }

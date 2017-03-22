@@ -9,7 +9,7 @@ namespace NeverLand1
     {
         public enum GeneType
         {
-            _mouth, _cholorophyl, _genital_male, _genital_female, _fin, _crawling_leg
+            _mouth, _cholorophyl, _genital_male, _genital_female, _fin, _crawling_leg, _ft_max_age, _ft_embryo_hump, _ft_reproduction_interval
         }
         public Gene(GeneType _name, int _value, int _min, int _max)
         {   //initial constructor
