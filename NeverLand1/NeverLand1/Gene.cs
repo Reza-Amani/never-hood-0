@@ -34,6 +34,10 @@ namespace NeverLand1
             min = Globals.get_random_int_inc(_gene1.min, _gene2.min);
             max = Globals.get_random_int_inc(_gene1.max, _gene2.max);
         }
+        public void mutate()
+        {
+            value = Globals.get_random_int_inc(min, max);
+        }
         public int value { get; set; }
         public int min { get; set; }
         public int max { get; set; }
