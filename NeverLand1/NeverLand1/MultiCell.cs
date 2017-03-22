@@ -8,7 +8,6 @@ namespace NeverLand1
 {
     class MultiCell:Creature
     {
-        DNA_MultiCell DNAold;
         DNA DNA;
         MultiCell(int _x, int _y, DNA _DNA, int _age, int _hump, int _name)
         {
