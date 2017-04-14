@@ -57,7 +57,7 @@ namespace NeverLand1
                 }
             }
         }
-        DNA(SingleCell _cell)
+        public DNA(SingleCell _cell)
         {
             if(_cell.food_type == FoodType._sun_light)
                 genume.Add(new Gene(Gene.GeneType._cholorophyl, 1, 0, 1));

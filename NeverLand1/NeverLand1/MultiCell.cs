@@ -9,7 +9,7 @@ namespace NeverLand1
     class MultiCell:Creature
     {
         DNA DNA;
-        MultiCell(int _x, int _y, DNA _DNA, int _age, int _hump, int _name)
+        public MultiCell(int _x, int _y, DNA _DNA, int _age, int _hump, int _name)
         {
             x = _x; y = _y; DNA = _DNA; age = _age; hump = _hump;
             face = new Bitmap(2, 2);
@@ -105,8 +105,18 @@ namespace NeverLand1
         }
         override protected void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y)
         {
-            _new_x = 0;
-            _new_y = 0;
+            int newx = _x + random_generator.Next(-1, 2);
+            int newy = _y + random_generator.Next(-1, 2);
+            if ((newx < world.coast_line) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
+            {   //propose new point 
+                _new_x = newx;
+                _new_y = newy;
+            }
+            else
+            {   //new point out of border, stay still
+                _new_x = _x;
+                _new_y = _y;
+            }
         }
 
         override protected void reproduce(ref int _new_x, ref int _new_y)

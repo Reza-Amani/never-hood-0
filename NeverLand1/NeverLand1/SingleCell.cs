@@ -128,7 +128,7 @@ namespace NeverLand1
         override protected void mutation()
         {
             if(random_generator.Next(100)==1)
-                switch(random_generator.Next(3))
+                switch(random_generator.Next(4))
                 {
                     case 0: 
                         breeding_thresh = Globals.mutate(breeding_thresh,10,-10,Globals.default_cell_breed_thresh_max,10);
@@ -141,6 +141,13 @@ namespace NeverLand1
                             food_type = Globals.get_next_foodtype(food_type);
                         else
                             food_type = Globals.get_prev_foodtype(food_type);
+                        break;
+                    case 3:
+                        MultiCell new_multi = new MultiCell(x, y, new DNA(this), age, hump, name);
+                        world.add_new_multi_cell(x, y, new_multi);
+                        hump = 0;
+                        to_dye = true;
+                        world.kill_cell(this);
                         break;
                 }
         }

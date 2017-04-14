@@ -11,6 +11,7 @@ namespace NeverLand1
         graphic graph;
         Random random_generator;
         public List<SingleCell> cells = new List<SingleCell>();
+        public List<MultiCell> multi_cells = new List<MultiCell>();
         static int calendar = 0;
         public int cell_ID = 0;
         SingleCell selected_cell;
@@ -20,13 +21,13 @@ namespace NeverLand1
             for (int j = 0; j < Globals.world_y_size; j++)
             {
                 for (int i = 0; i <= Globals.width_deep_water; i++)
-                    PointsArray[i, j] = new WorldPoint(WaterType._deep_water, 0, null);
+                    PointsArray[i, j] = new WorldPoint(WaterType._deep_water, 0, null, null);
                 for (int i = 1 + Globals.width_deep_water; i <= Globals.width_shallow_water; i++)
-                    PointsArray[i, j] = new WorldPoint(WaterType._shallow_water, 0, null);
+                    PointsArray[i, j] = new WorldPoint(WaterType._shallow_water, 0, null, null);
                 for (int i = 1 + Globals.width_shallow_water; i <= Globals.width_coastal_water; i++)
-                    PointsArray[i, j] = new WorldPoint(WaterType._coastal_water, 0, null);
+                    PointsArray[i, j] = new WorldPoint(WaterType._coastal_water, 0, null, null);
                 for (int i = 1 + Globals.width_coastal_water; i < Globals.world_x_size; i++)
-                    PointsArray[i, j] = new WorldPoint(WaterType._dry, 0, null);
+                    PointsArray[i, j] = new WorldPoint(WaterType._dry, 0, null, null);
             }
             graph = _g;
             random_generator = _rnd;
@@ -39,14 +40,31 @@ namespace NeverLand1
             PointsArray[_x, _y].cell = _cell;
         }
 
+        public void add_new_multi_cell(int _x, int _y, MultiCell _multi)
+        {
+            multi_cells.Add(_multi);
+            PointsArray[_x, _y].multi_cell = _multi;
+        }
+
         public bool kill_cell(SingleCell _cell)
         {
             if (selected_cell == _cell)
                 selected_cell = null;
             PointsArray[_cell.x, _cell.y].cell = null;
-            if(!cells.Remove(_cell))
+            if (!cells.Remove(_cell))
                 return false; //error, no cell
             if (cells.Remove(_cell))
+                return false;   //error, double cell!
+            return true;
+        }
+        public bool kill_multi_cell(MultiCell _multi)
+        {
+//            if (selected_cell == _cell)
+//                selected_cell = null;
+            PointsArray[_multi.x, _multi.y].multi_cell = null;
+            if (!multi_cells.Remove(_multi))
+                return false; //error, no cell
+            if (multi_cells.Remove(_multi))
                 return false;   //error, double cell!
             return true;
         }
