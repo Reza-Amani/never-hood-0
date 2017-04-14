@@ -74,33 +74,32 @@ namespace NeverLand1
 
         override protected void update_face()
         {
-            if(DNA.
-            if (DNAold.cholorophyl && DNAold.mouth)
+            if (has_cholorophyl && has_mouth)
                 face.SetPixel(0, 0, Color.Yellow);
-            else if (DNAold.cholorophyl)
+            else if (has_cholorophyl)
                 face.SetPixel(0, 0, Color.Green);
-            else if (DNAold.mouth)
+            else if (has_mouth)
                 face.SetPixel(0, 0, Color.Red);
-            else if (!DNAold.mouth && !DNAold.cholorophyl)
+            else if (!has_mouth && !has_cholorophyl)
                 face.SetPixel(0, 0, Color.White);
 
-            if (DNAold.crawling_leg)
+            if (has_crawling_leg)
                 face.SetPixel(0, 1, Color.Black);
             else
                 face.SetPixel(0, 1, Color.Gray);
 
-            if (DNAold.fin)
+            if (has_fin)
                 face.SetPixel(1, 0, Color.DarkBlue);
             else
                 face.SetPixel(1, 0, Color.Gray);
 
-            if (DNAold.genital_female && DNAold.genital_male)
+            if (has_genital_female && has_genital_male)
                 face.SetPixel(1, 1, Color.Violet);
-            else if (DNAold.genital_female)
+            else if (has_genital_female)
                 face.SetPixel(1, 1, Color.Pink);
-            else if (DNAold.genital_male)
+            else if (has_genital_male)
                 face.SetPixel(1, 1, Color.Brown);
-            else if (!DNAold.genital_female && !DNAold.genital_male)
+            else if (!has_genital_female && !has_genital_male)
                 face.SetPixel(1, 1, Color.Gray);
 
         }

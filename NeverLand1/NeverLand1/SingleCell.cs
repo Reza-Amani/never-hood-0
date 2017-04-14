@@ -38,6 +38,8 @@ namespace NeverLand1
             }
         }
 
+        override protected void update_organs_from_genume() { }
+        override protected void update_parameters_from_pargenume() { }
         override protected void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y)
         {
             int newx = _x + random_generator.Next(-1, 2);
