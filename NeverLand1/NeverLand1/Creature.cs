@@ -22,6 +22,8 @@ namespace NeverLand1
         abstract protected void move_eat(int _new_x, int _new_y);
         abstract protected void metabolism();
         abstract protected void mutation();
+        abstract protected void update_organs_from_genume();
+        abstract protected void update_parameters_from_pargenume();
         virtual public void Update_1day()
         {
             age++;

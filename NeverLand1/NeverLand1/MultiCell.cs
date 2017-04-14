@@ -11,17 +11,70 @@ namespace NeverLand1
         DNA DNA;
         MultiCell(int _x, int _y, DNA _DNA, int _age, int _hump, int _name)
         {
-            x = _x; y = _y;DNA = _DNA; age = _age; hump = _hump;
+            x = _x; y = _y; DNA = _DNA; age = _age; hump = _hump;
             face = new Bitmap(2, 2);
             update_face();
             to_dye = false;
             name = _name;
+            update_organs_from_genume();
+            update_parameters_from_pargenume();
         }
         public int days_from_last_reproduction=0;
         public const int absolute_max_age = 1000;
+        public bool has_cholorophyl, has_mouth, has_genital_male, has_genital_female, has_fin, has_crawling_leg;
+        public int par_max_age, par_embryo_hump, par_reproduction_interval;
+
+        override protected void update_organs_from_genume()
+        {
+            Gene temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._cholorophyl);
+            has_cholorophyl = false;
+            if (temp_gene != default(Gene))
+                if (temp_gene.value == 1)
+                    has_cholorophyl = true;
+            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._mouth);
+            has_mouth = false;
+            if (temp_gene != default(Gene))
+                if (temp_gene.value == 1)
+                    has_mouth = true;
+            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._genital_male);
+            has_genital_male = false;
+            if (temp_gene != default(Gene))
+                if (temp_gene.value == 1)
+                    has_genital_male = true;
+            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._fin);
+            has_fin = false;
+            if (temp_gene != default(Gene))
+                if (temp_gene.value == 1)
+                    has_fin = true;
+            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._crawling_leg);
+            has_crawling_leg = false;
+            if (temp_gene != default(Gene))
+                if (temp_gene.value == 1)
+                    has_crawling_leg = true;
+        }
+
+        override protected void update_parameters_from_pargenume()
+        {
+            Gene temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_max_age);
+            if (temp_gene != default(Gene))
+                par_max_age = temp_gene.value;
+            else
+                par_max_age = 0;
+            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_embryo_hump);
+            if (temp_gene != default(Gene))
+                par_embryo_hump = temp_gene.value;
+            else
+                par_embryo_hump = 0;
+            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_reproduction_interval);
+            if (temp_gene != default(Gene))
+                par_reproduction_interval = temp_gene.value;
+            else
+                par_reproduction_interval = 0;
+        }
 
         override protected void update_face()
         {
+            if(DNA.
             if (DNAold.cholorophyl && DNAold.mouth)
                 face.SetPixel(0, 0, Color.Yellow);
             else if (DNAold.cholorophyl)

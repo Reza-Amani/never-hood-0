@@ -7,8 +7,8 @@ namespace NeverLand1
 {
     class DNA
     {
-        List<Gene> genume = new List<Gene>();
-        List<Gene> par_genume = new List<Gene>();
+        public List<Gene> genume = new List<Gene>();
+        public List<Gene> par_genume = new List<Gene>();
         DNA()
         {
         }
