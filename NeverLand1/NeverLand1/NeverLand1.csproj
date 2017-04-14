@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Creature.cs" />
+    <Compile Include="DNA.cs" />
+    <Compile Include="Gene.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="graphic.cs" />
     <Compile Include="MainForm.cs">
@@ -54,6 +57,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MultiCell.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleCell.cs" />

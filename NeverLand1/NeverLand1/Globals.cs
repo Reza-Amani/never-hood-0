@@ -24,6 +24,20 @@ namespace NeverLand1
                 _input = _max;
             return _input;
         }
+        public static bool get_random_bool()
+        {
+            return (random_generator.Next(0, 2) == 0);
+        }
+        public static int get_random_int_inc(int min, int max)
+        {
+            if (min > max)
+            {   //don't worry if the order is not correct
+                int temp = max;
+                max = min;
+                min = temp;
+            }
+            return random_generator.Next(min, max + 1);
+        }
         public static FoodType get_next_foodtype(FoodType _current_type)
         {
             switch (_current_type)
@@ -50,9 +64,9 @@ namespace NeverLand1
                     return FoodType._sun_light;
             }
         }
-        public static void soft_error(int code)
+        public static void soft_error(string error_str)
         {
-            code = code + 1;
+            
         }
         public static void hard_error(int code)
         {

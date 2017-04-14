@@ -10,9 +10,10 @@ namespace NeverLand1
         public WaterType water;
         public int organics;
         public SingleCell cell;
-        public WorldPoint(WaterType _water, int _organics, SingleCell _cell)
+        public MultiCell multi_cell;
+        public WorldPoint(WaterType _water, int _organics, SingleCell _cell, MultiCell _multi)
         {
-            water = _water; organics = _organics; cell = _cell;
+            water = _water; organics = _organics; cell = _cell; multi_cell=_multi;
         }
         public int get_sun_energy()
         {
