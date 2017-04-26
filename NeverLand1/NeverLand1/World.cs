@@ -46,16 +46,16 @@ namespace NeverLand1
             PointsArray[_x, _y].multi_cell = _multi;
         }
 
-        public bool kill_cell(SingleCell _cell)
+        public void kill_cell(SingleCell _cell)
         {
             if (selected_cell == _cell)
                 selected_cell = null;
             PointsArray[_cell.x, _cell.y].cell = null;
             if (!cells.Remove(_cell))
-                return false; //error, no cell
+                Globals.soft_error("no cell to kill"); //error, no cell
             if (cells.Remove(_cell))
-                return false;   //error, double cell!
-            return true;
+                Globals.soft_error("ghost cell to kill");   //error, double cell!
+            return;
         }
         public bool kill_multi_cell(MultiCell _multi)
         {
@@ -72,7 +72,8 @@ namespace NeverLand1
         {
             calendar++;
             for (int i = cells.Count - 1; i >= 0; i--)
-                cells[i].Update_1day();
+                if(i<cells.Count)
+                    cells[i].Update_1day();
             if(random_generator.Next(2)==0)
                 if (random_generator.Next(2) == 0)
                 {   //low-tide
