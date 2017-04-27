@@ -84,7 +84,7 @@ namespace NeverLand1
             world.update_1day();
             if(graphic_onoff)
                 world.update_graphics();
-            SetText(world.get_world_info(), world.get_point_info(wform.click_x, wform.click_y), world.get_cell_info());
+            SetText(world.get_world_info(), world.get_point_info(wform.click_x, wform.click_y), world.get_creature_info());
         }
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
