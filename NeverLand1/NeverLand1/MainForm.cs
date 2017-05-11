@@ -89,7 +89,12 @@ namespace NeverLand1
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
         {
-            world.cells.Add(new SingleCell(Globals.width_shallow_water+50, 50, FoodType._sun_light, Globals.default_cell_breed_thresh, Globals.default_cell_max_age, 1, 0, world.cell_ID++));
+            if (world.PointsArray[Globals.width_shallow_water + 50, 50].cell == null)
+            {
+                SingleCell cell = new SingleCell(Globals.width_shallow_water + 50, 50, FoodType._sun_light, Globals.default_cell_breed_thresh, Globals.default_cell_max_age, 1, 0, world.cell_ID++);
+                world.cells.Add(cell);
+                world.PointsArray[Globals.width_shallow_water + 50, 50].cell = cell;
+            }
         }
 
         // This method demonstrates a pattern for making thread-safe
