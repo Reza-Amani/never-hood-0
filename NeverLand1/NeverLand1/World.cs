@@ -73,9 +73,12 @@ namespace NeverLand1
         {
             calendar++;
             for (int i = cells.Count - 1; i >= 0; i--)
-                if(i<cells.Count)
+                if (i < cells.Count)
                     cells[i].Update_1day();
-            if(random_generator.Next(2)==0)
+            for (int i = multi_cells.Count - 1; i >= 0; i--)
+                if (i < multi_cells.Count)
+                    multi_cells[i].Update_1day();
+            if (random_generator.Next(2) == 0)
                 if (random_generator.Next(2) == 0)
                 {   //low-tide
                     if (coast_line > Globals.width_shallow_water + 5)

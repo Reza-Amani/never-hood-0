@@ -124,6 +124,14 @@ namespace NeverLand1
         }
         override protected void move_eat(int _new_x, int _new_y)
         {
+            do_move(_new_x, _new_y);//!!
+        }
+        void do_move(int _newx, int _newy)
+        {
+            world.PointsArray[x, y].multi_cell = null;
+            world.PointsArray[_newx, _newy].multi_cell = this;
+            x = _newx;
+            y = _newy;
         }
         override protected void metabolism()
         {
