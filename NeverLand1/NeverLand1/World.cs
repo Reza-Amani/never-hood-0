@@ -15,6 +15,7 @@ namespace NeverLand1
         static int calendar = 0;
         public int cell_ID = 0;
         SingleCell selected_cell;
+        MultiCell selected_multicell;
         public int coast_line = Globals.width_coastal_water; 
         public World(graphic _g,Random _rnd)
         {
@@ -57,16 +58,16 @@ namespace NeverLand1
                 Globals.soft_error("ghost cell to kill");   //error, double cell!
             return;
         }
-        public bool kill_multi_cell(MultiCell _multi)
+        public void kill_multi_cell(MultiCell _multi)
         {
-//            if (selected_cell == _cell)
-//                selected_cell = null;
+            if (selected_multicell == _multi)
+                selected_multicell = null;
             PointsArray[_multi.x, _multi.y].multi_cell = null;
             if (!multi_cells.Remove(_multi))
-                return false; //error, no cell
+                Globals.soft_error("no multicell to kill"); //error, no multicell
             if (multi_cells.Remove(_multi))
-                return false;   //error, double cell!
-            return true;
+                Globals.soft_error("ghost multicell to kill");   //error, double multicell!
+            return;
         }
         public void update_1day()
         {
@@ -117,37 +118,54 @@ namespace NeverLand1
             result += "\r\ny: " + _y.ToString();
             result += "\r\norganics: " + PointsArray[_x, _y].organics.ToString();
             result += "\r\ncell: " + ((PointsArray[_x, _y].cell == null) ? "nobody" : PointsArray[_x, _y].cell.name.ToString());
-            if (PointsArray[_x, _y].cell != null)
-                selected_cell = PointsArray[_x, _y].cell;
+            result += "\r\nmulti cell: " + ((PointsArray[_x, _y].multi_cell == null) ? "nobody" : PointsArray[_x, _y].multi_cell.name.ToString());
             return result;
         }
         public string get_world_info()
         {
             string result = "world age: " + calendar.ToString();
             result += "\r\ncells population: " + cells.Count.ToString();
+            result += "\r\nmulti cells population: " + multi_cells.Count.ToString();
             return result;
         }
 
         public void wform_clicked(int _x, int _y)
         {
-            if (PointsArray[_x, _y].cell != null)
-                selected_cell = PointsArray[_x, _y].cell;
+            if (PointsArray[_x, _y].multi_cell != null)
+            {
+                selected_multicell = PointsArray[_x, _y].multi_cell;
+                selected_cell = null;
+            }
+            else
+                if (PointsArray[_x, _y].cell != null)
+                {
+                    selected_cell = PointsArray[_x, _y].cell;
+                    selected_multicell = null;
+                }
         }
-        public string get_cell_info()
+        public string get_creature_info()
         {
-            string result = ""; 
-            if (selected_cell == null)
-                if(cells.Count>0)
-                    selected_cell = cells[0];
-            if (selected_cell != null)
+            string result = "";
+            if (selected_multicell != null)
+            {
+                result = "multicell name: " + selected_multicell.name;
+                result += "\r\n has: " + (selected_multicell.has_cholorophyl ? "cholorophyl " : " ") + (selected_multicell.has_mouth ? "mouth" : "");
+                result += "\r\n has: " + (selected_multicell.has_fin ? "fin " : " ") + (selected_multicell.has_crawling_leg ? "crawling leg" : "");
+                result += "\r\n is: " + (selected_multicell.has_genital_female ? "female " : " ") + (selected_multicell.has_genital_male ? "male" : "");
+                result += "\r\n age: " + selected_multicell.age.ToString();
+                result += "\r\n x: " + selected_multicell.x.ToString();
+                result += "\r\n y: " + selected_multicell.y.ToString();
+                result += "\r\n hump: " + selected_multicell.hump.ToString();
+            }
+            else if (selected_cell != null)
             {
                 result = "cell name: " + selected_cell.name;
                 result += "\r\n food: " + selected_cell.food_type.ToString();
                 result += "\r\n age: " + selected_cell.age.ToString();
+                result += " \\ " + selected_cell.age_max.ToString();
                 result += "\r\n x: " + selected_cell.x.ToString();
                 result += "\r\n y: " + selected_cell.y.ToString();
                 result += "\r\n hump: " + selected_cell.hump.ToString();
-                result += "\r\n max_age: " + selected_cell.age_max.ToString();
                 result += "\r\n breed at: " + selected_cell.breeding_thresh.ToString();
             }
             return result;
