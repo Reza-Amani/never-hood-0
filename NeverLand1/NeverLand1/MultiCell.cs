@@ -105,9 +105,19 @@ namespace NeverLand1
         }
         override protected void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y)
         {
-            int newx = _x + random_generator.Next(-1, 2);
-            int newy = _y + random_generator.Next(-1, 2);
-            if ((newx < world.coast_line) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
+            int newx, newy;
+            if( (has_crawling_leg && world.PointsArray[_x, _y].water == WaterType._dry) ||
+                (has_fin && world.PointsArray[_x, _y].water != WaterType._dry) )
+            {
+                newx = _x + random_generator.Next(-2, 3);
+                newy = _y + random_generator.Next(-2, 3);
+            }
+            else
+            {
+                newx = _x + random_generator.Next(-1, 2);
+                newy = _y + random_generator.Next(-1, 2);
+            }
+            if ((newx < Globals.world_x_size) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
             {   //propose new point 
                 _new_x = newx;
                 _new_y = newy;
@@ -124,7 +134,8 @@ namespace NeverLand1
         }
         override protected void move_eat(int _new_x, int _new_y)
         {
-            do_move(_new_x, _new_y);//!!
+//            if(has_cholorophyl)
+            do_move(_new_x, _new_y);
         }
         void do_move(int _newx, int _newy)
         {
