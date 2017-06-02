@@ -18,6 +18,7 @@ namespace NeverLand1
             name = _name;
             update_organs_from_genume();
             update_parameters_from_pargenume();
+            do_move(_x, _y);
         }
         public int days_from_last_reproduction=0;
         public const int absolute_max_age = 1000;
@@ -134,13 +135,20 @@ namespace NeverLand1
         }
         override protected void move_eat(int _new_x, int _new_y)
         {
+           // if(world.PointsArray[
 //            if(has_cholorophyl)
             do_move(_new_x, _new_y);
         }
         void do_move(int _newx, int _newy)
         {
             world.PointsArray[x, y].multi_cell = null;
+            world.PointsArray[x+1, y].multi_cell = null;
+            world.PointsArray[x, y+1].multi_cell = null;
+            world.PointsArray[x+1, y+1].multi_cell = null;
             world.PointsArray[_newx, _newy].multi_cell = this;
+            world.PointsArray[_newx+1, _newy].multi_cell = this;
+            world.PointsArray[_newx, _newy+1].multi_cell = this;
+            world.PointsArray[_newx+1, _newy+1].multi_cell = this;
             x = _newx;
             y = _newy;
         }
