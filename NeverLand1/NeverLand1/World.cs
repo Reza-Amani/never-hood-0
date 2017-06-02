@@ -107,11 +107,14 @@ namespace NeverLand1
   */
         }
 
-        public void update_graphics()
+        public void update_graphics(bool _show_cells)
         {
             graph.reset_world_view(coast_line);
-            for (int i = cells.Count - 1; i >= 0; i--)
-                graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
+            if(_show_cells)
+                for (int i = cells.Count - 1; i >= 0; i--)
+                    graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
+            for (int i = multi_cells.Count - 1; i >= 0; i--)
+                graph.draw_bmp(multi_cells[i].face, multi_cells[i].x, multi_cells[i].y);
             graph.update_world_view();
         }
 
