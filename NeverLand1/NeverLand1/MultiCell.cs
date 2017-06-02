@@ -163,13 +163,13 @@ namespace NeverLand1
         }
         bool is_there_another_multi(int _x, int _y)
         { //returns true if somebody else is there
-            if (world.PointsArray[x + 0, y + 0].multi_cell != null && world.PointsArray[x + 0, y + 0].multi_cell != this)
+            if (world.PointsArray[_x + 0, _y + 0].multi_cell != null && world.PointsArray[_x + 0, _y + 0].multi_cell != this)
                 return true;
-            if (world.PointsArray[x + 1, y + 0].multi_cell != null && world.PointsArray[x + 1, y + 0].multi_cell != this)
+            if (world.PointsArray[_x + 1, _y + 0].multi_cell != null && world.PointsArray[_x + 1, _y + 0].multi_cell != this)
                 return true;
-            if (world.PointsArray[x + 0, y + 1].multi_cell != null && world.PointsArray[x + 0, y + 1].multi_cell != this)
+            if (world.PointsArray[_x + 0, _y + 1].multi_cell != null && world.PointsArray[_x + 0, _y + 1].multi_cell != this)
                 return true;
-            if (world.PointsArray[x + 1, y + 1].multi_cell != null && world.PointsArray[x + 1, y + 1].multi_cell != this)
+            if (world.PointsArray[_x + 1, _y + 1].multi_cell != null && world.PointsArray[_x + 1, _y + 1].multi_cell != this)
                 return true;
             return false;
         }
