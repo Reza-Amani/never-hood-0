@@ -135,9 +135,50 @@ namespace NeverLand1
         }
         override protected void move_eat(int _new_x, int _new_y)
         {
-           // if(world.PointsArray[
-//            if(has_cholorophyl)
+            if(is_there_another_multi(_new_x, _new_y))
+            {   //the destination is occupied by another multicell, don't move
+                _new_x = x;
+                _new_y = y;
+            }
             do_move(_new_x, _new_y);
+            if(has_cholorophyl)
+                hump += 4*world.PointsArray[x, y].get_sun_energy();
+            if(has_mouth)
+            {//eat single cells under
+                SingleCell cell;
+                cell = world.PointsArray[x, y].cell;
+                if (cell != null)
+                    eat_cell(cell);
+                cell = world.PointsArray[x+1, y].cell;
+                if (cell != null)
+                    eat_cell(cell);
+                cell = world.PointsArray[x, y+1].cell;
+                if (cell != null)
+                    eat_cell(cell);
+                cell = world.PointsArray[x+1, y+1].cell;
+                if (cell != null)
+                    eat_cell(cell);
+            }
+
+        }
+        bool is_there_another_multi(int _x, int _y)
+        { //returns true if somebody else is there
+            if (world.PointsArray[x + 0, y + 0].multi_cell != null && world.PointsArray[x + 0, y + 0].multi_cell != this)
+                return true;
+            if (world.PointsArray[x + 1, y + 0].multi_cell != null && world.PointsArray[x + 1, y + 0].multi_cell != this)
+                return true;
+            if (world.PointsArray[x + 0, y + 1].multi_cell != null && world.PointsArray[x + 0, y + 1].multi_cell != this)
+                return true;
+            if (world.PointsArray[x + 1, y + 1].multi_cell != null && world.PointsArray[x + 1, y + 1].multi_cell != this)
+                return true;
+            return false;
+        }
+        void eat_cell(SingleCell _cell)
+        {
+            hump += _cell.hump;
+            world.PointsArray[_cell.x, _cell.y].cell = null;
+            _cell.to_dye = true;
+            world.kill_cell(_cell);
         }
         void do_move(int _newx, int _newy)
         {
