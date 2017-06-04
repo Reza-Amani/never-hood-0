@@ -60,7 +60,7 @@ namespace NeverLand1
             if (temp_gene != default(Gene))
                 par_max_age = temp_gene.value;
             else
-                par_max_age = 0;
+                par_max_age = 100;
             temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_embryo_hump);
             if (temp_gene != default(Gene))
                 par_embryo_hump = temp_gene.value;
@@ -195,6 +195,34 @@ namespace NeverLand1
         }
         override protected void metabolism()
         {
+            int consumption = 4;
+            if (has_cholorophyl)
+                consumption += 2;
+            if (has_crawling_leg)
+                consumption += 2;
+            if (has_fin)
+                consumption += 2;
+            if (has_genital_female)
+                consumption += 2;
+            if (has_genital_male)
+                consumption += 2;
+            if (has_mouth)
+                consumption += 2;
+
+            if (consumption > hump) //not enough enough stored energy
+                consumption = hump;
+
+            hump -= consumption;
+            world.PointsArray[x, y].organics += consumption;
+
+            if (age > par_max_age || hump==0)
+            {   //checking age_max
+                world.PointsArray[x, y].organics += hump;
+                hump = 0;//!can be removed
+                to_dye = true;//!can be removed
+                world.kill_multi_cell(this);
+                return;
+            }
         }
         override protected void mutation()
         {

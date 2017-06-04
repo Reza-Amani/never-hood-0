@@ -45,6 +45,9 @@ namespace NeverLand1
         {
             multi_cells.Add(_multi);
             PointsArray[_x, _y].multi_cell = _multi;
+            PointsArray[_x+1, _y].multi_cell = _multi;
+            PointsArray[_x, _y+1].multi_cell = _multi;
+            PointsArray[_x+1, _y+1].multi_cell = _multi;
         }
 
         public void kill_cell(SingleCell _cell)
@@ -63,6 +66,9 @@ namespace NeverLand1
             if (selected_multicell == _multi)
                 selected_multicell = null;
             PointsArray[_multi.x, _multi.y].multi_cell = null;
+            PointsArray[_multi.x+1, _multi.y].multi_cell = null;
+            PointsArray[_multi.x, _multi.y+1].multi_cell = null;
+            PointsArray[_multi.x+1, _multi.y+1].multi_cell = null;
             if (!multi_cells.Remove(_multi))
                 Globals.soft_error("no multicell to kill"); //error, no multicell
             if (multi_cells.Remove(_multi))
