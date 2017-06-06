@@ -56,17 +56,17 @@ namespace NeverLand1
 
         override protected void update_parameters_from_pargenume()
         {
-            Gene temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_max_age);
+            Gene temp_gene = DNA.par_genume.Find(g => g.name == Gene.GeneType._ft_max_age);
             if (temp_gene != default(Gene))
                 par_max_age = temp_gene.value;
             else
                 par_max_age = 100;
-            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_embryo_hump);
+            temp_gene = DNA.par_genume.Find(g => g.name == Gene.GeneType._ft_embryo_hump);
             if (temp_gene != default(Gene))
                 par_embryo_hump = temp_gene.value;
             else
                 par_embryo_hump = 0;
-            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_reproduction_interval);
+            temp_gene = DNA.par_genume.Find(g => g.name == Gene.GeneType._ft_reproduction_interval);
             if (temp_gene != default(Gene))
                 par_reproduction_interval = temp_gene.value;
             else

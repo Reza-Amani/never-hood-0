@@ -11,8 +11,13 @@ namespace NeverLand1
         {
             _mouth, _cholorophyl, _genital_male, _genital_female, _fin, _crawling_leg, _ft_max_age, _ft_embryo_hump, _ft_reproduction_interval
         }
+        public static int  genetype_size=6;
         public Gene(GeneType _name, int _value, int _min, int _max)
         {   //initial constructor
+            if (_value > _max)
+                _value = _max;
+            if (_value < _min)
+                _value = _min;
             value = _value;
             min = _min;
             max = _max;
