@@ -16,7 +16,7 @@ namespace NeverLand1
         WorldForm wform;
         World world;
         Random random_generator = new Random();
-        static bool graphic_onoff = true;
+        static bool graphic_onoff = true, show_cells_onoff = true;
         public MainForm()
         {
             InitializeComponent();
@@ -83,7 +83,7 @@ namespace NeverLand1
             }
             world.update_1day();
             if(graphic_onoff)
-                world.update_graphics();
+                world.update_graphics(show_cells_onoff);
             SetText(world.get_world_info(), world.get_point_info(wform.click_x, wform.click_y), world.get_creature_info());
         }
 
@@ -129,6 +129,11 @@ namespace NeverLand1
         private void button_graphic_onoff_Click(object sender, EventArgs e)
         {
             graphic_onoff = !graphic_onoff;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            show_cells_onoff = !show_cells_onoff;
         }
 
 

@@ -63,18 +63,70 @@ namespace NeverLand1
                 genume.Add(new Gene(Gene.GeneType._cholorophyl, 1, 0, 1));
             if(_cell.food_type == FoodType._single_cell)
                 genume.Add(new Gene(Gene.GeneType._mouth, 1, 0, 1));
-            par_genume.Add(new Gene(Gene.GeneType._ft_max_age, _cell.age_max*5, 100, 100000));
+            par_genume.Add(new Gene(Gene.GeneType._ft_max_age, _cell.age_max, 100, 10000));
             par_genume.Add(new Gene(Gene.GeneType._ft_reproduction_interval, _cell.breeding_thresh, 100, 1000));
             par_genume.Add(new Gene(Gene.GeneType._ft_embryo_hump, 50, 100, 1000));
         }
-        bool check_mutation()
+        public bool check_mutation()
         {
-            if (Globals.get_random_int_inc(0, 100) != 0)
-                return false;
-            if(Globals.get_random_bool())
-                genume[Globals.get_random_int_inc(0,genume.Count)].mutate();
-            else
-                par_genume[Globals.get_random_int_inc(0,par_genume.Count)].mutate();
+            switch (Globals.get_random_int_inc(0, 100))
+            {
+                case 0: //mutation on one of existing genes
+                    if (Globals.get_random_bool())
+                    {
+                        if (genume.Count > 0)
+                            genume[Globals.get_random_int_inc(0, genume.Count - 1)].mutate();
+                    }
+                    else
+                    {
+                        if (par_genume.Count > 0)
+                            par_genume[Globals.get_random_int_inc(0, par_genume.Count - 1)].mutate();
+                    }
+                    break;
+                case 2:     //deleting one of the existing genes
+                    if (genume.Count > 0)
+                        genume.RemoveAt(Globals.get_random_int_inc(0, genume.Count - 1));
+                    break;
+                case 1:     //adding a new gene (only genes can be added, not pargenes)
+                    Gene temp_gene;
+                    switch(Globals.get_random_int_inc(0,Gene.genetype_size-1))
+                    {
+                        case 0:
+                            temp_gene = genume.Find(g => g.name == Gene.GeneType._cholorophyl);
+                            if (temp_gene == default(Gene))     //this is a new gene; it can't be found in the existing genume
+                                genume.Add(new Gene(Gene.GeneType._cholorophyl, 1, 0, 1));
+                            break;
+                        case 1:
+                            temp_gene = genume.Find(g => g.name == Gene.GeneType._crawling_leg);
+                            if (temp_gene == default(Gene))     //this is a new gene; it can't be found in the existing genume
+                                genume.Add(new Gene(Gene.GeneType._crawling_leg, 1, 0, 1));
+                            break;
+                        case 2:
+                            temp_gene = genume.Find(g => g.name == Gene.GeneType._fin);
+                            if (temp_gene == default(Gene))     //this is a new gene; it can't be found in the existing genume
+                                genume.Add(new Gene(Gene.GeneType._fin,1,0,1));
+                            break;
+                        case 3:
+                            temp_gene = genume.Find(g => g.name == Gene.GeneType._genital_female);
+                            if (temp_gene == default(Gene))     //this is a new gene; it can't be found in the existing genume
+                                genume.Add(new Gene(Gene.GeneType._genital_female,1,0,1));
+                            break;
+                        case 4:
+                            temp_gene = genume.Find(g => g.name == Gene.GeneType._genital_male);
+                            if (temp_gene == default(Gene))     //this is a new gene; it can't be found in the existing genume
+                                genume.Add(new Gene(Gene.GeneType._genital_male,1,0,1));
+                            break;
+                        case 5:
+                            temp_gene = genume.Find(g => g.name == Gene.GeneType._mouth);
+                            if (temp_gene == default(Gene))     //this is a new gene; it can't be found in the existing genume
+                                genume.Add(new Gene(Gene.GeneType._mouth,1,0,1));
+                            break;
+                    }
+                   
+                    break;
+                default:    //not this time
+                    return false;
+            }
             return true;
         }
     }

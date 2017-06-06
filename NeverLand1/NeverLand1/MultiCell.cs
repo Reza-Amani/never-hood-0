@@ -13,11 +13,12 @@ namespace NeverLand1
         {
             x = _x; y = _y; DNA = _DNA; age = _age; hump = _hump;
             face = new Bitmap(2, 2);
-            update_face();
             to_dye = false;
             name = _name;
             update_organs_from_genume();
             update_parameters_from_pargenume();
+            update_face();
+            do_move(_x, _y);
         }
         public int days_from_last_reproduction=0;
         public const int absolute_max_age = 1000;
@@ -55,17 +56,17 @@ namespace NeverLand1
 
         override protected void update_parameters_from_pargenume()
         {
-            Gene temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_max_age);
+            Gene temp_gene = DNA.par_genume.Find(g => g.name == Gene.GeneType._ft_max_age);
             if (temp_gene != default(Gene))
                 par_max_age = temp_gene.value;
             else
-                par_max_age = 0;
-            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_embryo_hump);
+                par_max_age = 100;
+            temp_gene = DNA.par_genume.Find(g => g.name == Gene.GeneType._ft_embryo_hump);
             if (temp_gene != default(Gene))
                 par_embryo_hump = temp_gene.value;
             else
                 par_embryo_hump = 0;
-            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._ft_reproduction_interval);
+            temp_gene = DNA.par_genume.Find(g => g.name == Gene.GeneType._ft_reproduction_interval);
             if (temp_gene != default(Gene))
                 par_reproduction_interval = temp_gene.value;
             else
@@ -105,9 +106,19 @@ namespace NeverLand1
         }
         override protected void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y)
         {
-            int newx = _x + random_generator.Next(-1, 2);
-            int newy = _y + random_generator.Next(-1, 2);
-            if ((newx < world.coast_line) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
+            int newx, newy;
+            if( (has_crawling_leg && world.PointsArray[_x, _y].water == WaterType._dry) ||
+                (has_fin && world.PointsArray[_x, _y].water != WaterType._dry) )
+            {
+                newx = _x + random_generator.Next(-2, 3);
+                newy = _y + random_generator.Next(-2, 3);
+            }
+            else
+            {
+                newx = _x + random_generator.Next(-1, 2);
+                newy = _y + random_generator.Next(-1, 2);
+            }
+            if ((newx < Globals.world_x_size) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
             {   //propose new point 
                 _new_x = newx;
                 _new_y = newy;
@@ -124,12 +135,103 @@ namespace NeverLand1
         }
         override protected void move_eat(int _new_x, int _new_y)
         {
+            if(is_there_another_multi(_new_x, _new_y))
+            {   //the destination is occupied by another multicell, don't move
+                _new_x = x;
+                _new_y = y;
+            }
+            do_move(_new_x, _new_y);
+            if(has_cholorophyl)
+                hump += 4*world.PointsArray[x, y].get_sun_energy();
+            if(has_mouth)
+            {//eat single cells under
+                SingleCell cell;
+                cell = world.PointsArray[x, y].cell;
+                if (cell != null)
+                    eat_cell(cell);
+                cell = world.PointsArray[x+1, y].cell;
+                if (cell != null)
+                    eat_cell(cell);
+                cell = world.PointsArray[x, y+1].cell;
+                if (cell != null)
+                    eat_cell(cell);
+                cell = world.PointsArray[x+1, y+1].cell;
+                if (cell != null)
+                    eat_cell(cell);
+            }
+
+        }
+        bool is_there_another_multi(int _x, int _y)
+        { //returns true if somebody else is there
+            if (world.PointsArray[_x + 0, _y + 0].multi_cell != null && world.PointsArray[_x + 0, _y + 0].multi_cell != this)
+                return true;
+            if (world.PointsArray[_x + 1, _y + 0].multi_cell != null && world.PointsArray[_x + 1, _y + 0].multi_cell != this)
+                return true;
+            if (world.PointsArray[_x + 0, _y + 1].multi_cell != null && world.PointsArray[_x + 0, _y + 1].multi_cell != this)
+                return true;
+            if (world.PointsArray[_x + 1, _y + 1].multi_cell != null && world.PointsArray[_x + 1, _y + 1].multi_cell != this)
+                return true;
+            return false;
+        }
+        void eat_cell(SingleCell _cell)
+        {
+            hump += _cell.hump;
+            world.PointsArray[_cell.x, _cell.y].cell = null;
+            _cell.to_dye = true;
+            world.kill_cell(_cell);
+        }
+        void do_move(int _newx, int _newy)
+        {
+            world.PointsArray[x, y].multi_cell = null;
+            world.PointsArray[x+1, y].multi_cell = null;
+            world.PointsArray[x, y+1].multi_cell = null;
+            world.PointsArray[x+1, y+1].multi_cell = null;
+            world.PointsArray[_newx, _newy].multi_cell = this;
+            world.PointsArray[_newx+1, _newy].multi_cell = this;
+            world.PointsArray[_newx, _newy+1].multi_cell = this;
+            world.PointsArray[_newx+1, _newy+1].multi_cell = this;
+            x = _newx;
+            y = _newy;
         }
         override protected void metabolism()
         {
+            int consumption = 4;
+            if (has_cholorophyl)
+                consumption += 2;
+            if (has_crawling_leg)
+                consumption += 2;
+            if (has_fin)
+                consumption += 2;
+            if (has_genital_female)
+                consumption += 2;
+            if (has_genital_male)
+                consumption += 2;
+            if (has_mouth)
+                consumption += 2;
+
+            if (consumption > hump) //not enough enough stored energy
+                consumption = hump;
+
+            hump -= consumption;
+            world.PointsArray[x, y].organics += consumption;
+
+            if (age > par_max_age || hump==0)
+            {   //checking age_max
+                world.PointsArray[x, y].organics += hump;
+                hump = 0;//!can be removed
+                to_dye = true;//!can be removed
+                world.kill_multi_cell(this);
+                return;
+            }
         }
         override protected void mutation()
         {
+            if (DNA.check_mutation())
+            {
+                update_organs_from_genume();
+                update_parameters_from_pargenume();
+                update_face();
+            }
         }
     }
 }

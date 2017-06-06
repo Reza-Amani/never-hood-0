@@ -38,12 +38,13 @@
             this.textBox_cell = new System.Windows.Forms.TextBox();
             this.textBox_world = new System.Windows.Forms.TextBox();
             this.button_graphic_onoff = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // test
             // 
             this.test.Location = new System.Drawing.Point(19, 262);
-            this.test.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.test.Margin = new System.Windows.Forms.Padding(4);
             this.test.Name = "test";
             this.test.Size = new System.Drawing.Size(100, 28);
             this.test.TabIndex = 0;
@@ -54,7 +55,7 @@
             // step
             // 
             this.step.Location = new System.Drawing.Point(19, 298);
-            this.step.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.step.Margin = new System.Windows.Forms.Padding(4);
             this.step.Name = "step";
             this.step.Size = new System.Drawing.Size(100, 28);
             this.step.TabIndex = 1;
@@ -98,7 +99,7 @@
             // button_new_single_cell
             // 
             this.button_new_single_cell.Location = new System.Drawing.Point(19, 204);
-            this.button_new_single_cell.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_new_single_cell.Margin = new System.Windows.Forms.Padding(4);
             this.button_new_single_cell.Name = "button_new_single_cell";
             this.button_new_single_cell.Size = new System.Drawing.Size(81, 50);
             this.button_new_single_cell.TabIndex = 5;
@@ -110,7 +111,7 @@
             // 
             this.textBox_point.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.textBox_point.Location = new System.Drawing.Point(372, 18);
-            this.textBox_point.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_point.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_point.Multiline = true;
             this.textBox_point.Name = "textBox_point";
             this.textBox_point.Size = new System.Drawing.Size(204, 171);
@@ -120,7 +121,7 @@
             // 
             this.textBox_cell.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.textBox_cell.Location = new System.Drawing.Point(585, 18);
-            this.textBox_cell.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_cell.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_cell.Multiline = true;
             this.textBox_cell.Name = "textBox_cell";
             this.textBox_cell.Size = new System.Drawing.Size(204, 171);
@@ -130,7 +131,7 @@
             // 
             this.textBox_world.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.textBox_world.Location = new System.Drawing.Point(159, 18);
-            this.textBox_world.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_world.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_world.Multiline = true;
             this.textBox_world.Name = "textBox_world";
             this.textBox_world.Size = new System.Drawing.Size(204, 171);
@@ -146,11 +147,22 @@
             this.button_graphic_onoff.UseVisualStyleBackColor = true;
             this.button_graphic_onoff.Click += new System.EventHandler(this.button_graphic_onoff_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(355, 278);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 48);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "show cells on/off";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 363);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button_graphic_onoff);
             this.Controls.Add(this.textBox_world);
             this.Controls.Add(this.textBox_cell);
@@ -161,7 +173,7 @@
             this.Controls.Add(this.button_pause);
             this.Controls.Add(this.step);
             this.Controls.Add(this.test);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "Main Form";
             this.ResumeLayout(false);
@@ -181,6 +193,7 @@
         private System.Windows.Forms.TextBox textBox_cell;
         private System.Windows.Forms.TextBox textBox_world;
         private System.Windows.Forms.Button button_graphic_onoff;
+        private System.Windows.Forms.Button button1;
     }
 }
 

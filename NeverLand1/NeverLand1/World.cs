@@ -45,6 +45,9 @@ namespace NeverLand1
         {
             multi_cells.Add(_multi);
             PointsArray[_x, _y].multi_cell = _multi;
+            PointsArray[_x+1, _y].multi_cell = _multi;
+            PointsArray[_x, _y+1].multi_cell = _multi;
+            PointsArray[_x+1, _y+1].multi_cell = _multi;
         }
 
         public void kill_cell(SingleCell _cell)
@@ -63,6 +66,9 @@ namespace NeverLand1
             if (selected_multicell == _multi)
                 selected_multicell = null;
             PointsArray[_multi.x, _multi.y].multi_cell = null;
+            PointsArray[_multi.x+1, _multi.y].multi_cell = null;
+            PointsArray[_multi.x, _multi.y+1].multi_cell = null;
+            PointsArray[_multi.x+1, _multi.y+1].multi_cell = null;
             if (!multi_cells.Remove(_multi))
                 Globals.soft_error("no multicell to kill"); //error, no multicell
             if (multi_cells.Remove(_multi))
@@ -73,9 +79,12 @@ namespace NeverLand1
         {
             calendar++;
             for (int i = cells.Count - 1; i >= 0; i--)
-                if(i<cells.Count)
+                if (i < cells.Count)
                     cells[i].Update_1day();
-            if(random_generator.Next(2)==0)
+            for (int i = multi_cells.Count - 1; i >= 0; i--)
+                if (i < multi_cells.Count)
+                    multi_cells[i].Update_1day();
+            if (random_generator.Next(2) == 0)
                 if (random_generator.Next(2) == 0)
                 {   //low-tide
                     if (coast_line > Globals.width_shallow_water + 5)
@@ -104,11 +113,14 @@ namespace NeverLand1
   */
         }
 
-        public void update_graphics()
+        public void update_graphics(bool _show_cells)
         {
             graph.reset_world_view(coast_line);
-            for (int i = cells.Count - 1; i >= 0; i--)
-                graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
+            if(_show_cells)
+                for (int i = cells.Count - 1; i >= 0; i--)
+                    graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
+            for (int i = multi_cells.Count - 1; i >= 0; i--)
+                graph.draw_bmp(multi_cells[i].face, multi_cells[i].x, multi_cells[i].y);
             graph.update_world_view();
         }
 
