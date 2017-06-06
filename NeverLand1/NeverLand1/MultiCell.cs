@@ -13,11 +13,11 @@ namespace NeverLand1
         {
             x = _x; y = _y; DNA = _DNA; age = _age; hump = _hump;
             face = new Bitmap(2, 2);
-            update_face();
             to_dye = false;
             name = _name;
             update_organs_from_genume();
             update_parameters_from_pargenume();
+            update_face();
             do_move(_x, _y);
         }
         public int days_from_last_reproduction=0;
@@ -226,6 +226,12 @@ namespace NeverLand1
         }
         override protected void mutation()
         {
+            if (DNA.check_mutation())
+            {
+                update_organs_from_genume();
+                update_parameters_from_pargenume();
+                update_face();
+            }
         }
     }
 }

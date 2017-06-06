@@ -67,14 +67,20 @@ namespace NeverLand1
             par_genume.Add(new Gene(Gene.GeneType._ft_reproduction_interval, _cell.breeding_thresh, 100, 1000));
             par_genume.Add(new Gene(Gene.GeneType._ft_embryo_hump, 50, 100, 1000));
         }
-        bool check_mutation()
+        public bool check_mutation()
         {
             if (Globals.get_random_int_inc(0, 100) != 0)
                 return false;
-            if(Globals.get_random_bool())
-                genume[Globals.get_random_int_inc(0,genume.Count)].mutate();
+            if (Globals.get_random_bool())
+            {
+                if (genume.Count > 0)
+                    genume[Globals.get_random_int_inc(0, genume.Count - 1)].mutate();
+            }
             else
-                par_genume[Globals.get_random_int_inc(0,par_genume.Count)].mutate();
+            {
+                if (par_genume.Count > 0)
+                    par_genume[Globals.get_random_int_inc(0, par_genume.Count - 1)].mutate();
+            }
             return true;
         }
     }
