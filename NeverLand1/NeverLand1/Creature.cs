@@ -6,15 +6,18 @@ using System.Drawing;
 
 namespace NeverLand1
 {
+    [Serializable]
     abstract class Creature
     {
         public int x, y, hump, age;
         protected static Random random_generator = new Random();
-        static public World world;
+
         public Bitmap face;
         public bool to_dye;
         public int name;
 
+        [NonSerialized]
+        static public World world;
 
         abstract protected void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y);
         abstract protected void update_face();

@@ -136,7 +136,17 @@ namespace NeverLand1
             show_cells_onoff = !show_cells_onoff;
         }
 
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            BinarySerialization.WriteToBinaryFile<SingleCell>("D:/filetest.txt", world.cells[0],true);
+        }
 
+        private void button_load_Click(object sender, EventArgs e)
+        {
+            SingleCell cell = BinarySerialization.ReadFromBinaryFile<SingleCell>("D:/filetest.txt");
+            world.add_new_cell(cell.x, cell.y, cell);
+
+        }
 
     }
 }
