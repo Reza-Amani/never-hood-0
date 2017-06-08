@@ -5,18 +5,27 @@ using System.Text;
 
 namespace NeverLand1
 {
+    [Serializable]
     class World
     {
-        public WorldPoint[,] PointsArray = new WorldPoint[Globals.world_x_size, Globals.world_y_size];
-        graphic graph;
-        Random random_generator;
         public List<SingleCell> cells = new List<SingleCell>();
-        public List<MultiCell> multi_cells = new List<MultiCell>();
         static int calendar = 0;
         public int cell_ID = 0;
         SingleCell selected_cell;
+        public int coast_line = Globals.width_coastal_water;
+
+        [NonSerialized]
+        graphic graph;
+        [NonSerialized]
         MultiCell selected_multicell;
-        public int coast_line = Globals.width_coastal_water; 
+        [NonSerialized]
+        public List<MultiCell> multi_cells = new List<MultiCell>();
+        [NonSerialized]
+        public WorldPoint[,] PointsArray = new WorldPoint[Globals.world_x_size, Globals.world_y_size];
+        [NonSerialized]
+        Random random_generator;
+
+
         public World(graphic _g,Random _rnd)
         {
             for (int j = 0; j < Globals.world_y_size; j++)
