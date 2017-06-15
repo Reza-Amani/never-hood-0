@@ -14,19 +14,20 @@ namespace NeverLand1
         SingleCell selected_cell;
         public int coast_line = Globals.width_coastal_water;
 
+        MultiCell selected_multicell;
+        public List<MultiCell> multi_cells = new List<MultiCell>();
+        public WorldPoint[,] PointsArray = new WorldPoint[Globals.world_x_size, Globals.world_y_size];
         [NonSerialized]
         graphic graph;
         [NonSerialized]
-        MultiCell selected_multicell;
-        [NonSerialized]
-        public List<MultiCell> multi_cells = new List<MultiCell>();
-        [NonSerialized]
-        public WorldPoint[,] PointsArray = new WorldPoint[Globals.world_x_size, Globals.world_y_size];
-        [NonSerialized]
         Random random_generator;
 
-
-        public World(graphic _g,Random _rnd)
+        public void set_graph_rnd(graphic _g,Random _rnd)
+        {
+            graph = _g;
+            random_generator = _rnd;
+        }
+        public World()
         {
             for (int j = 0; j < Globals.world_y_size; j++)
             {
@@ -39,8 +40,6 @@ namespace NeverLand1
                 for (int i = 1 + Globals.width_coastal_water; i < Globals.world_x_size; i++)
                     PointsArray[i, j] = new WorldPoint(WaterType._dry, 0, null, null);
             }
-            graph = _g;
-            random_generator = _rnd;
             Creature.world = this;
         }
 

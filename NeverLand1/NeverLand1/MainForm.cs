@@ -23,7 +23,9 @@ namespace NeverLand1
             wform = new WorldForm();
             wform.Show();
             graph = new graphic(wform.get_picture_box());
-            world = new World(graph, random_generator);
+            world = new World();
+            world.set_graph_rnd(graph, random_generator);
+
         }
 
         bool TimeToGo = false;
@@ -147,6 +149,9 @@ namespace NeverLand1
 //            SingleCell cell = BinarySerialization.ReadFromBinaryFile<SingleCell>("D:/filetest.txt");
 //            world.add_new_cell(cell.x, cell.y, cell);
             world = BinarySerialization.ReadFromBinaryFile<World>("D:/filetest.txt");
+            world.set_graph_rnd(graph, random_generator);
+            Creature.world = world;//just in case
+
         }
 
     }

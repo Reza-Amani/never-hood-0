@@ -6,7 +6,8 @@ using System.Drawing;
 
 namespace NeverLand1
 {
-    class MultiCell:Creature
+    [Serializable]
+    class MultiCell : Creature
     {
         DNA DNA;
         public MultiCell(int _x, int _y, DNA _DNA, int _age, int _hump, int _name)

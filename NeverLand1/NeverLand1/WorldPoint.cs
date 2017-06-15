@@ -5,6 +5,7 @@ using System.Text;
 
 namespace NeverLand1
 {
+    [Serializable]
     class WorldPoint
     {
         public WaterType water;
