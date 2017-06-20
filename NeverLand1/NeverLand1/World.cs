@@ -9,7 +9,7 @@ namespace NeverLand1
     class World
     {
         public List<SingleCell> cells = new List<SingleCell>();
-        static int calendar = 0;
+        public int calendar = 0;
         public int cell_ID = 0;
         SingleCell selected_cell;
         public int coast_line = Globals.width_coastal_water;
