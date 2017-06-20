@@ -1,1 +1,4 @@
 on deep water line, water is deep! In the same way, on the coastal water line, it is wet. next point is dry
+
+for serializing:
+http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/

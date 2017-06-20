@@ -5,6 +5,7 @@ using System.Text;
 
 namespace NeverLand1
 {
+    [Serializable]
     class Gene
     {
         public enum GeneType
