@@ -39,6 +39,8 @@
             this.textBox_world = new System.Windows.Forms.TextBox();
             this.button_graphic_onoff = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button_save = new System.Windows.Forms.Button();
+            this.button_load = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // test
@@ -157,11 +159,35 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button_save
+            // 
+            this.button_save.Location = new System.Drawing.Point(576, 278);
+            this.button_save.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(85, 41);
+            this.button_save.TabIndex = 11;
+            this.button_save.Text = "save";
+            this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            // 
+            // button_load
+            // 
+            this.button_load.Location = new System.Drawing.Point(667, 278);
+            this.button_load.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_load.Name = "button_load";
+            this.button_load.Size = new System.Drawing.Size(85, 41);
+            this.button_load.TabIndex = 12;
+            this.button_load.Text = "load";
+            this.button_load.UseVisualStyleBackColor = true;
+            this.button_load.Click += new System.EventHandler(this.button_load_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 363);
+            this.Controls.Add(this.button_load);
+            this.Controls.Add(this.button_save);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button_graphic_onoff);
             this.Controls.Add(this.textBox_world);
@@ -194,6 +220,8 @@
         private System.Windows.Forms.TextBox textBox_world;
         private System.Windows.Forms.Button button_graphic_onoff;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Button button_load;
     }
 }
 

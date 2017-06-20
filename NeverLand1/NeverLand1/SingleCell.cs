@@ -6,6 +6,7 @@ using System.Drawing;
 
 namespace NeverLand1
 {
+    [Serializable]
     class SingleCell:Creature
     {
         public int breeding_thresh,age_max;
