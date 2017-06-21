@@ -12,9 +12,11 @@ namespace NeverLand1
         public int x, y, hump, age;
         protected static Random random_generator = new Random();
 
-        public Bitmap face;
         public bool to_dye;
         public int name;
+
+        [NonSerialized]
+        public Bitmap face;
 
         [NonSerialized]
         static public World world;
@@ -27,6 +29,11 @@ namespace NeverLand1
         abstract protected void mutation();
         abstract protected void update_organs_from_genume();
         abstract protected void update_parameters_from_pargenume();
+        public void after_load()
+        {
+            face = new Bitmap(2, 2);
+            update_face();
+        }
         virtual public void Update_1day()
         {
             age++;
