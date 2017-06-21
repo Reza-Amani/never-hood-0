@@ -15,13 +15,15 @@ namespace NeverLand1
         public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, int _name)
         {
             x = x_; y = y_; food_type = food_type_; breeding_thresh = breeding_thresh_; age_max = age_max_; hump = hump_; age = age_;
-            face = new Bitmap(1, 1);
+            size = 1;
+            face = new Bitmap(size, size);
             update_face();
             to_dye = false;
             name = _name;
         }
         public SingleCell()
         {
+            size = 1;
         }
         override protected void update_face()
         {

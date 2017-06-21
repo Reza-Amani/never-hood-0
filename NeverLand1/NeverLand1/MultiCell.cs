@@ -13,7 +13,8 @@ namespace NeverLand1
         public MultiCell(int _x, int _y, DNA _DNA, int _age, int _hump, int _name)
         {
             x = _x; y = _y; DNA = _DNA; age = _age; hump = _hump;
-            face = new Bitmap(2, 2);
+            size = 2;
+            face = new Bitmap(size, size);
             to_dye = false;
             name = _name;
             update_organs_from_genume();

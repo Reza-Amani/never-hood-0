@@ -14,6 +14,7 @@ namespace NeverLand1
 
         public bool to_dye;
         public int name;
+        public int size;
 
         [NonSerialized]
         public Bitmap face;
@@ -31,7 +32,7 @@ namespace NeverLand1
         abstract protected void update_parameters_from_pargenume();
         public void after_load()
         {
-            face = new Bitmap(2, 2);
+            face = new Bitmap(size, size);
             update_face();
         }
         virtual public void Update_1day()
