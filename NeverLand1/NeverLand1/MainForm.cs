@@ -151,6 +151,10 @@ namespace NeverLand1
             world = BinarySerialization.ReadFromBinaryFile<World>("..\\..\\..\\saveworld.txt");
             world.set_graph_rnd(graph, random_generator);
             Creature.world = world;//just in case
+            foreach (SingleCell cell in world.cells)
+                cell.after_load();
+            foreach (MultiCell multi in world.multi_cells)
+                multi.after_load();
 
         }
 
