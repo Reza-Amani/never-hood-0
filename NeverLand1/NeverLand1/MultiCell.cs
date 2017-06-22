@@ -120,7 +120,7 @@ namespace NeverLand1
                 newx = _x + random_generator.Next(-1, 2);
                 newy = _y + random_generator.Next(-1, 2);
             }
-            if ((newx < Globals.world_x_size) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
+            if ((newx < Globals.world_x_size -size+1) && (newx >= 0) && (newy < Globals.world_y_size -size+1) && (newy >= 0))
             {   //propose new point 
                 _new_x = newx;
                 _new_y = newy;
