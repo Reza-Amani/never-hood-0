@@ -146,11 +146,14 @@ namespace NeverLand1
                             food_type = Globals.get_prev_foodtype(food_type);
                         break;
                     case 3:
-                        MultiCell new_multi = new MultiCell(x, y, new DNA(this), age, hump, name);
-                        world.add_new_multi_cell(x, y, new_multi);
-                        hump = 0;
-                        to_dye = true;
-                        world.kill_cell(this);
+                        if ((x < Globals.world_x_size - size) && (x >= 0) && (y < Globals.world_y_size - size) && (y >= 0))
+                        {
+                            MultiCell new_multi = new MultiCell(x, y, new DNA(this), age, hump, name);
+                            world.add_new_multi_cell(x, y, new_multi);
+                            hump = 0;
+                            to_dye = true;
+                            world.kill_cell(this);
+                        }
                         break;
                 }
         }
