@@ -152,9 +152,11 @@ namespace NeverLand1
             world.set_graph_rnd(graph, random_generator);
             Creature.world = world;//just in case
             foreach (SingleCell cell in world.cells)
-                cell.after_load();
+                if(cell!=null)
+                    cell.after_load();
             foreach (MultiCell multi in world.multi_cells)
-                multi.after_load();
+                if(multi!=null)
+                    multi.after_load();
 
         }
 

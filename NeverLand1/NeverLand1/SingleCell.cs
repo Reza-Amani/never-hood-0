@@ -15,13 +15,15 @@ namespace NeverLand1
         public SingleCell(int x_, int y_, FoodType food_type_, int breeding_thresh_, int age_max_, int hump_, int age_, int _name)
         {
             x = x_; y = y_; food_type = food_type_; breeding_thresh = breeding_thresh_; age_max = age_max_; hump = hump_; age = age_;
-            face = new Bitmap(1, 1);
+            size = 1;
+            face = new Bitmap(size, size);
             update_face();
             to_dye = false;
             name = _name;
         }
         public SingleCell()
         {
+            size = 1;
         }
         override protected void update_face()
         {
@@ -144,11 +146,14 @@ namespace NeverLand1
                             food_type = Globals.get_prev_foodtype(food_type);
                         break;
                     case 3:
-                        MultiCell new_multi = new MultiCell(x, y, new DNA(this), age, hump, name);
-                        world.add_new_multi_cell(x, y, new_multi);
-                        hump = 0;
-                        to_dye = true;
-                        world.kill_cell(this);
+                        if ((x < Globals.world_x_size - size) && (x >= 0) && (y < Globals.world_y_size - size) && (y >= 0))
+                        {
+                            MultiCell new_multi = new MultiCell(x, y, new DNA(this), age, hump, name);
+                            world.add_new_multi_cell(x, y, new_multi);
+                            hump = 0;
+                            to_dye = true;
+                            world.kill_cell(this);
+                        }
                         break;
                 }
         }

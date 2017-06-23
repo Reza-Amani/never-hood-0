@@ -13,7 +13,8 @@ namespace NeverLand1
         public MultiCell(int _x, int _y, DNA _DNA, int _age, int _hump, int _name)
         {
             x = _x; y = _y; DNA = _DNA; age = _age; hump = _hump;
-            face = new Bitmap(2, 2);
+            size = 2;
+            face = new Bitmap(size, size);
             to_dye = false;
             name = _name;
             update_organs_from_genume();
@@ -119,7 +120,7 @@ namespace NeverLand1
                 newx = _x + random_generator.Next(-1, 2);
                 newy = _y + random_generator.Next(-1, 2);
             }
-            if ((newx < Globals.world_x_size) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
+            if ((newx < Globals.world_x_size -size+1) && (newx >= 0) && (newy < Globals.world_y_size -size+1) && (newy >= 0))
             {   //propose new point 
                 _new_x = newx;
                 _new_y = newy;
