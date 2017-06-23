@@ -17,6 +17,9 @@ namespace NeverLand1
         World world;
         Random random_generator = new Random();
         static bool graphic_onoff = true, show_cells_onoff = true;
+
+        Thread go_thread;
+        
         public MainForm()
         {
             InitializeComponent();
@@ -26,13 +29,16 @@ namespace NeverLand1
             world = new World();
             world.set_graph_rnd(graph, random_generator);
 
+            go_thread = new Thread(thread_go);
         }
 
         bool TimeToGo = false;
 
         private void test_Click(object sender, EventArgs e)
         {
-            graph.update();
+
+            go_thread.Start();
+//            graph.update();
         }
 
         private void step_Click(object sender, EventArgs e)
@@ -47,8 +53,6 @@ namespace NeverLand1
         private void button_go_Click(object sender, EventArgs e)
         {
             TimeToGo = true;
-            Thread thread = new Thread(thread_go);
-            thread.Start();
 //            timer = new System.Threading.Timer(update_1day, null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(0.5));
 /*            while (TimeToGo)
             {
@@ -158,6 +162,14 @@ namespace NeverLand1
                 if(multi!=null)
                     multi.after_load();
 
+        }
+
+        private void button_new_Click(object sender, EventArgs e)
+        {
+            world=new World();
+            world.set_graph_rnd(graph, random_generator);
+            if (go_thread.ThreadState == ThreadState.Unstarted)
+                go_thread.Start();
         }
 
     }

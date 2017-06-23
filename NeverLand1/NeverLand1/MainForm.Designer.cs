@@ -41,6 +41,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button_save = new System.Windows.Forms.Button();
             this.button_load = new System.Windows.Forms.Button();
+            this.button_new = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // test
@@ -141,7 +142,7 @@
             // 
             // button_graphic_onoff
             // 
-            this.button_graphic_onoff.Location = new System.Drawing.Point(246, 278);
+            this.button_graphic_onoff.Location = new System.Drawing.Point(191, 278);
             this.button_graphic_onoff.Name = "button_graphic_onoff";
             this.button_graphic_onoff.Size = new System.Drawing.Size(103, 48);
             this.button_graphic_onoff.TabIndex = 9;
@@ -151,7 +152,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(355, 278);
+            this.button1.Location = new System.Drawing.Point(319, 278);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 48);
             this.button1.TabIndex = 10;
@@ -161,7 +162,7 @@
             // 
             // button_save
             // 
-            this.button_save.Location = new System.Drawing.Point(576, 278);
+            this.button_save.Location = new System.Drawing.Point(521, 278);
             this.button_save.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(85, 41);
@@ -172,7 +173,7 @@
             // 
             // button_load
             // 
-            this.button_load.Location = new System.Drawing.Point(667, 278);
+            this.button_load.Location = new System.Drawing.Point(612, 278);
             this.button_load.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_load.Name = "button_load";
             this.button_load.Size = new System.Drawing.Size(85, 41);
@@ -181,11 +182,23 @@
             this.button_load.UseVisualStyleBackColor = true;
             this.button_load.Click += new System.EventHandler(this.button_load_Click);
             // 
+            // button_new
+            // 
+            this.button_new.Location = new System.Drawing.Point(703, 278);
+            this.button_new.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_new.Name = "button_new";
+            this.button_new.Size = new System.Drawing.Size(85, 41);
+            this.button_new.TabIndex = 13;
+            this.button_new.Text = "new";
+            this.button_new.UseVisualStyleBackColor = true;
+            this.button_new.Click += new System.EventHandler(this.button_new_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 363);
+            this.Controls.Add(this.button_new);
             this.Controls.Add(this.button_load);
             this.Controls.Add(this.button_save);
             this.Controls.Add(this.button1);
@@ -222,6 +235,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Button button_load;
+        private System.Windows.Forms.Button button_new;
     }
 }
 
