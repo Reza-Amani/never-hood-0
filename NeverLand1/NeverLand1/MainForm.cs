@@ -18,7 +18,7 @@ namespace NeverLand1
         Random random_generator = new Random();
         static bool graphic_onoff = true, show_cells_onoff = true;
 
-        Thread go_thread;
+        Thread go_thread, graphic_thread;
         
         public MainForm()
         {
@@ -30,13 +30,14 @@ namespace NeverLand1
             world.set_graph_rnd(graph, random_generator);
 
             go_thread = new Thread(thread_go);
+            graphic_thread = new Thread(thread_graphic);
         }
 
         bool TimeToGo = false;
 
         private void test_Click(object sender, EventArgs e)
         {
-
+            graphic_thread.Start();
             go_thread.Start();
 //            graph.update();
         }
@@ -73,11 +74,23 @@ namespace NeverLand1
 
         private void thread_go()
         {
-            while (TimeToGo)
-            {
-                Thread.Sleep(100);
-                update_1day(null);
-            }
+            while(true)
+                if (TimeToGo)
+                {
+                    Thread.Sleep(100);
+                    update_1day(null);
+                }
+        }
+
+        private void thread_graphic()
+        {
+            while (true)
+                if (TimeToGo)
+                {
+                    Thread.Sleep(100);
+                    if (graphic_onoff)
+                        world.update_graphics(show_cells_onoff);
+                }
         }
 
         private void update_1day(object state)
@@ -88,8 +101,8 @@ namespace NeverLand1
                 world.wform_clicked(wform.click_x, wform.click_y);
             }
             world.update_1day();
-            if(graphic_onoff)
-                world.update_graphics(show_cells_onoff);
+//            if(graphic_onoff)
+  //              world.update_graphics(show_cells_onoff);
             SetText(world.get_world_info(), world.get_point_info(wform.click_x, wform.click_y), world.get_creature_info());
         }
 
@@ -170,6 +183,8 @@ namespace NeverLand1
             world.set_graph_rnd(graph, random_generator);
             if (go_thread.ThreadState == ThreadState.Unstarted)
                 go_thread.Start();
+            if (graphic_thread.ThreadState == ThreadState.Unstarted)
+                graphic_thread.Start();
         }
 
     }
