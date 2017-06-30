@@ -18,7 +18,7 @@ namespace NeverLand1
         Random random_generator = new Random();
         static bool graphic_onoff = true, show_cells_onoff = true;
 
-        Thread go_thread, graphic_thread;
+        Thread go_thread, graphic_thread, UI_thread;
         
         public MainForm()
         {
@@ -31,6 +31,7 @@ namespace NeverLand1
 
             go_thread = new Thread(thread_go);
             graphic_thread = new Thread(thread_graphic);
+            UI_thread = new Thread(thread_UI);
         }
 
         bool TimeToGo = false;
@@ -85,25 +86,30 @@ namespace NeverLand1
         private void thread_graphic()
         {
             while (true)
-                if (TimeToGo)
+                if (graphic_onoff)
                 {
                     Thread.Sleep(100);
-                    if (graphic_onoff)
-                        world.update_graphics(show_cells_onoff);
+                    world.update_graphics(show_cells_onoff);
                 }
+        }
+
+        private void thread_UI()
+        {
+            while (true)
+            {
+                Thread.Sleep(50);
+                if (wform.clicked)
+                {
+                    wform.clicked = false;
+                    world.wform_clicked(wform.click_x, wform.click_y);
+                }
+                SetText(world.get_world_info(), world.get_point_info(wform.click_x, wform.click_y), world.get_creature_info());
+            }
         }
 
         private void update_1day(object state)
         {
-            if (wform.clicked)
-            {
-                wform.clicked = false;
-                world.wform_clicked(wform.click_x, wform.click_y);
-            }
             world.update_1day();
-//            if(graphic_onoff)
-  //              world.update_graphics(show_cells_onoff);
-            SetText(world.get_world_info(), world.get_point_info(wform.click_x, wform.click_y), world.get_creature_info());
         }
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
@@ -185,6 +191,8 @@ namespace NeverLand1
                 go_thread.Start();
             if (graphic_thread.ThreadState == ThreadState.Unstarted)
                 graphic_thread.Start();
+            if (UI_thread.ThreadState == ThreadState.Unstarted)
+                UI_thread.Start();
         }
 
     }
