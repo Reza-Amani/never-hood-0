@@ -40,6 +40,7 @@ namespace NeverLand1
         {
             graphic_thread.Start();
             go_thread.Start();
+            UI_thread.Start();
 //            graph.update();
         }
 
@@ -76,21 +77,21 @@ namespace NeverLand1
         private void thread_go()
         {
             while(true)
+            {
+                Thread.Sleep(100);
                 if (TimeToGo)
-                {
-                    Thread.Sleep(100);
                     update_1day(null);
-                }
-        }
+            }
+         }
 
         private void thread_graphic()
         {
             while (true)
+            {
+                Thread.Sleep(100);
                 if (graphic_onoff)
-                {
-                    Thread.Sleep(100);
                     world.update_graphics(show_cells_onoff);
-                }
+            }
         }
 
         private void thread_UI()
