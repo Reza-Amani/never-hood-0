@@ -18,7 +18,8 @@ namespace NeverLand1
         Random random_generator = new Random();
         static bool graphic_onoff = true, show_cells_onoff = true;
 
-        Thread go_thread, graphic_thread, UI_thread;
+        Thread cells_thread, graphic_thread, UI_thread, multis_thread,corpse_cleanup_thread;
+        static bool graphic_cells_needed = false, graphic_multis_needed = false, graphic_inprogress = false, cleanup_cells_needed = false, cleanup_multis_needed = false, cleanup_inprogress = false;
         
         public MainForm()
         {
@@ -29,7 +30,9 @@ namespace NeverLand1
             world = new World();
             world.set_graph_rnd(graph, random_generator);
 
-            go_thread = new Thread(thread_go);
+            cells_thread = new Thread(thread_cells);
+            corpse_cleanup_thread = new Thread(thread_corpse_cleanup);
+            multis_thread = new Thread(thread_multis);
             graphic_thread = new Thread(thread_graphic);
             UI_thread = new Thread(thread_UI);
         }
@@ -38,9 +41,9 @@ namespace NeverLand1
 
         private void test_Click(object sender, EventArgs e)
         {
-            graphic_thread.Start();
-            go_thread.Start();
-            UI_thread.Start();
+//            graphic_thread.Start();
+//            go_thread.Start();
+//            UI_thread.Start();
 //            graph.update();
         }
 
@@ -57,11 +60,7 @@ namespace NeverLand1
         {
             TimeToGo = true;
 //            timer = new System.Threading.Timer(update_1day, null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(0.5));
-/*            while (TimeToGo)
-            {
-                world.update_1day();
-            }
-*/        }
+        }
 
         private void button_1day_Click(object sender, EventArgs e)
         {
@@ -74,25 +73,69 @@ namespace NeverLand1
             textBox_cell.Text = world.get_cell_info();
 */        }
 
-        private void thread_go()
+        private void thread_cells()
         {
-            while(true)
+            while (true)
             {
-              //  Thread.Sleep(100);
-                if (TimeToGo)
-                    lock (world)
-                        update_1day(null);
+                if (TimeToGo && !cleanup_inprogress && !cleanup_cells_needed)
+                {
+                    update_cells(null);
+                    cleanup_cells_needed = true;
+                    Thread.Sleep(1);
+                    graphic_cells_needed = true;
+                }
+                else
+                    Thread.Sleep(10);
             }
-         }
+        }
+
+        private void thread_multis()
+        {
+            while (true)
+            {
+                if (TimeToGo && !cleanup_inprogress && !cleanup_multis_needed)
+                {
+                    update_multis(null);
+                    cleanup_multis_needed = true;
+                    Thread.Sleep(1);
+                    graphic_multis_needed = true;
+                }
+                else
+                    Thread.Sleep(10);
+            }
+        }
+
+        private void thread_cleanup()
+        {
+            while (true)
+            {
+                if (cleanup_cells_needed && cleanup_multis_needed && !graphic_inprogress)
+                {
+                    cleanup_inprogress = true;
+                    update_cleanup(null);
+                    cleanup_cells_needed = false;
+                    cleanup_multis_needed = false;
+                    cleanup_inprogress = false;
+                }
+                else
+                    Thread.Sleep(10);
+            }
+        }
 
         private void thread_graphic()
         {
             while (true)
             {
-                Thread.Sleep(100);
-                if (graphic_onoff)
-                    lock(world)
-                        world.update_graphics(show_cells_onoff);
+                if (graphic_onoff && graphic_cells_needed && graphic_multis_needed && !cleanup_inprogress)
+                {
+                    graphic_inprogress = true;
+                    world.update_graphics(show_cells_onoff);
+                    graphic_cells_needed = false;
+                    graphic_multis_needed = false;
+                    graphic_inprogress = false;
+                }
+                else
+                    Thread.Sleep(50);
             }
         }
 
@@ -100,8 +143,8 @@ namespace NeverLand1
         {
             while (true)
             {
-            //    Thread.Sleep(50);
-//                lock (world)
+                Thread.Sleep(10);
+                if ( ( graphic_cells_needed || graphic_multis_needed ) && !cleanup_inprogress)
                 {
                     if (wform.clicked)
                     {
@@ -193,8 +236,12 @@ namespace NeverLand1
         {
             world=new World();
             world.set_graph_rnd(graph, random_generator);
-            if (go_thread.ThreadState == ThreadState.Unstarted)
-                go_thread.Start();
+            if (cells_thread.ThreadState == ThreadState.Unstarted)
+                cells_thread.Start();
+            if (multis_thread.ThreadState == ThreadState.Unstarted)
+                multis_thread.Start();
+            if (corpse_cleanup_thread.ThreadState == ThreadState.Unstarted)
+                corpse_cleanup_thread.Start();
             if (graphic_thread.ThreadState == ThreadState.Unstarted)
                 graphic_thread.Start();
             if (UI_thread.ThreadState == ThreadState.Unstarted)
