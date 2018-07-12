@@ -80,7 +80,8 @@ namespace NeverLand1
             {
                 Thread.Sleep(100);
                 if (TimeToGo)
-                    update_1day(null);
+                    lock (world)
+                        update_1day(null);
             }
          }
 
@@ -90,7 +91,8 @@ namespace NeverLand1
             {
                 Thread.Sleep(100);
                 if (graphic_onoff)
-                    world.update_graphics(show_cells_onoff);
+                    lock(world)
+                        world.update_graphics(show_cells_onoff);
             }
         }
 
@@ -99,12 +101,15 @@ namespace NeverLand1
             while (true)
             {
                 Thread.Sleep(50);
-                if (wform.clicked)
+                lock (world)
                 {
-                    wform.clicked = false;
-                    world.wform_clicked(wform.click_x, wform.click_y);
+                    if (wform.clicked)
+                    {
+                        wform.clicked = false;
+                        world.wform_clicked(wform.click_x, wform.click_y);
+                    }
+                    SetText(world.get_world_info(), world.get_point_info(wform.click_x, wform.click_y), world.get_creature_info());
                 }
-                SetText(world.get_world_info(), world.get_point_info(wform.click_x, wform.click_y), world.get_creature_info());
             }
         }
 
