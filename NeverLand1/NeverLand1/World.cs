@@ -104,9 +104,12 @@ namespace NeverLand1
                 }
                 else
                 {   //high-tide
-                    coast_line++;
-                    for (int i = 0; i < Globals.world_y_size; i++)
-                        PointsArray[coast_line, i].water = WaterType._coastal_water;
+                    if (coast_line < Globals.world_x_size - 10 )
+                    {
+                        coast_line++;
+                        for (int i = 0; i < Globals.world_y_size; i++)
+                            PointsArray[coast_line, i].water = WaterType._coastal_water;
+                    }
                 }
                 
 /*            for (int i = cells.Count - 1; i >= 0; i--)

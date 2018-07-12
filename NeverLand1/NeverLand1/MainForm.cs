@@ -78,7 +78,7 @@ namespace NeverLand1
         {
             while(true)
             {
-                Thread.Sleep(100);
+              //  Thread.Sleep(100);
                 if (TimeToGo)
                     lock (world)
                         update_1day(null);
@@ -100,8 +100,8 @@ namespace NeverLand1
         {
             while (true)
             {
-                Thread.Sleep(50);
-                lock (world)
+            //    Thread.Sleep(50);
+//                lock (world)
                 {
                     if (wform.clicked)
                     {
