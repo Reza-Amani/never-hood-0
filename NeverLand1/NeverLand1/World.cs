@@ -126,11 +126,9 @@ namespace NeverLand1
             graph.reset_world_view(coast_line);
             if(_show_cells)
                 for (int i = cells.Count - 1; i >= 0; i--)
-                    if (i < cells.Count)    //proof against thread violation
-                        graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
+                    graph.draw_bmp(cells[i].face, cells[i].x, cells[i].y);
             for (int i = multi_cells.Count - 1; i >= 0; i--)
-                if (i < multi_cells.Count)  //proof against thread violation
-                    graph.draw_bmp(multi_cells[i].face, multi_cells[i].x, multi_cells[i].y);
+                graph.draw_bmp(multi_cells[i].face, multi_cells[i].x, multi_cells[i].y);
             graph.update_world_view();
         }
 
