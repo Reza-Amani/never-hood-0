@@ -96,8 +96,8 @@ namespace NeverLand1
                             hump += world.PointsArray[_new_x, _new_y].cell.hump;
                             world.PointsArray[_new_x, _new_y].cell.hump = 0;
                             world.PointsArray[_new_x, _new_y].cell.to_dye = true;
-                            world.kill_cell(world.PointsArray[_new_x, _new_y].cell);
-                            do_move(_new_x, _new_y);
+                            //world.kill_cell(world.PointsArray[_new_x, _new_y].cell);
+                            //do_move(_new_x, _new_y);
                         }
                     break;
             }
@@ -110,7 +110,7 @@ namespace NeverLand1
                 world.PointsArray[x, y].organics += hump;
                 hump = 0;//!can be removed
                 to_dye = true;//!can be removed
-                world.kill_cell(this);
+                //world.kill_cell(this);
                 return;
             }
             if (hump >= 2)
@@ -123,7 +123,7 @@ namespace NeverLand1
                 world.PointsArray[x, y].organics += hump;
                 hump = 0;
                 to_dye = true;
-                world.kill_cell(this);
+                //world.kill_cell(this);
             }
         
         }
@@ -152,7 +152,7 @@ namespace NeverLand1
                             world.add_new_multi_cell(x, y, new_multi);
                             hump = 0;
                             to_dye = true;
-                            world.kill_cell(this);
+                            //world.kill_cell(this);
                         }
                         break;
                 }

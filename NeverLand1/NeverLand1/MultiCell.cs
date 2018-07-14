@@ -180,7 +180,8 @@ namespace NeverLand1
             hump += _cell.hump;
             world.PointsArray[_cell.x, _cell.y].cell = null;
             _cell.to_dye = true;
-            world.kill_cell(_cell);
+            _cell.hump = 0;
+//            world.kill_cell(_cell);
         }
         void do_move(int _newx, int _newy)
         {

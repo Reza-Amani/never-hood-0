@@ -10,6 +10,7 @@ namespace NeverLand1
     {
         public List<SingleCell> cells = new List<SingleCell>();
         public int calendar = 0;
+        public int calendar_multis = 0;
         public int cell_ID = 0;
         SingleCell selected_cell;
         public int coast_line = Globals.width_coastal_water;
@@ -104,26 +105,38 @@ namespace NeverLand1
                 }
                 else
                 {   //high-tide
-                    if (coast_line < Globals.world_x_size - 10 )
+                    if (coast_line < Globals.world_x_size - 10)
                     {
                         coast_line++;
                         for (int i = 0; i < Globals.world_y_size; i++)
                             PointsArray[coast_line, i].water = WaterType._coastal_water;
                     }
                 }
-                
-/*            for (int i = cells.Count - 1; i >= 0; i--)
-                if (cells[i].to_dye)
-                {
-                    if(selected_cell == cells[i])
-                        selected_cell = null;
-                    PointsArray[cells[i].x, cells[i].y].cell = null;
-                    cells.RemoveAt(i);
-                    
-                }
-  */
-        }
 
+        }
+        public void update_cells()
+        {
+            calendar++;
+            for (int i = cells.Count - 1; i >= 0; i--)
+                if (i < cells.Count)
+                    cells[i].Update_1day();
+        }
+        public void update_multis()
+        {
+            calendar_multis++;
+            for (int i = multi_cells.Count - 1; i >= 0; i--)
+                if (i < multi_cells.Count)
+                    multi_cells[i].Update_1day();
+        }
+        public void update_cleanup_corpses()
+        {
+            for (int i = cells.Count - 1; i >= 0; i--)
+                if (cells[i].to_dye)
+                    kill_cell(cells[i]);
+            for (int i = multi_cells.Count - 1; i >= 0; i--)
+                if (multi_cells[i].to_dye)
+                    kill_multi_cell(multi_cells[i]);
+        }
         public void update_graphics(bool _show_cells)
         {
             graph.reset_world_view(coast_line);
