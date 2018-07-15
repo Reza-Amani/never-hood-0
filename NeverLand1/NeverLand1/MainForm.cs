@@ -31,7 +31,7 @@ namespace NeverLand1
             world.set_graph_rnd(graph, random_generator);
 
             cells_thread = new Thread(thread_cells);
-            corpse_cleanup_thread = new Thread(thread_corpse_cleanup);
+            corpse_cleanup_thread = new Thread(thread_cleanup);
             multis_thread = new Thread(thread_multis);
             graphic_thread = new Thread(thread_graphic);
             UI_thread = new Thread(thread_UI);
@@ -79,7 +79,7 @@ namespace NeverLand1
             {
                 if (TimeToGo && !cleanup_inprogress && !cleanup_cells_needed)
                 {
-                    update_cells(null);
+                    world.update_cells();// update_cells(null);
                     cleanup_cells_needed = true;
                     Thread.Sleep(1);
                     graphic_cells_needed = true;
@@ -95,7 +95,7 @@ namespace NeverLand1
             {
                 if (TimeToGo && !cleanup_inprogress && !cleanup_multis_needed)
                 {
-                    update_multis(null);
+                    world.update_multis();// update_multis(null);
                     cleanup_multis_needed = true;
                     Thread.Sleep(1);
                     graphic_multis_needed = true;
@@ -112,7 +112,7 @@ namespace NeverLand1
                 if (cleanup_cells_needed && cleanup_multis_needed && !graphic_inprogress)
                 {
                     cleanup_inprogress = true;
-                    update_cleanup(null);
+                    world.update_cleanup_corpses();// update_cleanup(null);
                     cleanup_cells_needed = false;
                     cleanup_multis_needed = false;
                     cleanup_inprogress = false;
