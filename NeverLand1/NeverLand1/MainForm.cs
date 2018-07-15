@@ -15,7 +15,7 @@ namespace NeverLand1
         graphic graph;
         WorldForm wform;
         World world;
-        Random random_generator = new Random();
+       // public static Random random_generator = new Random();
         static bool graphic_onoff = true, show_cells_onoff = true;
 
         Thread cells_thread, graphic_thread, UI_thread, multis_thread,corpse_cleanup_thread;
@@ -28,7 +28,7 @@ namespace NeverLand1
             wform.Show();
             graph = new graphic(wform.get_picture_box());
             world = new World();
-            world.set_graph_rnd(graph, random_generator);
+            world.set_graph(graph);
 
             cells_thread = new Thread(thread_cells);
             corpse_cleanup_thread = new Thread(thread_cleanup);
@@ -221,7 +221,7 @@ namespace NeverLand1
 //            SingleCell cell = BinarySerialization.ReadFromBinaryFile<SingleCell>("D:/filetest.txt");
 //            world.add_new_cell(cell.x, cell.y, cell);
             world = BinarySerialization.ReadFromBinaryFile<World>("..\\..\\..\\saveworld.txt");
-            world.set_graph_rnd(graph, random_generator);
+            world.set_graph(graph);
             Creature.world = world;//just in case
             foreach (SingleCell cell in world.cells)
                 if(cell!=null)
@@ -235,7 +235,7 @@ namespace NeverLand1
         private void button_new_Click(object sender, EventArgs e)
         {
             world=new World();
-            world.set_graph_rnd(graph, random_generator);
+            world.set_graph(graph);
             if (cells_thread.ThreadState == ThreadState.Unstarted)
                 cells_thread.Start();
             if (multis_thread.ThreadState == ThreadState.Unstarted)

@@ -20,13 +20,10 @@ namespace NeverLand1
         public WorldPoint[,] PointsArray = new WorldPoint[Globals.world_x_size, Globals.world_y_size];
         [NonSerialized]
         graphic graph;
-        [NonSerialized]
-        Random random_generator;
 
-        public void set_graph_rnd(graphic _g,Random _rnd)
+        public void set_graph(graphic _g)
         {
             graph = _g;
-            random_generator = _rnd;
         }
         public World()
         {
@@ -93,8 +90,8 @@ namespace NeverLand1
             for (int i = multi_cells.Count - 1; i >= 0; i--)
                 if (i < multi_cells.Count)
                     multi_cells[i].Update_1day();
-            if (random_generator.Next(2) == 0)
-                if (random_generator.Next(2) == 0)
+            if (Globals.get_random_int_inc(0,1) == 0)
+                if (Globals.get_random_int_inc (0,1) == 0)
                 {   //low-tide
                     if (coast_line > Globals.width_shallow_water + 5)
                     {
