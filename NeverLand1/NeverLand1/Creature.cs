@@ -10,7 +10,6 @@ namespace NeverLand1
     abstract class Creature
     {
         public int x, y, hump, age;
-        //protected static Random random_generator = new Random();
 
         public bool to_dye;
         public int name;

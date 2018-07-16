@@ -81,17 +81,18 @@ namespace NeverLand1
                 Globals.soft_error("ghost multicell to kill");   //error, double multicell!
             return;
         }
-        public void update_1day()
+        public void update_1day(bool _show_cell)
         {
-            calendar++;
-            for (int i = cells.Count - 1; i >= 0; i--)
-                if (i < cells.Count)
-                    cells[i].Update_1day();
-            for (int i = multi_cells.Count - 1; i >= 0; i--)
-                if (i < multi_cells.Count)
-                    multi_cells[i].Update_1day();
-            if (Globals.get_random_int_inc(0,1) == 0)
-                if (Globals.get_random_int_inc (0,1) == 0)
+            update_environment();
+            update_cells();
+            update_multis();
+            update_cleanup_corpses();
+            update_graphics(_show_cell);
+        }
+        public void update_environment()
+        {
+            if (Globals.get_random_int_inc(0, 1) == 0)
+                if (Globals.get_random_int_inc(0, 1) == 0)
                 {   //low-tide
                     if (coast_line > Globals.width_shallow_water + 5)
                     {
@@ -109,7 +110,6 @@ namespace NeverLand1
                             PointsArray[coast_line, i].water = WaterType._coastal_water;
                     }
                 }
-
         }
         public void update_cells()
         {

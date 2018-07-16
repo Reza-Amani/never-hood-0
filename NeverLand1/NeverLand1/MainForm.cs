@@ -15,7 +15,6 @@ namespace NeverLand1
         graphic graph;
         WorldForm wform;
         World world;
-       // public static Random random_generator = new Random();
         static bool graphic_onoff = true, show_cells_onoff = true;
 
         Thread cells_thread, graphic_thread, UI_thread, multis_thread,corpse_cleanup_thread;
@@ -158,7 +157,7 @@ namespace NeverLand1
 
         private void update_1day(object state)
         {
-            world.update_1day();
+            world.update_1day(show_cells_onoff);
         }
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
