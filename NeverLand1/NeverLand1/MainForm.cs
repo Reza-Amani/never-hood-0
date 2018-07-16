@@ -17,8 +17,8 @@ namespace NeverLand1
         World world;
         static bool graphic_onoff = true, show_cells_onoff = true;
 
-        Thread cells_thread, graphic_thread, UI_thread, multis_thread,corpse_cleanup_thread;
-        static bool graphic_cells_needed = false, graphic_multis_needed = false, graphic_inprogress = false, cleanup_cells_needed = false, cleanup_multis_needed = false, cleanup_inprogress = false;
+        Thread cells_thread, graphic_thread, UI_thread, multis_thread, corpse_cleanup_thread, environment_thread;
+        static bool graphic_cells_needed = false, graphic_multis_needed = false, graphic_inprogress = false, cleanup_cells_needed = false, cleanup_multis_needed = false, cleanup_inprogress = false, environment_needed = false;
         
         public MainForm()
         {
@@ -34,6 +34,7 @@ namespace NeverLand1
             multis_thread = new Thread(thread_multis);
             graphic_thread = new Thread(thread_graphic);
             UI_thread = new Thread(thread_UI);
+            environment_thread = new Thread(thread_environment);
         }
 
         bool TimeToGo = false;
@@ -78,8 +79,9 @@ namespace NeverLand1
             {
                 if (TimeToGo && !cleanup_inprogress && !cleanup_cells_needed)
                 {
-                    world.update_cells();// update_cells(null);
+                    world.update_cells();
                     cleanup_cells_needed = true;
+                    environment_needed = true;
                     Thread.Sleep(1);
                     graphic_cells_needed = true;
                 }
@@ -118,6 +120,20 @@ namespace NeverLand1
                 }
                 else
                     Thread.Sleep(10);
+            }
+        }
+
+        private void thread_environment()
+        {
+            while (true)
+            {
+                if (environment_needed)
+                {
+                    environment_needed = false;
+                    world.update_environment();
+                }
+                else
+                    Thread.Sleep(15);
             }
         }
 

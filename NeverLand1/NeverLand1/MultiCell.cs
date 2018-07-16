@@ -223,7 +223,7 @@ namespace NeverLand1
                 world.PointsArray[x, y].organics += hump;
                 hump = 0;//!can be removed
                 to_dye = true;//!can be removed
-                world.kill_multi_cell(this);
+                //world.kill_multi_cell(this);
                 return;
             }
         }
