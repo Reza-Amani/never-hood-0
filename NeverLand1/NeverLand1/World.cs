@@ -10,6 +10,7 @@ namespace NeverLand1
     {
         public List<SingleCell> cells = new List<SingleCell>();
         public int calendar = 0;
+        public int calendar_multis = 0;
         public int cell_ID = 0;
         SingleCell selected_cell;
         public int coast_line = Globals.width_coastal_water;
@@ -19,13 +20,10 @@ namespace NeverLand1
         public WorldPoint[,] PointsArray = new WorldPoint[Globals.world_x_size, Globals.world_y_size];
         [NonSerialized]
         graphic graph;
-        [NonSerialized]
-        Random random_generator;
 
-        public void set_graph_rnd(graphic _g,Random _rnd)
+        public void set_graph(graphic _g)
         {
             graph = _g;
-            random_generator = _rnd;
         }
         public World()
         {
@@ -83,17 +81,18 @@ namespace NeverLand1
                 Globals.soft_error("ghost multicell to kill");   //error, double multicell!
             return;
         }
-        public void update_1day()
+        public void update_1day(bool _show_cell)
         {
-            calendar++;
-            for (int i = cells.Count - 1; i >= 0; i--)
-                if (i < cells.Count)
-                    cells[i].Update_1day();
-            for (int i = multi_cells.Count - 1; i >= 0; i--)
-                if (i < multi_cells.Count)
-                    multi_cells[i].Update_1day();
-            if (random_generator.Next(2) == 0)
-                if (random_generator.Next(2) == 0)
+            update_environment();
+            update_cells();
+            update_multis();
+            update_cleanup_corpses();
+            update_graphics(_show_cell);
+        }
+        public void update_environment()
+        {
+            if (Globals.get_random_int_inc(0, 1) == 0)
+                if (Globals.get_random_int_inc(0, 1) == 0)
                 {   //low-tide
                     if (coast_line > Globals.width_shallow_water + 5)
                     {
@@ -104,23 +103,37 @@ namespace NeverLand1
                 }
                 else
                 {   //high-tide
-                    coast_line++;
-                    for (int i = 0; i < Globals.world_y_size; i++)
-                        PointsArray[coast_line, i].water = WaterType._coastal_water;
+                    if (coast_line < Globals.world_x_size - 10)
+                    {
+                        coast_line++;
+                        for (int i = 0; i < Globals.world_y_size; i++)
+                            PointsArray[coast_line, i].water = WaterType._coastal_water;
+                    }
                 }
-                
-/*            for (int i = cells.Count - 1; i >= 0; i--)
-                if (cells[i].to_dye)
-                {
-                    if(selected_cell == cells[i])
-                        selected_cell = null;
-                    PointsArray[cells[i].x, cells[i].y].cell = null;
-                    cells.RemoveAt(i);
-                    
-                }
-  */
         }
-
+        public void update_cells()
+        {
+            calendar++;
+            for (int i = cells.Count - 1; i >= 0; i--)
+                if (i < cells.Count)
+                    cells[i].Update_1day();
+        }
+        public void update_multis()
+        {
+            calendar_multis++;
+            for (int i = multi_cells.Count - 1; i >= 0; i--)
+                if (i < multi_cells.Count)
+                    multi_cells[i].Update_1day();
+        }
+        public void update_cleanup_corpses()
+        {
+            for (int i = cells.Count - 1; i >= 0; i--)
+                if (cells[i].to_dye)
+                    kill_cell(cells[i]);
+            for (int i = multi_cells.Count - 1; i >= 0; i--)
+                if (multi_cells[i].to_dye)
+                    kill_multi_cell(multi_cells[i]);
+        }
         public void update_graphics(bool _show_cells)
         {
             graph.reset_world_view(coast_line);

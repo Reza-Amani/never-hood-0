@@ -45,8 +45,8 @@ namespace NeverLand1
         override protected void update_parameters_from_pargenume() { }
         override protected void choose_next_pixel(int _x, int _y, out int _new_x, out int _new_y)
         {
-            int newx = _x + random_generator.Next(-1, 2);
-            int newy = _y + random_generator.Next(-1, 2);
+            int newx = _x + Globals.get_random_int_inc(-1, 1);
+            int newy = _y + Globals.get_random_int_inc(-1, 1);
             if ((newx < world.coast_line) && (newx >= 0) && (newy < Globals.world_y_size) && (newy >= 0))
             {   //propose new point 
                 _new_x = newx;
@@ -96,8 +96,8 @@ namespace NeverLand1
                             hump += world.PointsArray[_new_x, _new_y].cell.hump;
                             world.PointsArray[_new_x, _new_y].cell.hump = 0;
                             world.PointsArray[_new_x, _new_y].cell.to_dye = true;
-                            world.kill_cell(world.PointsArray[_new_x, _new_y].cell);
-                            do_move(_new_x, _new_y);
+                            //world.kill_cell(world.PointsArray[_new_x, _new_y].cell);
+                            //do_move(_new_x, _new_y);
                         }
                     break;
             }
@@ -110,7 +110,7 @@ namespace NeverLand1
                 world.PointsArray[x, y].organics += hump;
                 hump = 0;//!can be removed
                 to_dye = true;//!can be removed
-                world.kill_cell(this);
+                //world.kill_cell(this);
                 return;
             }
             if (hump >= 2)
@@ -123,15 +123,15 @@ namespace NeverLand1
                 world.PointsArray[x, y].organics += hump;
                 hump = 0;
                 to_dye = true;
-                world.kill_cell(this);
+                //world.kill_cell(this);
             }
         
         }
 
         override protected void mutation()
         {
-            if(random_generator.Next(100)==1)
-                switch(random_generator.Next(4))
+            if (Globals.get_random_int_inc(0,100) == 1)
+                switch (Globals.get_random_int_inc(0,3))
                 {
                     case 0: 
                         breeding_thresh = Globals.mutate(breeding_thresh,10,-10,Globals.default_cell_breed_thresh_max,10);
@@ -139,8 +139,8 @@ namespace NeverLand1
                     case 1: 
                         age_max = Globals.mutate(age_max,10,-10,Globals.default_cell_max_age_max,10);
                         break;
-                    case 2: 
-                        if(random_generator.Next(2)==0)
+                    case 2:
+                        if (Globals.get_random_int_inc (0,1) == 0)
                             food_type = Globals.get_next_foodtype(food_type);
                         else
                             food_type = Globals.get_prev_foodtype(food_type);
@@ -152,7 +152,7 @@ namespace NeverLand1
                             world.add_new_multi_cell(x, y, new_multi);
                             hump = 0;
                             to_dye = true;
-                            world.kill_cell(this);
+                            //world.kill_cell(this);
                         }
                         break;
                 }

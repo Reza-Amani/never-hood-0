@@ -112,13 +112,13 @@ namespace NeverLand1
             if( (has_crawling_leg && world.PointsArray[_x, _y].water == WaterType._dry) ||
                 (has_fin && world.PointsArray[_x, _y].water != WaterType._dry) )
             {
-                newx = _x + random_generator.Next(-2, 3);
-                newy = _y + random_generator.Next(-2, 3);
+                newx = _x + Globals.get_random_int_inc(-2,2);
+                newy = _y + Globals.get_random_int_inc(-2, 2);
             }
             else
             {
-                newx = _x + random_generator.Next(-1, 2);
-                newy = _y + random_generator.Next(-1, 2);
+                newx = _x + Globals.get_random_int_inc(-1, 1);
+                newy = _y + Globals.get_random_int_inc(-1, 1);
             }
             if ((newx < Globals.world_x_size -size+1) && (newx >= 0) && (newy < Globals.world_y_size -size+1) && (newy >= 0))
             {   //propose new point 
@@ -180,7 +180,8 @@ namespace NeverLand1
             hump += _cell.hump;
             world.PointsArray[_cell.x, _cell.y].cell = null;
             _cell.to_dye = true;
-            world.kill_cell(_cell);
+            _cell.hump = 0;
+//            world.kill_cell(_cell);
         }
         void do_move(int _newx, int _newy)
         {
@@ -222,7 +223,7 @@ namespace NeverLand1
                 world.PointsArray[x, y].organics += hump;
                 hump = 0;//!can be removed
                 to_dye = true;//!can be removed
-                world.kill_multi_cell(this);
+                //world.kill_multi_cell(this);
                 return;
             }
         }

@@ -47,10 +47,6 @@ namespace NeverLand1
         }
         public void step_test()
         {
-            Random rnd = new Random();
-            for (int i = 0; i < 1000; i++)
-                g.DrawImageUnscaled(bms[i], rnd.Next(500), rnd.Next(500));
-            box.Image = btm;
         }
         public void draw_bmp(Bitmap _bmp,int _x,int _y)
         {

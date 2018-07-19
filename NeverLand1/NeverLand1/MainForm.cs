@@ -15,10 +15,10 @@ namespace NeverLand1
         graphic graph;
         WorldForm wform;
         World world;
-        Random random_generator = new Random();
         static bool graphic_onoff = true, show_cells_onoff = true;
 
-        Thread go_thread, graphic_thread, UI_thread;
+        Thread cells_thread, graphic_thread, UI_thread, multis_thread, corpse_cleanup_thread, environment_thread;
+        static bool graphic_cells_needed = false, graphic_multis_needed = false, graphic_inprogress = false, cleanup_cells_needed = false, cleanup_multis_needed = false, cleanup_inprogress = false, environment_needed = false;
         
         public MainForm()
         {
@@ -27,20 +27,23 @@ namespace NeverLand1
             wform.Show();
             graph = new graphic(wform.get_picture_box());
             world = new World();
-            world.set_graph_rnd(graph, random_generator);
+            world.set_graph(graph);
 
-            go_thread = new Thread(thread_go);
+            cells_thread = new Thread(thread_cells);
+            corpse_cleanup_thread = new Thread(thread_cleanup);
+            multis_thread = new Thread(thread_multis);
             graphic_thread = new Thread(thread_graphic);
             UI_thread = new Thread(thread_UI);
+            environment_thread = new Thread(thread_environment);
         }
 
         bool TimeToGo = false;
 
         private void test_Click(object sender, EventArgs e)
         {
-            graphic_thread.Start();
-            go_thread.Start();
-            UI_thread.Start();
+//            graphic_thread.Start();
+//            go_thread.Start();
+//            UI_thread.Start();
 //            graph.update();
         }
 
@@ -57,11 +60,7 @@ namespace NeverLand1
         {
             TimeToGo = true;
 //            timer = new System.Threading.Timer(update_1day, null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(0.5));
-/*            while (TimeToGo)
-            {
-                world.update_1day();
-            }
-*/        }
+        }
 
         private void button_1day_Click(object sender, EventArgs e)
         {
@@ -74,25 +73,84 @@ namespace NeverLand1
             textBox_cell.Text = world.get_cell_info();
 */        }
 
-        private void thread_go()
+        private void thread_cells()
         {
-            while(true)
+            while (true)
             {
-                Thread.Sleep(100);
-                if (TimeToGo)
-                    lock (world)
-                        update_1day(null);
+                if (TimeToGo && !cleanup_inprogress && !cleanup_cells_needed)
+                {
+                    world.update_cells();
+                    cleanup_cells_needed = true;
+                    environment_needed = true;
+                    Thread.Sleep(1);
+                    graphic_cells_needed = true;
+                }
+                else
+                    Thread.Sleep(10);
             }
-         }
+        }
+
+        private void thread_multis()
+        {
+            while (true)
+            {
+                if (TimeToGo && !cleanup_inprogress && !cleanup_multis_needed)
+                {
+                    world.update_multis();// update_multis(null);
+                    cleanup_multis_needed = true;
+                    Thread.Sleep(1);
+                    graphic_multis_needed = true;
+                }
+                else
+                    Thread.Sleep(10);
+            }
+        }
+
+        private void thread_cleanup()
+        {
+            while (true)
+            {
+                if (cleanup_cells_needed && cleanup_multis_needed && !graphic_inprogress)
+                {
+                    cleanup_inprogress = true;
+                    world.update_cleanup_corpses();// update_cleanup(null);
+                    cleanup_cells_needed = false;
+                    cleanup_multis_needed = false;
+                    cleanup_inprogress = false;
+                }
+                else
+                    Thread.Sleep(10);
+            }
+        }
+
+        private void thread_environment()
+        {
+            while (true)
+            {
+                if (environment_needed)
+                {
+                    environment_needed = false;
+                    world.update_environment();
+                }
+                else
+                    Thread.Sleep(15);
+            }
+        }
 
         private void thread_graphic()
         {
             while (true)
             {
-                Thread.Sleep(100);
-                if (graphic_onoff)
-                    lock(world)
-                        world.update_graphics(show_cells_onoff);
+                if (graphic_onoff && graphic_cells_needed && graphic_multis_needed && !cleanup_inprogress)
+                {
+                    graphic_inprogress = true;
+                    world.update_graphics(show_cells_onoff);
+                    graphic_cells_needed = false;
+                    graphic_multis_needed = false;
+                    graphic_inprogress = false;
+                }
+                else
+                    Thread.Sleep(50);
             }
         }
 
@@ -100,8 +158,8 @@ namespace NeverLand1
         {
             while (true)
             {
-                Thread.Sleep(50);
-                lock (world)
+                Thread.Sleep(10);
+                if ( ( graphic_cells_needed || graphic_multis_needed ) && !cleanup_inprogress)
                 {
                     if (wform.clicked)
                     {
@@ -115,7 +173,7 @@ namespace NeverLand1
 
         private void update_1day(object state)
         {
-            world.update_1day();
+            world.update_1day(show_cells_onoff);
         }
 
         private void button_new_single_cell_Click(object sender, EventArgs e)
@@ -178,7 +236,7 @@ namespace NeverLand1
 //            SingleCell cell = BinarySerialization.ReadFromBinaryFile<SingleCell>("D:/filetest.txt");
 //            world.add_new_cell(cell.x, cell.y, cell);
             world = BinarySerialization.ReadFromBinaryFile<World>("..\\..\\..\\saveworld.txt");
-            world.set_graph_rnd(graph, random_generator);
+            world.set_graph(graph);
             Creature.world = world;//just in case
             foreach (SingleCell cell in world.cells)
                 if(cell!=null)
@@ -192,13 +250,19 @@ namespace NeverLand1
         private void button_new_Click(object sender, EventArgs e)
         {
             world=new World();
-            world.set_graph_rnd(graph, random_generator);
-            if (go_thread.ThreadState == ThreadState.Unstarted)
-                go_thread.Start();
+            world.set_graph(graph);
+            if (cells_thread.ThreadState == ThreadState.Unstarted)
+                cells_thread.Start();
+            if (multis_thread.ThreadState == ThreadState.Unstarted)
+                multis_thread.Start();
+            if (corpse_cleanup_thread.ThreadState == ThreadState.Unstarted)
+                corpse_cleanup_thread.Start();
             if (graphic_thread.ThreadState == ThreadState.Unstarted)
                 graphic_thread.Start();
             if (UI_thread.ThreadState == ThreadState.Unstarted)
                 UI_thread.Start();
+            if (environment_thread.ThreadState == ThreadState.Unstarted)
+                environment_thread.Start();
         }
 
     }

@@ -1,30 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph DataVirtualized="True" Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="(@1 @2 @3 Member=(Name=button_new_Click OverloadingParameters=[(@4 Namespace=System Type=Object),(@4 Namespace=System Type=EventArgs)]))" Category="CodeSchema_Method" Bounds="-174.392708678316,24.7351203661881,128.246666666667,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="button_new_Click" DelayedCrossGroupLinksState="Fetched" FunctionTypeFlags="Method" Label="button_new_Click" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/NeverHood/NeverLand1/NeverLand1/MainForm.cs StartLineNumber=188 StartCharacterOffset=0 EndLineNumber=188 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @6 Member=(Name=button_new_Click OverloadingParameters=[(@4 Namespace=System Type=Object),(@4 Namespace=System Type=EventArgs)]))" Category="CodeSchema_Method" Bounds="58.6038393949914,5.27462069925285,128.246666666667,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="button_new_Click" DelayedCrossGroupLinksState="Fetched" FunctionTypeFlags="Method" Label="button_new_Click" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/NeverHood/NeverLand1/NeverLand1/MainForm.cs StartLineNumber=188 StartCharacterOffset=0 EndLineNumber=188 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="(@1 @2 @3 Member=(Name=test_Click OverloadingParameters=[(@4 Namespace=System Type=Object),(@4 Namespace=System Type=EventArgs)]))" Category="CodeSchema_Method" Bounds="-16.1459420116488,37.7149583520584,85.2333333333333,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="test_Click" DelayedCrossGroupLinksState="Fetched" FunctionTypeFlags="Method" Label="test_Click" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/neverhood/neverland1/neverland1/mainform.cs StartLineNumber=38 StartCharacterOffset=8 EndLineNumber=38 EndCharacterOffset=8)" />
-    <Node Id="(@1 @2 @3 Member=.ctor)" Category="CodeSchema_Method" Bounds="-294.372808678316,37.7149583520584,89.98,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CommonLabel="MainForm" DelayedCrossGroupLinksState="Fetched" FunctionTypeFlags="Constructor" Label="MainForm" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/neverhood/neverland1/neverland1/mainform.cs StartLineNumber=25 StartCharacterOffset=0 EndLineNumber=25 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @6 Member=(Name=test_Click OverloadingParameters=[(@4 Namespace=System Type=Object),(@4 Namespace=System Type=EventArgs)]))" Category="CodeSchema_Method" Bounds="216.850606061658,-7.24434962389705,85.2333333333333,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="test_Click" DelayedCrossGroupLinksState="Fetched" FunctionTypeFlags="Method" Label="test_Click" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/NeverHood/NeverLand1/NeverLand1/MainForm.cs StartLineNumber=38 StartCharacterOffset=8 EndLineNumber=38 EndCharacterOffset=8)" />
+    <Node Id="(@1 @2 Type=graphic Member=update_world_view)" Category="CodeSchema_Method" Bounds="-108.159685725492,46.1282728197343,136.763413653333,25.95805888" CodeSchemaProperty_IsPublic="True" CommonLabel="update_world_view" DelayedCrossGroupLinksState="Fetched" FunctionTypeFlags="Method" Label="update_world_view" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///D:/NeverHood/NeverLand1/NeverLand1/graphic.cs StartLineNumber=58 StartCharacterOffset=8 EndLineNumber=58 EndCharacterOffset=8)" />
+    <Node Id="@5" Category="CodeSchema_Method" Bounds="-94.4259441103464,-9.81541408748298,123.064400053333,25.95805888" CodeSchemaProperty_IsPublic="True" CommonLabel="update_graphics" DelayedCrossGroupLinksState="Fetched" FunctionTypeFlags="Method" Label="update_graphics" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/neverhood/neverland1/neverland1/world.cs StartLineNumber=123 StartCharacterOffset=8 EndLineNumber=123 EndCharacterOffset=8)" />
+    <Node Id="@7" Category="CodeSchema_Method" Bounds="332.084039394992,5.264675200616,89.98,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CommonLabel="MainForm" DelayedCrossGroupLinksState="Fetched" FunctionTypeFlags="Constructor" Label="MainForm" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/NeverHood/NeverLand1/NeverLand1/MainForm.cs StartLineNumber=25 StartCharacterOffset=0 EndLineNumber=25 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@5" Category="CodeSchema_Field" Bounds="-150.12338268455,93.6749583520584,87.8966666666667,25.96" CodeSchemaProperty_IsPrivate="True" DelayedCrossGroupLinksState="Fetched" Label="UI_thread" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/neverhood/neverland1/neverland1/mainform.cs StartLineNumber=20 StartCharacterOffset=42 EndLineNumber=20 EndCharacterOffset=42)" />
+    <Node Id="@8" Category="CodeSchema_Method" Bounds="5.17666721945691,-80.5206758580103,115.1,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="thread_graphic" DelayedCrossGroupLinksState="Fetched" FunctionTypeFlags="Method" Label="thread_graphic" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/NeverHood/NeverLand1/NeverLand1/MainForm.cs StartLineNumber=87 StartCharacterOffset=8 EndLineNumber=87 EndCharacterOffset=8)" />
+    <Node Id="@9" Category="CodeSchema_Field" Bounds="182.056967574881,61.2347206992528,87.8966666666666,25.96" CodeSchemaProperty_IsPrivate="True" DelayedCrossGroupLinksState="Fetched" Label="UI_thread" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///d:/NeverHood/NeverLand1/NeverLand1/MainForm.cs StartLineNumber=20 StartCharacterOffset=42 EndLineNumber=20 EndCharacterOffset=42)" />
   </Nodes>
   <Links>
-    <Link Source="(@1 @2 @3 Member=(Name=button_new_Click OverloadingParameters=[(@4 Namespace=System Type=Object),(@4 Namespace=System Type=EventArgs)]))" Target="@5" Category="CodeSchema_FieldRead" Bounds="-109.498495213091,50.6951203661881,2.01899732441338,33.9956683104592" Weight="2" />
-    <Link Source="(@1 @2 @3 Member=(Name=test_Click OverloadingParameters=[(@4 Namespace=System Type=Object),(@4 Namespace=System Type=EventArgs)]))" Target="@5" Category="CodeSchema_FieldReference" Bounds="-67.1154011680786,63.6749583520584,62.8187536536734,26.5016920500939" Weight="1">
+    <Link Source="(@1 @2 @6 Member=(Name=button_new_Click OverloadingParameters=[(@4 Namespace=System Type=Object),(@4 Namespace=System Type=EventArgs)]))" Target="@9" Category="CodeSchema_FieldRead" Bounds="146.725548505183,31.2296231232302,47.472474537106,25.7136321964335" Weight="2" />
+    <Link Source="(@1 @2 @6 Member=(Name=test_Click OverloadingParameters=[(@4 Namespace=System Type=Object),(@4 Namespace=System Type=EventArgs)]))" Target="@9" Category="CodeSchema_FieldReference" Bounds="236.360568043209,18.7204692701409,16.8045954789134,34.4215949399925" Weight="1">
       <Category Ref="CodeSchema_FieldRead" />
     </Link>
-    <Link Source="(@1 @2 @3 Member=.ctor)" Target="@5" Category="CodeSchema_FieldWrite" Bounds="-216.165569291865,63.6749583520584,68.39055069971,26.7243565232681" Weight="1" />
+    <Link Source="@5" Target="(@1 @2 Type=graphic Member=update_world_view)" Category="CodeSchema_Calls" Bounds="-37.061089251071,16.142644792517,2.57865904572454,21.0667741183941" Weight="1" />
+    <Link Source="@7" Target="@8" Category="CodeSchema_FunctionPointer" Bounds="125.311820983887,-52.4511947631836,228.139289855957,57.7158694267273" Weight="1" />
+    <Link Source="@7" Target="@9" Category="CodeSchema_FieldWrite" Bounds="269.547073385558,31.2296731232302,72.5293056649811,26.8731519537397" Weight="1" />
+    <Link Source="@8" Target="@5" Category="CodeSchema_Calls" Bounds="-8.10435778083017,-54.5606758580103,53.2768862420173,39.3943555388384" Weight="1" />
   </Links>
   <Categories>
     <Category Id="CallStackEntry" Label="Call Stack Entry" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="Call Stack Entry" />
+    <Category Id="CodeSchema_Calls" Label="Calls" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Called By" OutgoingActionLabel="Calls" />
     <Category Id="CodeSchema_Field" Label="Field" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" NavigationActionLabel="Fields" />
     <Category Id="CodeSchema_FieldRead" Label="Field Read" BasedOn="CodeSchema_FieldReference" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Read By" OutgoingActionLabel="Reads Fields" />
     <Category Id="CodeSchema_FieldReference" Label="Field Reference" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Referenced By" OutgoingActionLabel="References Fields" />
     <Category Id="CodeSchema_FieldWrite" Label="Field Write" BasedOn="CodeSchema_FieldReference" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Written By" OutgoingActionLabel="Writes Fields" />
+    <Category Id="CodeSchema_FunctionPointer" Label="Function Pointer" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Function Pointers" OutgoingActionLabel="Function Pointers" />
     <Category Id="CodeSchema_Member" Label="Member" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" NavigationActionLabel="Members" />
     <Category Id="CodeSchema_Method" Label="Method" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Link:Forward:CodeSchema_Calls" Icon="CodeSchema_Method" NavigationActionLabel="Methods" />
     <Category Id="CodeSchema_SourceLocation" Label="Source Location" Icon="File" />
@@ -71,9 +79,12 @@
   <IdentifierAliases>
     <Alias n="1" Uri="Assembly=$(a2bb835d-6a13-49f5-b196-12ac70ad48f4.OutputPathUri)" />
     <Alias n="2" Id="Namespace=NeverLand1" />
-    <Alias n="3" Id="Type=MainForm" />
     <Alias n="4" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/mscorlib.dll" />
-    <Alias n="5" Id="(@1 @2 @3 Member=UI_thread)" />
+    <Alias n="5" Id="(@1 @2 Type=World Member=(Name=update_graphics OverloadingParameters=[(@4 Namespace=System Type=Boolean)]))" />
+    <Alias n="6" Id="Type=MainForm" />
+    <Alias n="7" Id="(@1 @2 @6 Member=.ctor)" />
+    <Alias n="8" Id="(@1 @2 @6 Member=thread_graphic)" />
+    <Alias n="9" Id="(@1 @2 @6 Member=UI_thread)" />
   </IdentifierAliases>
   <Styles>
     <Style TargetType="Link" GroupLabel="Current Call Stack Link" ValueLabel="True" Visibility="Hidden">
@@ -271,7 +282,9 @@
     </Style>
   </Styles>
   <Paths>
+    <Path Id="a2bb835d-6a13-49f5-b196-12ac70ad48f4.OutputPath" Value="D:\NeverHood\NeverLand1\NeverLand1\bin\Debug\NeverLand1.exe" />
     <Path Id="a2bb835d-6a13-49f5-b196-12ac70ad48f4.OutputPathUri" Value="file:///D:/NeverHood/NeverLand1/NeverLand1/bin/Debug/NeverLand1.exe" />
+    <Path Id="FxReferenceAssemblies" Value="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework" />
     <Path Id="FxReferenceAssembliesUri" Value="file:///C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework" />
   </Paths>
 </DirectedGraph>

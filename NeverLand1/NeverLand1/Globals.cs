@@ -17,7 +17,8 @@ namespace NeverLand1
 
         public static int mutate(int _input, int _percent_plus, int _percent_minus, int _max, int _min)
         {
-            _input = ( _input*( random_generator.Next(_percent_minus, _percent_plus + 1)+100 ) ) / 100;
+            lock (random_generator)
+                _input = ( _input*( random_generator.Next(_percent_minus, _percent_plus + 1)+100 ) ) / 100;
             if (_input < _min)
                 _input = _min;
             if (_input > _max)
@@ -26,7 +27,8 @@ namespace NeverLand1
         }
         public static bool get_random_bool()
         {
-            return (random_generator.Next(0, 2) == 0);
+            lock (random_generator)
+                return (random_generator.Next(0, 2) == 0);
         }
         public static int get_random_int_inc(int min, int max)
         {
@@ -36,7 +38,8 @@ namespace NeverLand1
                 max = min;
                 min = temp;
             }
-            return random_generator.Next(min, max + 1);
+            lock (random_generator)
+                return random_generator.Next(min, max + 1);
         }
         public static FoodType get_next_foodtype(FoodType _current_type)
         {
