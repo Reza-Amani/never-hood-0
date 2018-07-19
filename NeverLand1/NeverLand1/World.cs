@@ -12,6 +12,7 @@ namespace NeverLand1
         public int calendar = 0;
         public int calendar_multis = 0;
         public int cell_ID = 0;
+        public int multi_ID = 0;
         SingleCell selected_cell;
         public int coast_line = Globals.width_coastal_water;
 
@@ -47,7 +48,7 @@ namespace NeverLand1
             PointsArray[_x, _y].cell = _cell;
         }
 
-        public void add_new_multi_cell(int _x, int _y, MultiCell _multi)
+        public void add_new_multi(int _x, int _y, MultiCell _multi)
         {
             multi_cells.Add(_multi);
             PointsArray[_x, _y].multi_cell = _multi;

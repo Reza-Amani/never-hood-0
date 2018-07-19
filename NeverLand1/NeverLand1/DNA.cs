@@ -65,7 +65,7 @@ namespace NeverLand1
             if(_cell.food_type == FoodType._single_cell)
                 genume.Add(new Gene(Gene.GeneType._mouth, 1, 0, 1));
             par_genume.Add(new Gene(Gene.GeneType._ft_max_age, _cell.age_max, 100, 10000));
-            par_genume.Add(new Gene(Gene.GeneType._ft_reproduction_interval, _cell.breeding_thresh, 100, 1000));
+            par_genume.Add(new Gene(Gene.GeneType._ft_reproduction_interval, _cell.breeding_thresh, Globals.default_multi_reproduction_interval_min, Globals.default_multi_reproduction_interval_max));
             par_genume.Add(new Gene(Gene.GeneType._ft_embryo_hump, 50, 100, 1000));
         }
         public bool check_mutation()

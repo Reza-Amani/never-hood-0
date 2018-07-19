@@ -44,6 +44,11 @@ namespace NeverLand1
             if (temp_gene != default(Gene))
                 if (temp_gene.value == 1)
                     has_genital_male = true;
+            temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._genital_female);
+            has_genital_female = false;
+            if (temp_gene != default(Gene))
+                if (temp_gene.value == 1)
+                    has_genital_female = true;
             temp_gene = DNA.genume.Find(g => g.name == Gene.GeneType._fin);
             has_fin = false;
             if (temp_gene != default(Gene))
@@ -67,12 +72,12 @@ namespace NeverLand1
             if (temp_gene != default(Gene))
                 par_embryo_hump = temp_gene.value;
             else
-                par_embryo_hump = 0;
+                par_embryo_hump = 10;
             temp_gene = DNA.par_genume.Find(g => g.name == Gene.GeneType._ft_reproduction_interval);
             if (temp_gene != default(Gene))
                 par_reproduction_interval = temp_gene.value;
             else
-                par_reproduction_interval = 0;
+                par_reproduction_interval = Globals.default_multi_reproduction_interval_min;
         }
 
         override protected void update_face()
@@ -133,7 +138,17 @@ namespace NeverLand1
         }
 
         override protected void reproduce(ref int _new_x, ref int _new_y)
-        {
+        {   //TODO:
+            if(has_genital_female && has_genital_male)
+                if ( ! is_there_another_multi(_new_x, _new_y))
+                    if (hump > 2*par_embryo_hump)
+                    {
+                        hump -= par_embryo_hump;
+                        MultiCell _new_born = new MultiCell(_new_x, _new_y, DNA, 0, par_embryo_hump, world.multi_ID++);
+                        world.add_new_multi(_new_x, _new_y, _new_born);
+                        _new_x = x;
+                        _new_y = y;
+                    }
         }
         override protected void move_eat(int _new_x, int _new_y)
         {
@@ -181,7 +196,6 @@ namespace NeverLand1
             world.PointsArray[_cell.x, _cell.y].cell = null;
             _cell.to_dye = true;
             _cell.hump = 0;
-//            world.kill_cell(_cell);
         }
         void do_move(int _newx, int _newy)
         {
@@ -221,9 +235,8 @@ namespace NeverLand1
             if (age > par_max_age || hump==0)
             {   //checking age_max
                 world.PointsArray[x, y].organics += hump;
-                hump = 0;//!can be removed
-                to_dye = true;//!can be removed
-                //world.kill_multi_cell(this);
+                hump = 0;
+                to_dye = true;
                 return;
             }
         }

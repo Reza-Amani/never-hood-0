@@ -96,8 +96,6 @@ namespace NeverLand1
                             hump += world.PointsArray[_new_x, _new_y].cell.hump;
                             world.PointsArray[_new_x, _new_y].cell.hump = 0;
                             world.PointsArray[_new_x, _new_y].cell.to_dye = true;
-                            //world.kill_cell(world.PointsArray[_new_x, _new_y].cell);
-                            //do_move(_new_x, _new_y);
                         }
                     break;
             }
@@ -108,9 +106,8 @@ namespace NeverLand1
             if (age > age_max)
             {   //checking age_max
                 world.PointsArray[x, y].organics += hump;
-                hump = 0;//!can be removed
-                to_dye = true;//!can be removed
-                //world.kill_cell(this);
+                hump = 0;
+                to_dye = true;
                 return;
             }
             if (hump >= 2)
@@ -123,9 +120,7 @@ namespace NeverLand1
                 world.PointsArray[x, y].organics += hump;
                 hump = 0;
                 to_dye = true;
-                //world.kill_cell(this);
             }
-        
         }
 
         override protected void mutation()
@@ -148,11 +143,10 @@ namespace NeverLand1
                     case 3:
                         if ((x < Globals.world_x_size - size) && (x >= 0) && (y < Globals.world_y_size - size) && (y >= 0))
                         {
-                            MultiCell new_multi = new MultiCell(x, y, new DNA(this), age, hump, name);
-                            world.add_new_multi_cell(x, y, new_multi);
+                            MultiCell new_multi = new MultiCell(x, y, new DNA(this), age, hump, world.multi_ID);
+                            world.add_new_multi(x, y, new_multi);
                             hump = 0;
                             to_dye = true;
-                            //world.kill_cell(this);
                         }
                         break;
                 }
