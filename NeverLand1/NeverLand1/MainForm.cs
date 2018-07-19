@@ -261,6 +261,8 @@ namespace NeverLand1
                 graphic_thread.Start();
             if (UI_thread.ThreadState == ThreadState.Unstarted)
                 UI_thread.Start();
+            if (environment_thread.ThreadState == ThreadState.Unstarted)
+                environment_thread.Start();
         }
 
     }
