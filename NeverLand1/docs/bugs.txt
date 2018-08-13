@@ -1,0 +1,5 @@
+in SingleCell.cs:91 happened: 
+	(world.PointsArray[_new_x, _new_y].cell was not null,
+	 went to 93: if( (hump > world.PointsArray[_new_x, _new_y].cell.hump)
+		here, it was null!
+At the same version, the error of "the object is in use somewhere else" happened many times in face in update_face n multicell. Every time it could continue despite the bug
